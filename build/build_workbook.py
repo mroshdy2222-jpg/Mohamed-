@@ -9,7 +9,8 @@ from openpyxl.chart.title import Title
 from openpyxl.drawing.text import CharacterProperties, Paragraph, ParagraphProperties, RegularTextRun
 from openpyxl.drawing.text import Font as DFont
 from openpyxl.comments import Comment
-from openpyxl.formatting.rule import CellIsRule, FormulaRule
+from openpyxl.formatting.rule import CellIsRule, Rule
+from openpyxl.styles.differential import DifferentialStyle
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
@@ -86,6 +87,15 @@ def banner(ws, last_col, title, subtitle):
     paint(ws, f"A4:{last_col}4", TEAL)
     ws.row_dimensions[4].height = 4
     ws.column_dimensions["A"].width = 2.5
+
+
+def contains_rule(ws, rng_, text, fnt, fll=None):
+    """'Cell contains text' highlight -- a simple rule type Apple Numbers keeps on import."""
+    first = rng_.split(":")[0]
+    rule = Rule(type="containsText", operator="containsText", text=text,
+                dxf=DifferentialStyle(font=fnt, fill=fll))
+    rule.formula = [f'NOT(ISERROR(SEARCH("{text}",{first})))']
+    ws.conditional_formatting.add(rng_, rule)
 
 
 def header_cell(c, text):
@@ -166,7 +176,7 @@ for sheet, label, desc in contents:
     r += 3
 
 cv.merge_cells("B31:K31")
-cv["B31"] = "Works in Microsoft Excel 2010+ • Google Sheets • LibreOffice   |   Compatible con Excel 2010+ • Google Sheets • LibreOffice"
+cv["B31"] = "💻 PC / Mac  •  📱 iPhone / Android  —  Excel • Google Sheets   |   Computadora y celular — Excel • Google Sheets"
 cv["B31"].font = font(9, False, "94A3B8")
 cv["B31"].alignment = CENTER
 cv.merge_cells("B33:K33")
@@ -209,9 +219,10 @@ for col, text, width, _ in headers:
     header_cell(tr[f"{col}5"], text)
     tr.column_dimensions[col].width = width
 # helper column for Top-5 ranking (hidden)
-tr["P5"] = "Rank key (helper)"
-tr["P5"].font = font(8, False, "94A3B8")
-tr.column_dimensions["P"].hidden = True
+for col, text in zip("PQRS", ["Rank key", "Valid sale (1/0)", "Year-month key", "Low margin (1/0)"]):
+    tr[f"{col}5"] = f"Helper – do not edit: {text}"
+    tr[f"{col}5"].font = font(8, False, "94A3B8")
+    tr.column_dimensions[col].hidden = True
 
 tr["I5"].comment = Comment("Auto: Sale Price × Fee %\nAuto: Precio de Venta × % Comisión", "ProfitTrack")
 tr["L5"].comment = Comment("Auto: Sale Price − Purchase Cost − Shipping In − Platform Fee − Shipping Out − Other Costs\n"
@@ -226,7 +237,10 @@ for r in range(FIRST, LAST + 1):
     tr[f"L{r}"] = f'=IF(OR(B{r}="",G{r}=""),"",G{r}-E{r}-F{r}-I{r}-J{r}-K{r})'
     tr[f"M{r}"] = f'=IF(L{r}="","",IF(G{r}=0,0,L{r}/G{r}))'
     tr[f"O{r}"] = f'=IF(M{r}="","",IF(M{r}<0.15,"⚠ LOW MARGIN / MARGEN BAJO","✔ OK"))'
-    tr[f"P{r}"] = f'=IF(OR(L{r}="",N{r}="{RETURNED}"),"",L{r}+ROW()/1000000)'
+    tr[f"Q{r}"] = f'=IF(B{r}="",0,IF(G{r}="",0,IF(N{r}="{RETURNED}",0,1)))'
+    tr[f"P{r}"] = f'=IF(Q{r}=1,L{r}+ROW()/1000000,-1E+15)'
+    tr[f"R{r}"] = f'=IF(Q{r}=1,IF(ISNUMBER(D{r}),YEAR(D{r})*100+MONTH(D{r}),0),0)'
+    tr[f"S{r}"] = f'=IF(Q{r}=1,IF(M{r}<0.15,1,0),0)'
     for col, _, _, kind in headers:
         c = tr[f"{col}{r}"]
         c.fill = fill(INPUT_FILL if kind == "in" else CALC_FILL)
@@ -240,7 +254,8 @@ for r in range(FIRST, LAST + 1):
     tr[f"D{r}"].number_format = DATE_FMT
     tr[f"D{r}"].alignment = Alignment(horizontal="center", vertical="center")
     tr[f"O{r}"].alignment = Alignment(horizontal="center", vertical="center")
-    tr[f"P{r}"].font = font(8, color="94A3B8")
+    for col in "PQRS":
+        tr[f"{col}{r}"].font = font(8, color="94A3B8")
 
 # Example rows (realistic, clearly marked as examples)
 samples = [
@@ -301,14 +316,11 @@ dv_pct.add(f"H{FIRST}:H{LAST}")
 for col in "EFGJK":
     dv_money.add(f"{col}{FIRST}:{col}{LAST}")
 
-tr.conditional_formatting.add(f"O{FIRST}:O{LAST}", FormulaRule(
-    formula=[f'AND(ISNUMBER(M{FIRST}),M{FIRST}<0.15)'], fill=fill(RED_LIGHT), font=Font(name=FONT, bold=True, color=RED)))
-tr.conditional_formatting.add(f"O{FIRST}:O{LAST}", FormulaRule(
-    formula=[f'AND(ISNUMBER(M{FIRST}),M{FIRST}>=0.15)'], fill=fill(GREEN_LIGHT), font=Font(name=FONT, color=GREEN)))
-tr.conditional_formatting.add(f"M{FIRST}:M{LAST}", FormulaRule(
-    formula=[f'AND(ISNUMBER(M{FIRST}),M{FIRST}<0.15)'], font=Font(name=FONT, bold=True, color=RED)))
-tr.conditional_formatting.add(f"B{FIRST}:O{LAST}", FormulaRule(
-    formula=[f'$N{FIRST}="{RETURNED}"'], font=Font(name=FONT, italic=True, color="94A3B8")))
+contains_rule(tr, f"O{FIRST}:O{LAST}", "LOW", Font(name=FONT, bold=True, color=RED), fill(RED_LIGHT))
+contains_rule(tr, f"O{FIRST}:O{LAST}", "OK", Font(name=FONT, color=GREEN), fill(GREEN_LIGHT))
+contains_rule(tr, f"N{FIRST}:N{LAST}", "Returned", Font(name=FONT, italic=True, color="94A3B8"))
+tr.conditional_formatting.add(f"M{FIRST}:M{LAST}", CellIsRule(
+    operator="lessThan", formula=["0.15"], font=Font(name=FONT, bold=True, color=RED)))
 
 tr.freeze_panes = "C6"
 tr.auto_filter.ref = f"B5:O{LAST}"
@@ -329,13 +341,13 @@ for k, v in widths.items():
 
 T = "Tracker!"
 rng = lambda col: f"{T}${col}${FIRST}:${col}${LAST}"  # noqa: E731
-VALID = f'{rng("B")},"<>",{rng("G")},"<>",{rng("N")},"<>{RETURNED}"'
+VALID = f'{rng("Q")},1'  # helper: 1 = sale with name + price and not returned
 
 kpis = [
     ("B", "C", "TOTAL REVENUE", "Ingresos Totales", f"=SUMIFS({rng('G')},{VALID})", CUR0),
     ("E", "F", "TOTAL PROFIT", "Ganancia Total", f"=SUMIFS({rng('L')},{VALID})", CUR0),
     ("H", "I", "AVG. PROFIT MARGIN", "Margen Promedio", "=IF(B8=0,0,E8/B8)", PCT),
-    ("K", "L", "NUMBER OF SALES", "Número de Ventas", f"=COUNTIFS({VALID})", "#,##0"),
+    ("K", "L", "NUMBER OF SALES", "Número de Ventas", f"=SUM({rng('Q')})", "#,##0"),
 ]
 db.row_dimensions[6].height = 20
 db.row_dimensions[7].height = 16
@@ -360,13 +372,16 @@ for c1, c2, en, es, f, fmt in kpis:
 db["H9"] = "weighted: profit ÷ revenue / ponderado"
 db["H9"].font = font(7, False, WHITE)
 db["H9"].alignment = Alignment(horizontal="center", vertical="center")
-db["B9"] = '=TEXT(SUMIFS(' + rng("I") + ',' + VALID + '),"$#,##0")&" in fees / en comisiones"'
+db["B9"] = f"=SUMIFS({rng('I')},{VALID})"
+db["B9"].number_format = '$#,##0" in fees / en comisiones"'
 db["B9"].font = font(7, False, WHITE)
 db["B9"].alignment = Alignment(horizontal="center", vertical="center")
-db["E9"] = '=IF(K8=0,"",TEXT(E8/K8,"$#,##0.00")&" avg / sale · prom / venta")'
+db["E9"] = "=IF(K8=0,0,E8/K8)"
+db["E9"].number_format = '$#,##0.00" avg / sale · prom / venta"'
 db["E9"].font = font(7, False, WHITE)
 db["E9"].alignment = Alignment(horizontal="center", vertical="center")
-db["K9"] = f'=COUNTIFS({rng("O")},"⚠*")&" low-margin / margen bajo"'
+db["K9"] = f"=SUM({rng('S')})"
+db["K9"].number_format = '0" low-margin / margen bajo"'
 db["K9"].font = font(7, False, WHITE)
 db["K9"].alignment = Alignment(horizontal="center", vertical="center")
 
@@ -451,7 +466,7 @@ months = ["Jan / Ene", "Feb / Feb", "Mar / Mar", "Apr / Abr", "May / May", "Jun 
           "Jul / Jul", "Aug / Ago", "Sep / Sep", "Oct / Oct", "Nov / Nov", "Dec / Dic"]
 for m, label in enumerate(months, start=1):
     r = 23 + m
-    crit = f'{VALID},{rng("D")},">="&DATE($C$22,{m},1),{rng("D")},"<"&DATE($C$22,{m + 1},1)'
+    crit = f'{rng("R")},$C$22*100+{m}'
     db[f"B{r}"] = label
     db.merge_cells(f"C{r}:D{r}")
     db[f"C{r}"] = f"=COUNTIFS({crit})"
@@ -498,14 +513,16 @@ for n in range(1, 6):
     r = 40 + n
     key = f"LARGE(Tracker!$P${FIRST}:$P${LAST},{n})"
     row_idx = f"MATCH({key},Tracker!$P${FIRST}:$P${LAST},0)"
+    none = f"{key}<-1E+14"
     db[f"B{r}"] = n
     db.merge_cells(f"C{r}:G{r}")
-    db[f"C{r}"] = f'=IFERROR(INDEX(Tracker!$B${FIRST}:$B${LAST},{row_idx}),"—")'
-    db[f"H{r}"] = f'=IFERROR(INDEX(Tracker!$C${FIRST}:$C${LAST},{row_idx}),"")'
+    db[f"C{r}"] = f'=IFERROR(IF({none},"—",INDEX(Tracker!$B${FIRST}:$B${LAST},{row_idx})),"—")'
+    db[f"H{r}"] = f'=IFERROR(IF({none},"",INDEX(Tracker!$C${FIRST}:$C${LAST},{row_idx})),"")'
     db.merge_cells(f"I{r}:J{r}")
-    db[f"I{r}"] = f'=IFERROR(INDEX(Tracker!$D${FIRST}:$D${LAST},{row_idx}),"")'
-    db[f"K{r}"] = f'=IFERROR(INDEX(Tracker!$L${FIRST}:$L${LAST},{row_idx}),"")'
-    db[f"L{r}"] = f'=IFERROR(INDEX(Tracker!$M${FIRST}:$M${LAST},{row_idx}),"")'
+    d_idx = f"INDEX(Tracker!$D${FIRST}:$D${LAST},{row_idx})"
+    db[f"I{r}"] = f'=IFERROR(IF({none},"",IF({d_idx}=0,"",{d_idx})),"")'
+    db[f"K{r}"] = f'=IFERROR(IF({none},"",INDEX(Tracker!$L${FIRST}:$L${LAST},{row_idx})),"")'
+    db[f"L{r}"] = f'=IFERROR(IF({none},"",INDEX(Tracker!$M${FIRST}:$M${LAST},{row_idx})),"")'
     for col in "BCDEFGHIJKL":
         c = db[f"{col}{r}"]
         c.border = BORDER
@@ -677,12 +694,10 @@ sc.add_data_validation(sc_dv_pct)
 sc_dv_plat.add(f"D{S_FIRST}:D{S_LAST}")
 sc_dv_pct.add(f"H{S_FIRST}:H{S_LAST}")
 sc_dv_pct.add("F7")
-sc.conditional_formatting.add(f"P{S_FIRST}:P{S_LAST}", FormulaRule(
-    formula=[f'LEFT(P{S_FIRST},1)="✔"'], fill=fill(GREEN_LIGHT), font=Font(name=FONT, bold=True, color=GREEN)))
-sc.conditional_formatting.add(f"P{S_FIRST}:P{S_LAST}", FormulaRule(
-    formula=[f'LEFT(P{S_FIRST},1)="✖"'], fill=fill(RED_LIGHT), font=Font(name=FONT, bold=True, color=RED)))
-sc.conditional_formatting.add(f"M{S_FIRST}:M{S_LAST}", FormulaRule(
-    formula=[f'AND(ISNUMBER(M{S_FIRST}),M{S_FIRST}<$F$7)'], font=Font(name=FONT, bold=True, color=RED)))
+contains_rule(sc, f"P{S_FIRST}:P{S_LAST}", "BUY", Font(name=FONT, bold=True, color=GREEN), fill(GREEN_LIGHT))
+contains_rule(sc, f"P{S_FIRST}:P{S_LAST}", "PASS", Font(name=FONT, bold=True, color=RED), fill(RED_LIGHT))
+sc.conditional_formatting.add(f"M{S_FIRST}:M{S_LAST}", CellIsRule(
+    operator="lessThan", formula=["$F$7"], font=Font(name=FONT, bold=True, color=RED)))
 sc.freeze_panes = "C11"
 
 # =====================================================================
@@ -818,6 +833,32 @@ for en, es in faq:
         qs[f"{col}{r}"].alignment = Alignment(wrap_text=True, vertical="top")
         qs[f"{col}{r}"].border = BORDER
     qs.row_dimensions[r].height = 48
+    r += 1
+
+r += 1
+qs.merge_cells(f"B{r}:D{r}")
+qs[f"B{r}"] = "Phone, Tablet & Computer  /  Celular, Tableta y Computadora"
+qs[f"B{r}"].font = font(12, True, NAVY)
+qs[f"B{r}"].border = Border(bottom=Side(style="medium", color=TEAL))
+r += 1
+devices = [
+    ("💻 Computer (Windows / Mac): open in Microsoft Excel, or in Google Sheets from any browser. Everything works.",
+     "💻 Computadora (Windows / Mac): ábrelo en Microsoft Excel o en Google Sheets desde cualquier navegador. Todo funciona."),
+    ("📱 iPhone, iPad & Android — RECOMMENDED: the free Microsoft Excel app or the free Google Sheets app. Formulas, dropdowns, charts and alerts all work.",
+     "📱 iPhone, iPad y Android — RECOMENDADO: la app gratuita Microsoft Excel o la app gratuita Google Sheets. Fórmulas, listas, gráficas y alertas funcionan."),
+    ("🍎 Apple Numbers: formulas, Dashboard, charts and alerts work, but Numbers removes dropdown lists when it opens Excel files (you'll see a message – this is normal). Type the Platform and Status exactly as in the list (e.g. Returned / Devuelto), or re-add a menu: select the column cells → Format → Cell → Data Format → Pop-Up Menu.",
+     "🍎 Apple Numbers: las fórmulas, el Panel, las gráficas y las alertas funcionan, pero Numbers elimina las listas desplegables al abrir archivos de Excel (verás un aviso – es normal). Escribe la Plataforma y el Estado exactamente como en la lista (ej. Returned / Devuelto), o vuelve a crear el menú: selecciona las celdas de la columna → Formato → Celda → Formato de datos → Menú desplegable."),
+    ("Options for Platform: eBay · Facebook Marketplace · Etsy · Poshmark · Other.   Options for Status: Sold / Vendido · Shipped / Enviado · Delivered / Entregado · Pending / Pendiente · Returned / Devuelto",
+     "Opciones de Plataforma: eBay · Facebook Marketplace · Etsy · Poshmark · Other.   Opciones de Estado: Sold / Vendido · Shipped / Enviado · Delivered / Entregado · Pending / Pendiente · Returned / Devuelto"),
+]
+for en, es in devices:
+    qs[f"C{r}"] = en
+    qs[f"D{r}"] = es
+    for col in "CD":
+        qs[f"{col}{r}"].font = font(10)
+        qs[f"{col}{r}"].alignment = Alignment(wrap_text=True, vertical="top")
+        qs[f"{col}{r}"].border = BORDER
+    qs.row_dimensions[r].height = max(34, 14 * (max(len(en), len(es)) // 60 + 1) + 6)
     r += 1
 
 # ---------- Workbook-wide finishing ----------

@@ -31,6 +31,7 @@ ProfitTrack — Reseller Profit Tracker & Dashboard (EN/ES)
 Know Your REAL Profit on Every Flip
 eBay • Poshmark • Etsy • Facebook Marketplace
 Excel + Google Sheets | English + Español
+📱 iPhone • Android • 💻 PC / Mac
 ```
 
 **First line of the description (≈160 chars — shows in Google & Etsy previews):**
@@ -84,7 +85,7 @@ Todos los títulos e instrucciones están en inglés Y español.
 • Get estimated profit, margin, ROI and an instant ✔ BUY / ✖ PASS decision
 • "Max Buy Price" tells you the most you can pay and still hit your target — perfect for negotiating at thrift stores, garage sales and estate sales
 
-5️⃣ QUICK START GUIDE — step-by-step setup in 5 minutes, colour legend, platform fee reference table and FAQ (English + Spanish).
+5️⃣ QUICK START GUIDE — step-by-step setup in 5 minutes, colour legend, platform fee reference table, FAQ and phone/tablet tips (English + Spanish).
 
 ━━━━━━━━━━━━━━━━━━
 💡 WHY RESELLERS LOVE IT
@@ -93,7 +94,7 @@ Todos los títulos e instrucciones están en inglés Y español.
 • Dropdown menus & input checks prevent typos
 • Colour-coded: light teal = type here, grey = automatic
 • Example data included so you can see how it works (delete in one click)
-• Works in Microsoft Excel (2010+), Google Sheets (free) and LibreOffice
+• Works on computer, phone and tablet — see compatibility below
 • No subscription, no app, no monthly fees — yours forever
 
 ━━━━━━━━━━━━━━━━━━
@@ -115,11 +116,18 @@ Todos los títulos e instrucciones están en inglés Y español.
 4. Watch your dashboard update in real time
 
 ━━━━━━━━━━━━━━━━━━
+📱💻 WORKS ON ALL YOUR DEVICES
+━━━━━━━━━━━━━━━━━━
+• Computer (Windows / Mac): Microsoft Excel 2010+ or Google Sheets in any browser
+• iPhone, iPad & Android: the FREE Microsoft Excel app or the FREE Google Sheets app — everything works, including dropdowns and charts
+• Apple Numbers: formulas, dashboard, charts and alerts work. Numbers removes dropdown menus from all Excel files, so you type Platform/Status instead (the guide shows how to add the menus back)
+
+━━━━━━━━━━━━━━━━━━
 ⚠️ PLEASE NOTE
 ━━━━━━━━━━━━━━━━━━
 • This is a DIGITAL DOWNLOAD. No physical item will be shipped.
-• You'll receive 1 Excel file (.xlsx). A free Google account is needed for Google Sheets.
-• Not compatible with Apple Numbers (charts may not display correctly).
+• You'll receive 1 Excel file (.xlsx). A free Google account is needed for Google Sheets; the Excel phone app is free with a Microsoft account.
+• For the best experience on iPhone/iPad, use the free Excel or Google Sheets app rather than Apple Numbers.
 • Currency is shown in US dollars ($).
 • Platform fee rates change — the guide includes typical rates for reference; always enter the rate you actually paid.
 • For personal use only. Please do not share, resell or redistribute.
@@ -179,7 +187,7 @@ What we WILL do:
 We cannot offer refunds for:
 • Change of mind after downloading
 • Purchasing the wrong item or buying without reading the description
-• Software incompatibility (e.g. Apple Numbers or very old versions of Excel)
+• Limitations of other apps described in the listing (e.g. Apple Numbers removing dropdown menus) or very old versions of Excel
 • Not having a Google or Microsoft account
 
 This policy does not affect any rights you may have under the laws of your country or under the platform's (Etsy / Gumroad) own buyer-protection policies.
@@ -244,7 +252,8 @@ All sales are final. Due to the digital nature of this product, no refunds or ex
 
 - [ ] Upload `ProfitTrack_Reseller_Profit_Tracker.xlsx` as the digital file (Etsy: up to 5 files, 20 MB each)
 - [ ] Main image: Dashboard screenshot + thumbnail headline (section 2)
-- [ ] Extra images: Tracker with the low-margin alert, Sourcing List BUY/PASS, Quick Start Guide (bilingual), "Works in Excel & Google Sheets"
+- [ ] Extra images: Tracker with the low-margin alert, Sourcing List BUY/PASS, Quick Start Guide (bilingual), "Works on iPhone, Android & computer"
+- [ ] Before publishing: open the file once on your phone in the Excel app, once in Google Sheets and (if you have an iPhone) once in Numbers, and take real screenshots
 - [ ] Paste the title, description and 13 tags
 - [ ] Set the price to $14.99 and create a 50% sale in *Marketing → Sales and discounts*
 - [ ] Add the short refund note to the description and the full policy to shop policies / FAQ
