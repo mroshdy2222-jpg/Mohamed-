@@ -134,6 +134,8 @@ Todos los títulos e instrucciones están en inglés Y español.
 • Due to the nature of digital files, all sales are final — see the refund policy below. If you have any problem with your file, message me and I'll help right away!
 
 Questions? Send me a message — I usually reply within 24 hours. ¿Preguntas? ¡Escríbeme!
+
+💰 Pair it with ProfitTrack Inventory and ProfitTrack Expenses & Mileage — or get all three in the Reseller Bundle and save.
 ```
 
 ---
@@ -235,7 +237,7 @@ All sales are final. Due to the digital nature of this product, no refunds or ex
 - An Etsy sale shows a strikethrough price and a "50% off" badge in search, which lifts click-through.
 - **Estimated net per Etsy sale at $7.49:** about **$6.33**, after the $0.20 listing fee, 6.5% transaction fee and ~3% + $0.25 payment processing (Offsite Ads not included). At the full $14.99: about $13.12.
 
-**Growth ideas:** Run the 50% sale for launch (the first 30 days), then drop to 30–40% off. Later, bundle with an "Expense & Mileage Tracker" at $19.99 to raise the average order value.
+**Growth ideas:** Run the 50% sale for launch (the first 30 days), then drop to 30–40% off. Also list the two companion products (ProfitTrack Inventory and ProfitTrack Expenses, $12.99 → $6.49 each) and the 3-file Reseller Bundle ($29.99 → $14.99). See `Listing_Inventory.md`, `Listing_Expense_Mileage.md` and `Listing_Bundle.md`.
 
 **Sources (market research):**
 - https://www.etsy.com/market/profit_tracker_spreadsheet

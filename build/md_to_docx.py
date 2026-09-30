@@ -4,7 +4,10 @@ from docx import Document
 from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
-SRC, OUT = "product/ProfitTrack_Listing_Copy.md", "product/ProfitTrack_Listing_Copy.docx"
+import sys
+
+SRC = sys.argv[1] if len(sys.argv) > 1 else "product/ProfitTrack_Listing_Copy.md"
+OUT = SRC[:-3] + ".docx"
 NAVY, TEAL = RGBColor(0x0B, 0x1F, 0x3A), RGBColor(0x0F, 0x76, 0x6E)
 doc = Document()
 st = doc.styles["Normal"]
