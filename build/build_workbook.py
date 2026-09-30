@@ -203,20 +203,20 @@ banner(tr, "O", "Sales Tracker  /  Registro de Ventas",
 headers = [
     ("B", "Product Name\nNombre del Producto", 30, "in"),
     ("C", "Platform\nPlataforma", 20, "in"),
-    ("D", "Sale Date\nFecha de Venta", 13, "in"),
-    ("E", "Purchase Cost\nCosto de Compra", 13, "in"),
-    ("F", "Shipping In\nEnvío (Entrada)", 13, "in"),
-    ("G", "Sale Price\nPrecio de Venta", 13, "in"),
-    ("H", "Platform Fee %\n% Comisión", 12, "in"),
-    ("I", "Platform Fee $\nComisión $", 13, "calc"),
-    ("J", "Shipping Out\nEnvío (Salida)", 13, "in"),
-    ("K", "Other Costs\nOtros Costos", 12, "in"),
-    ("L", "Net Profit\nGanancia Neta", 13, "calc"),
-    ("M", "Profit Margin %\nMargen %", 12, "calc"),
+    ("D", "Sale Date\nFecha de Venta", 16, "in"),
+    ("E", "Purchase Cost\nCosto de Compra", 16, "in"),
+    ("F", "Shipping In\nEnvío (Entrada)", 16, "in"),
+    ("G", "Sale Price\nPrecio de Venta", 16, "in"),
+    ("H", "Platform Fee %\n% Comisión", 16, "in"),
+    ("I", "Platform Fee $\nComisión $", 16, "calc"),
+    ("J", "Shipping Out\nEnvío (Salida)", 16, "in"),
+    ("K", "Other Costs\nOtros Costos", 16, "in"),
+    ("L", "Net Profit\nGanancia Neta", 16, "calc"),
+    ("M", "Profit Margin %\nMargen %", 16, "calc"),
     ("N", "Status\nEstado", 20, "in"),
     ("O", "Margin Alert (<15%)\nAlerta de Margen", 26, "calc"),
 ]
-tr.row_dimensions[5].height = 36
+tr.row_dimensions[5].height = 48
 for col, text, width, _ in headers:
     header_cell(tr[f"{col}5"], text)
     tr.column_dimensions[col].width = width
@@ -638,21 +638,21 @@ s_headers = [
     ("B", "Item\nArtículo", 28, "in"),
     ("C", "Where Found\nDónde lo Encontré", 17, "in"),
     ("D", "Target Platform\nPlataforma", 19, "in"),
-    ("E", "Asking Price\nPrecio de Compra", 13, "in"),
-    ("F", "Shipping In\nEnvío (Entrada)", 12, "in"),
-    ("G", "Est. Sale Price\nPrecio Est. Venta", 13, "in"),
+    ("E", "Asking Price\nPrecio de Compra", 16, "in"),
+    ("F", "Shipping In\nEnvío (Entrada)", 16, "in"),
+    ("G", "Est. Sale Price\nPrecio Est. Venta", 16, "in"),
     ("H", "Fee %\n% Comisión", 10, "in"),
-    ("I", "Est. Fee $\nComisión Est. $", 12, "calc"),
-    ("J", "Est. Ship Out\nEnvío Est. Salida", 12, "in"),
+    ("I", "Est. Fee $\nComisión Est. $", 16, "calc"),
+    ("J", "Est. Ship Out\nEnvío Est. Salida", 16, "in"),
     ("K", "Other Costs\nOtros Costos", 11, "in"),
-    ("L", "Est. Profit\nGanancia Est.", 12, "calc"),
+    ("L", "Est. Profit\nGanancia Est.", 16, "calc"),
     ("M", "Est. Margin\nMargen Est.", 11, "calc"),
     ("N", "ROI %\nRetorno %", 10, "calc"),
     ("O", "Max Buy Price\nPrecio Máx. Compra", 14, "calc"),
     ("P", "Decision\nDecisión", 22, "calc"),
     ("Q", "Notes\nNotas", 22, "in"),
 ]
-sc.row_dimensions[10].height = 36
+sc.row_dimensions[10].height = 48
 for col, text, width, _ in s_headers:
     header_cell(sc[f"{col}10"], text)
     sc.column_dimensions[col].width = width
