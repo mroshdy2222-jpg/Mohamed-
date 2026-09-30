@@ -12,7 +12,7 @@ from openpyxl.drawing.text import Font as DFont
 from openpyxl.comments import Comment
 from openpyxl.formatting.rule import CellIsRule, Rule
 from openpyxl.styles.differential import DifferentialStyle
-from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Protection, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
@@ -455,6 +455,7 @@ db["C22"].font = font(11, True, "1E3A8A")
 db["C22"].fill = fill("FEF9C3")
 db["C22"].border = BORDER
 db["C22"].alignment = Alignment(horizontal="center")
+db["C22"].protection = Protection(locked=False)  # the only editable cell on the locked Dashboard
 db["C22"].comment = Comment("Shows the year of your latest sale. Type any year (e.g. 2027) to change it.\n"
                             "Muestra el año de tu última venta. Escribe otro año (ej. 2027) para cambiarlo.", "ProfitTrack")
 db.merge_cells("E22:H22")
@@ -735,8 +736,8 @@ steps = [
      "Revisa la columna Alerta de Margen. Toda venta con margen menor al 15% se marca en rojo '⚠ MARGEN BAJO' para detectar artículos que no valen la pena."),
     ("If an item is returned, set Status to 'Returned / Devuelto'. It stays in your log (greyed out) but is excluded from every Dashboard number.",
      "Si un artículo se devuelve, cambia el Estado a 'Returned / Devuelto'. Se queda en tu registro (en gris) pero se excluye de todos los números del Panel."),
-    ("Open the Dashboard to see your KPIs, profit by platform, the monthly trend chart and your Top 5 sales. Everything updates instantly. Change the yellow Year cell to view another year.",
-     "Abre el Dashboard (Panel) para ver tus indicadores, ganancia por plataforma, la gráfica mensual y tus Top 5 ventas. Todo se actualiza al instante. Cambia la celda amarilla del Año para ver otro año."),
+    ("Open the Dashboard to see your KPIs, profit by platform, the monthly trend chart and your Top 5 sales. Everything updates instantly. The Dashboard is locked to protect its formulas – only the yellow Year cell can be changed.",
+     "Abre el Dashboard (Panel) para ver tus indicadores, ganancia por plataforma, la gráfica mensual y tus Top 5 ventas. Todo se actualiza al instante. El Panel está bloqueado para proteger sus fórmulas – solo se puede cambiar la celda amarilla del Año."),
     ("BONUS — before buying inventory, use the Sourcing List. Set your minimum margin and minimum profit (yellow cells), enter the asking price and your estimated sale price, and get an instant ✔ BUY / ✖ PASS plus the Max Buy Price to negotiate with.",
      "BONO — antes de comprar mercancía, usa Sourcing List (Lista de Compras). Define tu margen y ganancia mínimos (celdas amarillas), escribe el precio de compra y el precio estimado de venta, y obtén al instante ✔ COMPRAR / ✖ NO COMPRAR y el Precio Máximo de Compra para negociar."),
     ("Google Sheets: upload the file to Google Drive → Open with Google Sheets → File → Save as Google Sheets. All formulas, dropdowns and charts keep working.",
@@ -829,6 +830,8 @@ faq = [
      "P: ¿Por qué el Margen Promedio es 'ponderado'?  R: Es Ganancia Total ÷ Ingresos Totales, así una venta de $500 pesa más que una de $5 – la imagen más precisa de tu negocio."),
     ("Q: A sale has no profit showing.  A: Profit appears once Product Name and Sale Price are filled in.",
      "P: Una venta no muestra ganancia.  R: La ganancia aparece cuando llenas el Nombre del Producto y el Precio de Venta."),
+    ("Q: Why can't I type on the Dashboard?  A: It's locked so its formulas can't be erased by accident – add or change sales on the Tracker instead. Only the yellow Year cell is editable. To unlock (no password): Excel → Review → Unprotect Sheet; Google Sheets → Data → Protect sheets and ranges.",
+     "P: ¿Por qué no puedo escribir en el Panel?  R: Está bloqueado para que sus fórmulas no se borren por accidente – agrega o cambia ventas en el Tracker. Solo la celda amarilla del Año se puede editar. Para desbloquear (sin contraseña): Excel → Revisar → Desproteger hoja; Google Sheets → Datos → Proteger hojas y rangos."),
 ]
 for en, es in faq:
     qs[f"C{r}"] = en
@@ -865,6 +868,11 @@ for en, es in devices:
         qs[f"{col}{r}"].border = BORDER
     qs.row_dimensions[r].height = max(34, 14 * (max(len(en), len(es)) // 60 + 1) + 6)
     r += 1
+
+# Lock the Dashboard (no password) so formulas can't be overwritten by accident
+db.protection.sheet = True
+db.protection.selectLockedCells = False
+db.protection.selectUnlockedCells = False
 
 # ---------- Workbook-wide finishing ----------
 for ws in wb.worksheets:
