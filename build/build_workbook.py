@@ -3,6 +3,7 @@ from datetime import date
 
 from openpyxl import Workbook
 from openpyxl.chart import BarChart, LineChart, Reference
+from openpyxl.chart.series import SeriesLabel
 from openpyxl.chart.label import DataLabelList
 from openpyxl.chart.text import RichText, Text
 from openpyxl.chart.title import Title
@@ -34,6 +35,7 @@ GREEN = "15803D"
 FONT = "Arial"
 
 CUR = '$#,##0.00;[Red]-$#,##0.00;"-"'
+CUR_SIMPLE = "$#,##0.00"
 CUR0 = '$#,##0;[Red]-$#,##0;"-"'
 PCT = '0.0%;[Red]-0.0%;"-"'
 DATE_FMT = "yyyy-mm-dd"
@@ -412,8 +414,8 @@ for i, p in enumerate(PLATFORMS):
     db[f"B{r}"] = p
     db.merge_cells(f"C{r}:D{r}")
     db[f"C{r}"] = f"=COUNTIFS({crit})"
-    db[f"E{r}"] = f"=SUMIFS({rng('G')},{crit})"
-    db[f"F{r}"] = f"=SUMIFS({rng('L')},{crit})"
+    db[f"E{r}"] = f"=ROUND(SUMIFS({rng('G')},{crit}),2)"
+    db[f"F{r}"] = f"=ROUND(SUMIFS({rng('L')},{crit}),2)"
     db[f"H{r}"] = f"=IF(E{r}=0,0,F{r}/E{r})"
     for col in "BCEFH":
         c = db[f"{col}{r}"]
@@ -422,15 +424,15 @@ for i, p in enumerate(PLATFORMS):
         c.fill = fill(TEAL_LIGHT if i % 2 == 0 else WHITE)
     db[f"D{r}"].border = BORDER
     db[f"C{r}"].alignment = Alignment(horizontal="center")
-    db[f"E{r}"].number_format = CUR
-    db[f"F{r}"].number_format = CUR
+    db[f"E{r}"].number_format = CUR_SIMPLE
+    db[f"F{r}"].number_format = CUR_SIMPLE
     db[f"H{r}"].number_format = PCT
 r = 18
 db[f"B{r}"] = "TOTAL"
 db.merge_cells(f"C{r}:D{r}")
 db[f"C{r}"] = "=SUM(C13:C17)"
-db[f"E{r}"] = "=SUM(E13:E17)"
-db[f"F{r}"] = "=SUM(F13:F17)"
+db[f"E{r}"] = f"=ROUND(SUMIFS({rng('G')},{VALID}),2)"
+db[f"F{r}"] = f"=ROUND(SUMIFS({rng('L')},{VALID}),2)"
 db[f"H{r}"] = f"=IF(E{r}=0,0,F{r}/E{r})"
 for col in "BCEFH":
     c = db[f"{col}{r}"]
@@ -470,8 +472,8 @@ for m, label in enumerate(months, start=1):
     db[f"B{r}"] = label
     db.merge_cells(f"C{r}:D{r}")
     db[f"C{r}"] = f"=COUNTIFS({crit})"
-    db[f"E{r}"] = f"=SUMIFS({rng('G')},{crit})"
-    db[f"F{r}"] = f"=SUMIFS({rng('L')},{crit})"
+    db[f"E{r}"] = f"=ROUND(SUMIFS({rng('G')},{crit}),2)"
+    db[f"F{r}"] = f"=ROUND(SUMIFS({rng('L')},{crit}),2)"
     db[f"H{r}"] = f"=IF(E{r}=0,0,F{r}/E{r})"
     for col in "BCEFH":
         c = db[f"{col}{r}"]
@@ -480,15 +482,16 @@ for m, label in enumerate(months, start=1):
         c.fill = fill(TEAL_LIGHT if m % 2 else WHITE)
     db[f"D{r}"].border = BORDER
     db[f"C{r}"].alignment = Alignment(horizontal="center")
-    db[f"E{r}"].number_format = CUR
-    db[f"F{r}"].number_format = CUR
+    db[f"E{r}"].number_format = CUR_SIMPLE
+    db[f"F{r}"].number_format = CUR_SIMPLE
     db[f"H{r}"].number_format = PCT
 r = 36
 db[f"B{r}"] = "YEAR / AÑO"
 db.merge_cells(f"C{r}:D{r}")
 db[f"C{r}"] = "=SUM(C24:C35)"
-db[f"E{r}"] = "=SUM(E24:E35)"
-db[f"F{r}"] = "=SUM(F24:F35)"
+yr_crit = f'{rng("R")},">="&($C$22*100+1),{rng("R")},"<="&($C$22*100+12)'
+db[f"E{r}"] = f"=ROUND(SUMIFS({rng('G')},{yr_crit}),2)"
+db[f"F{r}"] = f"=ROUND(SUMIFS({rng('L')},{yr_crit}),2)"
 db[f"H{r}"] = f"=IF(E{r}=0,0,F{r}/E{r})"
 for col in "BCEFH":
     c = db[f"{col}{r}"]
@@ -579,6 +582,8 @@ line.add_data(Reference(db, min_col=6, min_row=23, max_row=35), titles_from_data
 line.add_data(Reference(db, min_col=5, min_row=23, max_row=35), titles_from_data=True)
 line.set_categories(Reference(db, min_col=2, min_row=24, max_row=35))
 s_profit, s_rev = line.series
+s_profit.tx = SeriesLabel(v="Profit / Ganancia")
+s_rev.tx = SeriesLabel(v="Revenue / Ingresos")
 s_profit.graphicalProperties.line.solidFill = TEAL
 s_profit.graphicalProperties.line.width = 32000
 s_profit.marker.symbol = "circle"
@@ -590,7 +595,7 @@ s_rev.graphicalProperties.line.dashStyle = "dash"
 s_rev.graphicalProperties.line.width = 19000
 s_rev.smooth = False
 s_profit.smooth = False
-line.legend.position = "b"
+line.legend.position = "t"
 line.height, line.width = 8.0, 16.5
 line.x_axis.delete = False
 line.y_axis.delete = False
