@@ -334,7 +334,7 @@ db.sheet_view.showGridLines = False
 banner(db, "N", "Dashboard  /  Panel de Control",
        "Updates automatically from the Tracker. Returned sales are excluded.  •  "
        "Se actualiza automáticamente desde el Registro. Las ventas devueltas se excluyen.")
-widths = {"B": 16, "C": 14, "D": 3, "E": 16, "F": 14, "G": 3, "H": 16, "I": 14, "J": 3,
+widths = {"B": 22, "C": 14, "D": 3, "E": 16, "F": 14, "G": 3, "H": 21, "I": 14, "J": 3,
           "K": 16, "L": 14, "M": 3, "N": 12}
 for k, v in widths.items():
     db.column_dimensions[k].width = v
