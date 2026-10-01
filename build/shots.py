@@ -26,6 +26,8 @@ SHOTS = {
         ("pt_sourcing_out", "Sourcing List", "L10:P15"),
         ("pt_guide", "Quick Start Guide", "A1:D11"),
         ("pt_guide_strip", "Quick Start Guide", "A1:D7"),
+        ("pin_pt_tracker", "Tracker", "L5:O18"),
+        ("pin_pt_platform", "Dashboard", "B12:F18"),
     ],
     "product/ProfitTrack_Expense_Mileage_Tracker.xlsx": [
         ("ex_cover", "Cover", "A1:L40"),
@@ -38,6 +40,8 @@ SHOTS = {
         ("ex_settings", "Settings", "A1:F21"),
         ("ex_guide", "Quick Start Guide", "A1:D11"),
         ("ex_guide_strip", "Quick Start Guide", "A1:D7"),
+        ("pin_ex_mileage", "Mileage", "J5:M18"),
+        ("pin_ex_cats", "Dashboard", "B14:E27"),
     ],
     "product/ProfitTrack_Handmade_Pricing_Calculator.xlsx": [
         ("hp_cover", "Cover", "A1:L40"),
@@ -52,6 +56,8 @@ SHOTS = {
         ("hp_phone", "Calculator", "I6:J23"),
         ("hp_guide", "Quick Start Guide", "A1:D11"),
         ("hp_guide_strip", "Quick Start Guide", "A1:D7"),
+        ("pin_hp", "Calculator", "I6:J15"),
+        ("pin_hp_status", "Product List", "O11:R19"),
     ],
     "product/ProfitTrack_Bilingual_Budget_Planner.xlsx": [
         ("bp_cover", "Cover", "A1:L42"),
@@ -91,6 +97,8 @@ SHOTS = {
         ("iv_phone", "Inventory", "C5:D27"),
         ("iv_guide", "Quick Start Guide", "A1:D11"),
         ("iv_guide_strip", "Quick Start Guide", "A1:D7"),
+        ("pin_iv_alerts", "Inventory", "N5:Q18"),
+        ("pin_iv_oldest", "Dashboard", "B46:F56"),
     ],
 }
 

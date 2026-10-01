@@ -19,3 +19,10 @@ python3 build/shots.py && python3 build/listing_images.py
 ```
 
 If you change the prices, update `bundle/03-price` (in `build/listing_images.py`) and rebuild.
+
+## Pinterest pins (1000 × 1500) and Gumroad images
+
+- `pinterest/01-profit-tracker` … `08-free-calculator`: copy for each pin is in `product/Pinterest_Pins.md`
+- `freebie/gumroad-cover` (1280 × 720) and `freebie/gumroad-thumb` (600 × 600) for the free Flip Calculator
+
+Rebuild the pins with `PYTHONPATH=build python3 build/pins.py`.
