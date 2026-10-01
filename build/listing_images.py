@@ -79,9 +79,13 @@ def laptop(shot, x, y, w):
             f'<div class="screen"><img src="{img(shot)}"></div><div class="base"></div></div>')
 
 
+FIT_PHONE = {"hp_phone"}   # screenshots that must be shown whole (numbers on the right)
+
+
 def phone(shot, x, y, w, h, label="Excel"):
+    fit = "object-fit:contain;object-position:center top;" if shot in FIT_PHONE else ""
     return (f'<div class="abs phone" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px">'
-            f'<div class="bar">{label}</div><img class="scr" style="height:{h - 92 - 36}px" src="{img(shot)}"></div>')
+            f'<div class="bar">{label}</div><img class="scr" style="height:{h - 92 - 36}px;{fit}" src="{img(shot)}"></div>')
 
 
 # ---------------------------------------------------------------- templates
@@ -117,11 +121,22 @@ def feature(kicker, title, title_es, shot, callouts, shot_w=1240, shot_top=330):
 {FOOT}""", "light")
 
 
-def feature_wide(kicker, title, title_es, shot, callouts, shot_top=330):
-    if isinstance(shot, tuple):   # (input shot, output shot) side by side with an arrow
+def feature_wide(kicker, title, title_es, shot, callouts, shot_top=330, stacked=False):
+    if isinstance(shot, tuple) and stacked:
         a, b = shot
+        shot_html = (f'<div style="display:flex;flex-direction:column;align-items:center;gap:14px">'
+                     f'<div style="display:flex;align-items:center;gap:26px"><div class="tag">YOU TYPE • ESCRIBES</div>'
+                     f'<div class="card" style="height:270px"><img src="{img(a)}" style="height:100%;width:auto"></div></div>'
+                     f'<div style="font-size:64px;color:#14B8A6;font-weight:900;line-height:1">↓</div>'
+                     f'<div style="display:flex;align-items:center;gap:26px"><div class="tag">YOU GET • OBTIENES</div>'
+                     f'<div class="card" style="height:270px"><img src="{img(b)}" style="height:100%;width:auto"></div></div></div>')
+    elif isinstance(shot, tuple):   # (input shot, output shot) side by side with an arrow
+        a, b = shot
+        wa, ha = Image.open(f"{SHOTS}/{a}.png").size
+        wb_, hb = Image.open(f"{SHOTS}/{b}.png").size
+        ratio = (wa / ha) / (wb_ / hb)
         shot_html = (f'<div style="display:flex;align-items:center;gap:30px">'
-                     f'<div style="flex:1.53"><div class="tag" style="margin-bottom:16px">YOU TYPE • ESCRIBES</div>'
+                     f'<div style="flex:{ratio:.3f}"><div class="tag" style="margin-bottom:16px">YOU TYPE • ESCRIBES</div>'
                      f'<div class="card"><img src="{img(a)}"></div></div>'
                      f'<div style="font-size:80px;color:#14B8A6;font-weight:900;padding-top:60px">→</div>'
                      f'<div style="flex:1"><div class="tag" style="margin-bottom:16px">YOU GET • OBTIENES</div>'
@@ -162,7 +177,7 @@ def inside(title, title_es, tiles):
 {FOOT}""", "light")
 
 
-def devices(dash, phone_shot, guide):
+def devices(dash, phone_shot, guide, last="🔒 Locked dashboard — formulas can't break"):
     return page(f"""
 <div class="abs" style="left:90px;top:86px;width:1820px;text-align:center">
   <h2>Works on <span class="t">every device</span></h2>
@@ -175,7 +190,7 @@ def devices(dash, phone_shot, guide):
     <li>💻 PC &amp; Mac — Excel 2010+ or Google Sheets</li>
     <li>📱 iPhone &amp; Android — free Excel or Sheets app</li>
     <li>🌎 Every heading &amp; guide in English + Español</li>
-    <li>🔒 Locked dashboard — formulas can't break</li>
+    <li>{last}</li>
   </ul>
 </div>
 <div class="abs" style="left:90px;top:1095px;width:1820px;height:310px;display:flex;justify-content:center">
@@ -339,6 +354,66 @@ PLAN = {
             ("Find it fast", "Bin / location column tells you where it is."),
         ], shot_top=380)),
         ("05-devices", devices("iv_dash", "iv_phone", "iv_guide")),
+    ],
+    "pricing": [
+        ("01-hero", hero("PRICING CALCULATOR", "Stop guessing", "your prices",
+                         "Handmade product pricing calculator for Etsy.<br><span class='es'>Calculadora de precios para productos hechos a mano.</span>",
+                         ["Materials + your time + every Etsy fee", "Break-even &amp; recommended price (.99)",
+                          "Profit per sale &amp; what you earn per hour", "Price your whole shop — 200 products"],
+                         "hp_calc", "hp_phone", ("Etsy • Craft fairs",))),
+        ("02-calculator", feature("PRICE ONE PRODUCT • UN PRODUCTO", "Your perfect price <span class='t'>in 60 seconds</span>",
+                                  "Tu precio ideal en 60 segundos", "hp_calc", [
+            ("Pick your materials", "From your own supply library — cost per unit already calculated."),
+            ("Add time &amp; shipping", "Your hourly rate, packaging, overhead, free or paid shipping."),
+            ("Get your price", "Break-even, recommended (.99), profit, margin and $ per hour."),
+        ], shot_w=1150)),
+        ("03-product-list", feature_wide("WHOLE SHOP • TODO TU CATÁLOGO", "Which products <span class='t'>are losing money?</span>",
+                                         "¿Qué productos te hacen perder dinero?", ("hp_list_in", "hp_list_out"), [
+            ("200 products", "Recommended vs. your current price for every item."),
+            ("Real margin + $/hour", "See what each product really pays you after Etsy fees."),
+            ("⚠ / ● / ✔ flags", "Fix losing products first, then raise the ones below target."),
+        ])),
+        ("04-fees", feature("EVERY ETSY FEE • TODAS LAS COMISIONES", "Fees included — <span class='t'>no surprises</span>",
+                            "Comisiones incluidas — sin sorpresas", "hp_calc_results", [
+            ("6.5% + 3% + $0.25 + $0.20", "Transaction, processing and listing fees built in (US 2026, editable)."),
+            ("Offsite Ads option", "Price safely for 12–15% Offsite Ads sales with one switch."),
+            ("Classic formula check", "See why cost × 2 × 2 isn't enough once fees and time count."),
+        ], shot_w=760)),
+        ("05-devices", devices("hp_calc", "hp_phone", "hp_guide", last="🧵 Materials library — 200 supplies, cost per unit automatic")),
+    ],
+    "budget": [
+        ("01-hero", hero("BILINGUAL BUDGET", "Your money,", "in both languages",
+                         "Monthly budget planner — English + Español.<br><span class='es'>Tu dinero, en los dos idiomas.</span>",
+                         ["Budget vs. actual for every category", "50/30/20 check · Regla 50/30/20",
+                          "Savings goals with progress bars", "Debt payoff: snowball &amp; avalanche"],
+                         "bp_dash", "bp_phone", ("Any currency",))),
+        ("02-inside", inside("6 tabs in English + Español", "6 pestañas en inglés y español", [
+            ("bp_dash_top", "Dashboard", "Your month / Tu mes"),
+            ("bp_tx", "Transactions", "Movimientos"),
+            ("bp_budget", "Budget", "Presupuesto"),
+            ("bp_goals", "Savings Goals", "Metas de ahorro"),
+            ("bp_debts", "Debts", "Deudas"),
+            ("bp_guide", "Quick Start", "Guía rápida"),
+        ])),
+        ("03-dashboard", feature("DASHBOARD • PANEL", "See where your money <span class='t'>really goes</span>",
+                                 "Mira a dónde va tu dinero de verdad", "bp_dash_top", [
+            ("Pick any month", "Income, spending, money left over and savings rate."),
+            ("Budget vs. actual", "✔ under / ⚠ over for every category."),
+            ("50/30/20 check", "Needs, wants and savings vs. the ideal mix."),
+        ], shot_w=1180)),
+        ("04-goals", feature_wide("SAVINGS GOALS • METAS DE AHORRO", "Reach every goal — <span class='t'>on time</span>",
+                                  "Alcanza cada meta a tiempo", ("bp_goals_in", "bp_goals_out"), stacked=True, callouts=[
+            ("Target + date", "Emergency fund, trip, car, holidays — any goal."),
+            ("Progress bars", "See exactly how far you've come."),
+            ("Save per month", "How much to set aside each month to make your date."),
+        ])),
+        ("05-debts", feature_wide("DEBT PAYOFF • PAGO DE DEUDAS", "Know your <span class='t'>debt-free date</span>",
+                                  "Conoce tu fecha libre de deudas", ("bp_debts_in", "bp_debts_out"), stacked=True, callouts=[
+            ("Payoff date", "Months to pay off and the exact month you're done."),
+            ("Total interest", "See what each debt really costs you."),
+            ("Snowball &amp; avalanche", "Both payoff orders, calculated for you."),
+        ])),
+        ("06-devices", devices("bp_dash", "bp_phone", "bp_guide", last="👨‍👩‍👧 Share in Google Sheets — budget together")),
     ],
     "bundle": [
         ("01-hero", bundle_hero()),

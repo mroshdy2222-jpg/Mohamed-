@@ -298,7 +298,8 @@ def color_series(series, color, line=None):
     series.graphicalProperties.line.solidFill = line or color
 
 
-def build_cover(wb, line_en, line_es, contents, compat):
+def build_cover(wb, line_en, line_es, contents, compat, kicker="RESELLER TOOLKIT  •  KIT PARA REVENDEDORES",
+                platforms="eBay  •  Facebook Marketplace  •  Etsy  •  Poshmark  •  Mercari  •  Depop"):
     cv = wb.active
     cv.title = "Cover"
     cv.sheet_view.showGridLines = False
@@ -308,7 +309,7 @@ def build_cover(wb, line_en, line_es, contents, compat):
     paint(cv, "A13:L13", TEAL)
     cv.row_dimensions[13].height = 5
     cv.merge_cells("B4:K4")
-    cv["B4"] = "RESELLER TOOLKIT  •  KIT PARA REVENDEDORES"
+    cv["B4"] = kicker
     cv["B4"].font = font(11, True, TEAL)
     cv["B4"].alignment = CENTER
     cv.merge_cells("B6:K8")
@@ -324,7 +325,7 @@ def build_cover(wb, line_en, line_es, contents, compat):
     cv["B10"].font = font(14, False, "C7D2FE", italic=True)
     cv["B10"].alignment = CENTER
     cv.merge_cells("B11:K11")
-    cv["B11"] = "eBay  •  Facebook Marketplace  •  Etsy  •  Poshmark  •  Mercari  •  Depop"
+    cv["B11"] = platforms
     cv["B11"].font = font(10, False, "94A3B8")
     cv["B11"].alignment = CENTER
     for r in (6, 7, 8):
@@ -445,11 +446,12 @@ def build_guide(wb, steps, sections):
 
 
 def finish(wb, dashboard, out, title):
-    dashboard.protection.sheet = True
-    dashboard.protection.selectLockedCells = False
-    dashboard.protection.selectUnlockedCells = False
+    if dashboard is not None:
+        dashboard.protection.sheet = True
+        dashboard.protection.selectLockedCells = False
+        dashboard.protection.selectUnlockedCells = False
     for ws in wb.worksheets:
-        ws.sheet_properties.tabColor = NAVY if ws.title in ("Cover", "Quick Start Guide", "Settings") else TEAL
+        ws.sheet_properties.tabColor = NAVY if ws.title in ("Cover", "Quick Start Guide", "Settings", "Materials") else TEAL
         ws.page_setup.orientation = "landscape"
         ws.page_setup.fitToWidth = 1
         ws.page_setup.fitToHeight = 0
