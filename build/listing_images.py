@@ -62,7 +62,7 @@ h2 { font-size: 78px; line-height: 1.05; font-weight: 800; letter-spacing: -1.5p
 .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 92px; background: #14B8A6; color: #0B1F3A;
         display: flex; align-items: center; justify-content: center; gap: 46px; font-size: 30px; font-weight: 800; letter-spacing: 1px; }
 .foot i { font-style: normal; opacity: .55; }
-.tag { display: inline-block; background: #14B8A6; color: #0B1F3A; font-weight: 800; font-size: 28px; letter-spacing: 3px;
+.tag { white-space: nowrap; display: inline-block; background: #14B8A6; color: #0B1F3A; font-weight: 800; font-size: 28px; letter-spacing: 3px;
        padding: 10px 24px; border-radius: 12px; }
 """
 
@@ -126,10 +126,10 @@ def feature_wide(kicker, title, title_es, shot, callouts, shot_top=330, stacked=
         a, b = shot
         shot_html = (f'<div style="display:flex;flex-direction:column;align-items:center;gap:14px">'
                      f'<div style="display:flex;align-items:center;gap:26px"><div class="tag">YOU TYPE • ESCRIBES</div>'
-                     f'<div class="card" style="height:270px"><img src="{img(a)}" style="height:100%;width:auto"></div></div>'
+                     f'<div class="card" style="max-width:1380px"><img src="{img(a)}" style="max-height:270px;max-width:100%;width:auto;height:auto"></div></div>'
                      f'<div style="font-size:64px;color:#14B8A6;font-weight:900;line-height:1">↓</div>'
                      f'<div style="display:flex;align-items:center;gap:26px"><div class="tag">YOU GET • OBTIENES</div>'
-                     f'<div class="card" style="height:270px"><img src="{img(b)}" style="height:100%;width:auto"></div></div></div>')
+                     f'<div class="card" style="max-width:1380px"><img src="{img(b)}" style="max-height:270px;max-width:100%;width:auto;height:auto"></div></div></div>')
     elif isinstance(shot, tuple):   # (input shot, output shot) side by side with an arrow
         a, b = shot
         wa, ha = Image.open(f"{SHOTS}/{a}.png").size
@@ -296,7 +296,7 @@ PLAN = {
             ("⚠ Low-margin alert", "Any sale under 15% margin turns red."),
         ])),
         ("05-sourcing", feature_wide("BONUS • BONO", "Should you buy it? <span class='t'>Know before you pay</span>",
-                                     "¿Lo compras? Sábelo antes de pagar", ("pt_sourcing_in", "pt_sourcing_out"), [
+                                     "¿Lo compras? Sábelo antes de pagar", ("pt_sourcing_in", "pt_sourcing_out"), stacked=True, callouts=[
             ("Set your rules", "Minimum margin and minimum profit per item."),
             ("✔ BUY or ✖ PASS", "Instant decision with estimated profit, margin and ROI."),
             ("Max Buy Price", "The most you can pay and still hit your target — negotiate with it."),
