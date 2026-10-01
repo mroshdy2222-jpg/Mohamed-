@@ -1,2 +1,4 @@
 build/render/
 __pycache__/
+build/shots/
+build/listing_html/
