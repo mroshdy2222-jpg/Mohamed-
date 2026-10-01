@@ -424,6 +424,45 @@ PLAN = {
 }
 
 
+def freebie_cover():
+    """Gumroad cover, 1280 x 720."""
+    return f"""<!doctype html><html><head><meta charset="utf-8"><style>{CSS}
+body {{ width: 1280px; height: 720px; }}</style></head><body class="navy">
+<div class="abs" style="left:60px;top:56px;width:560px">
+  <span class="tag" style="font-size:24px">FREE • GRATIS</span>
+  <h1 style="margin-top:22px;font-size:66px">Flip Profit<br><span class="t">Calculator</span></h1>
+  <p class="sub" style="margin-top:18px;font-size:27px">Know your profit <b>before</b> you buy.<br><span class="es">Sabe tu ganancia antes de comprar.</span></p>
+  <ul class="checks" style="margin-top:26px;font-size:24px">
+    <li>eBay • Poshmark • Etsy • Mercari • FB</li><li>Fees, profit, margin &amp; ROI</li><li>✔ Good flip / ● Thin / ⚠ Loss</li>
+  </ul>
+</div>
+<div class="abs" style="left:650px;top:60px;width:580px">
+  <div class="tag" style="font-size:18px;margin-bottom:10px">YOU TYPE • ESCRIBES</div>
+  <div class="card"><img src="{img('fr_items')}"></div>
+  <div style="text-align:center;font-size:44px;color:#14B8A6;font-weight:900;line-height:1.1">↓</div>
+  <div class="tag" style="font-size:18px;margin-bottom:10px">YOU GET • OBTIENES</div>
+  <div class="card"><img src="{img('fr_result')}"></div>
+  <div class="pills" style="margin-top:22px;justify-content:center"><span class="pill" style="font-size:22px">Excel</span><span class="pill" style="font-size:22px">Google Sheets</span><span class="pill" style="font-size:22px">EN + ES</span></div>
+</div>
+</body></html>"""
+
+
+def freebie_thumb():
+    """Gumroad thumbnail, 600 x 600."""
+    return f"""<!doctype html><html><head><meta charset="utf-8"><style>{CSS}
+body {{ width: 600px; height: 600px; }}</style></head><body class="navy">
+<div class="abs" style="left:0;right:0;top:48px;text-align:center">
+  <span class="tag" style="font-size:26px">FREE • GRATIS</span>
+  <h1 style="margin-top:22px;font-size:62px">Flip Profit<br><span class="t">Calculator</span></h1>
+</div>
+<div class="abs card" style="left:40px;top:270px;width:520px"><img src="{img('fr_result')}"></div>
+<div class="abs" style="left:0;right:0;bottom:36px;text-align:center;font-size:24px;font-weight:700;color:#C7D2FE">Excel • Google Sheets • EN + ES</div>
+</body></html>"""
+
+
+EXTRA = {"freebie/gumroad-cover": (freebie_cover, 1280, 720), "freebie/gumroad-thumb": (freebie_thumb, 600, 600)}
+
+
 if __name__ == "__main__":
     only = set(sys.argv[1:])
     os.makedirs(HTML_DIR, exist_ok=True)
@@ -446,4 +485,19 @@ if __name__ == "__main__":
                 out = os.path.join(OUT, product, f"{name}.jpg")
                 Image.open(png).convert("RGB").save(out, quality=90, optimize=True)
                 print("image", out)
+        for key, (fn, w, h) in EXTRA.items():
+            if only and key not in only and key.split("/")[0] not in only:
+                continue
+            os.makedirs(os.path.join(OUT, key.split("/")[0]), exist_ok=True)
+            pg2 = browser.new_page(viewport={"width": w, "height": h})
+            path = os.path.join(HTML_DIR, key.replace("/", "-") + ".html")
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(fn())
+            pg2.goto(f"file://{path}")
+            pg2.wait_for_timeout(300)
+            png = path[:-5] + ".png"
+            pg2.screenshot(path=png)
+            Image.open(png).convert("RGB").save(os.path.join(OUT, key + ".jpg"), quality=90, optimize=True)
+            print("image", key)
+            pg2.close()
         browser.close()

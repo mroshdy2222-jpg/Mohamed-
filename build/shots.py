@@ -73,6 +73,13 @@ SHOTS = {
         ("bp_guide", "Quick Start Guide", "A1:D11"),
         ("bp_guide_strip", "Quick Start Guide", "A1:D7"),
     ],
+    "product/FREE_ProfitTrack_Flip_Calculator.xlsx": [
+        ("fr_calc", "Flip Calculator", "A1:M12"),
+        ("fr_table", "Flip Calculator", "B5:M10"),
+        ("fr_items", "Flip Calculator", "B5:E10"),
+        ("fr_result", "Flip Calculator", "J5:M10"),
+        ("fr_phone", "Flip Calculator", "B5:D14"),
+    ],
     "product/ProfitTrack_Inventory_Tracker.xlsx": [
         ("iv_cover", "Cover", "A1:L37"),
         ("iv_dash", "Dashboard", "A1:R56"),
