@@ -40,6 +40,11 @@ extension Labels on AppLocalizations {
     Category.bag => catBag,
     Category.headscarf => catHeadscarf,
     Category.shemagh => catShemagh,
+    Category.belt => catBelt,
+    Category.watch => catWatch,
+    Category.jewelry => catJewelry,
+    Category.sunglasses => catSunglasses,
+    Category.perfume => catPerfume,
     Category.accessory => catAccessory,
   };
 
@@ -64,6 +69,8 @@ extension Labels on AppLocalizations {
     'brown' => colBrown,
     'olive' => colOlive,
     'khaki' => colKhaki,
+    'gold' => colGold,
+    'silver' => colSilver,
     'red' => colRed,
     'burgundy' => colBurgundy,
     'pink' => colPink,

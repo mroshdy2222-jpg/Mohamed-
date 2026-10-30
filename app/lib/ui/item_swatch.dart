@@ -187,6 +187,26 @@ class _Silhouette extends CustomPainter {
       case Category.bag:
         p.addRRect(RRect.fromLTRBR(6, 16, 34, 42, const Radius.circular(4)));
         p.addRect(const Rect.fromLTRB(14, 8, 26, 11));
+      case Category.belt:
+        p.addRRect(RRect.fromLTRBR(2, 21, 38, 27, const Radius.circular(2)));
+        p.addRRect(RRect.fromLTRBR(15, 18, 25, 30, const Radius.circular(2)));
+      case Category.watch:
+        p.addRRect(RRect.fromLTRBR(15, 4, 25, 44, const Radius.circular(3)));
+        p.addOval(Rect.fromCircle(center: const Offset(20, 24), radius: 9));
+      case Category.jewelry:
+        p.moveTo(8, 8);
+        p.quadraticBezierTo(20, 34, 32, 8);
+        p.lineTo(30, 8);
+        p.quadraticBezierTo(20, 30, 10, 8);
+        p.close();
+        p.addOval(Rect.fromCircle(center: const Offset(20, 30), radius: 5));
+      case Category.sunglasses:
+        p.addOval(const Rect.fromLTRB(3, 18, 18, 30));
+        p.addOval(const Rect.fromLTRB(22, 18, 37, 30));
+        p.addRect(const Rect.fromLTRB(17, 21, 23, 23));
+      case Category.perfume:
+        p.addRRect(RRect.fromLTRBR(10, 18, 30, 44, const Radius.circular(4)));
+        p.addRect(const Rect.fromLTRB(16, 10, 24, 18));
       case Category.accessory:
         p.addOval(Rect.fromCircle(center: const Offset(20, 24), radius: 12));
     }

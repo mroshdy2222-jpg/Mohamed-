@@ -487,4 +487,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tagFailed => 'Couldn\'t read it. Pick the details yourself.';
+
+  @override
+  String get catBelt => 'Belt';
+
+  @override
+  String get catWatch => 'Watch';
+
+  @override
+  String get catJewelry => 'Jewellery';
+
+  @override
+  String get catSunglasses => 'Sunglasses';
+
+  @override
+  String get catPerfume => 'Perfume';
+
+  @override
+  String get colGold => 'Gold';
+
+  @override
+  String get colSilver => 'Silver';
 }

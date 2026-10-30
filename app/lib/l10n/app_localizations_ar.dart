@@ -487,6 +487,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tagFailed => 'تعذّر التعرّف عليها، اختر التفاصيل بنفسك.';
+
+  @override
+  String get catBelt => 'حزام';
+
+  @override
+  String get catWatch => 'ساعة';
+
+  @override
+  String get catJewelry => 'مجوهرات';
+
+  @override
+  String get catSunglasses => 'نظارة شمسية';
+
+  @override
+  String get catPerfume => 'عطر';
+
+  @override
+  String get colGold => 'ذهبي';
+
+  @override
+  String get colSilver => 'فضي';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -971,6 +992,27 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
 
   @override
   String get tagFailed => 'مقدرناش نتعرف عليها، اختار التفاصيل بنفسك.';
+
+  @override
+  String get catBelt => 'حزام';
+
+  @override
+  String get catWatch => 'ساعة';
+
+  @override
+  String get catJewelry => 'مجوهرات';
+
+  @override
+  String get catSunglasses => 'نضارة شمس';
+
+  @override
+  String get catPerfume => 'برفيوم';
+
+  @override
+  String get colGold => 'دهبي';
+
+  @override
+  String get colSilver => 'فضي';
 }
 
 /// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
@@ -1455,4 +1497,25 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
 
   @override
   String get tagFailed => 'ما قدرنا نتعرف عليها، اختر التفاصيل بنفسك.';
+
+  @override
+  String get catBelt => 'حزام';
+
+  @override
+  String get catWatch => 'ساعة';
+
+  @override
+  String get catJewelry => 'مجوهرات';
+
+  @override
+  String get catSunglasses => 'نظارة شمسية';
+
+  @override
+  String get catPerfume => 'عطر';
+
+  @override
+  String get colGold => 'ذهبي';
+
+  @override
+  String get colSilver => 'فضي';
 }

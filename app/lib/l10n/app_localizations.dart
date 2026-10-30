@@ -1026,6 +1026,48 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تعذّر التعرّف عليها، اختر التفاصيل بنفسك.'**
   String get tagFailed;
+
+  /// No description provided for @catBelt.
+  ///
+  /// In ar, this message translates to:
+  /// **'حزام'**
+  String get catBelt;
+
+  /// No description provided for @catWatch.
+  ///
+  /// In ar, this message translates to:
+  /// **'ساعة'**
+  String get catWatch;
+
+  /// No description provided for @catJewelry.
+  ///
+  /// In ar, this message translates to:
+  /// **'مجوهرات'**
+  String get catJewelry;
+
+  /// No description provided for @catSunglasses.
+  ///
+  /// In ar, this message translates to:
+  /// **'نظارة شمسية'**
+  String get catSunglasses;
+
+  /// No description provided for @catPerfume.
+  ///
+  /// In ar, this message translates to:
+  /// **'عطر'**
+  String get catPerfume;
+
+  /// No description provided for @colGold.
+  ///
+  /// In ar, this message translates to:
+  /// **'ذهبي'**
+  String get colGold;
+
+  /// No description provided for @colSilver.
+  ///
+  /// In ar, this message translates to:
+  /// **'فضي'**
+  String get colSilver;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

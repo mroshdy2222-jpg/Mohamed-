@@ -160,4 +160,51 @@ void main() {
       );
     });
   });
+
+  group('finishing touches', () {
+    final base = [
+      item('tee', Category.top, Palette.white),
+      item('jeans', Category.bottom, Palette.denim),
+      item('loafers', Category.shoes, Palette.brown, styles: {Style.casual, Style.formal}),
+      item('suit', Category.onePiece, Palette.navy, styles: {Style.formal}),
+    ];
+    final touches = [
+      item('belt-black', Category.belt, Palette.black, styles: {Style.casual, Style.formal}),
+      item('belt-brown', Category.belt, Palette.brown, styles: {Style.casual, Style.formal}),
+      item('watch', Category.watch, Palette.silver, styles: const {}),
+      item('shades', Category.sunglasses, Palette.black, styles: const {}),
+      item('fresh', Category.perfume, Palette.sky, styles: {Style.casual}),
+      item('oud', Category.perfume, Palette.brown, styles: {Style.formal}),
+    ];
+    final engine = OutfitEngine();
+    List<String> ids(Outfit o) => o.items.map((i) => i.id).toList();
+
+    test('the belt matches the shoes, and one of each touch at most', () {
+      final o = engine.suggest([...base, ...touches], [], req(temp: 30)).first;
+      expect(ids(o), containsAll(['belt-brown', 'watch', 'shades', 'fresh']));
+      expect(ids(o), isNot(contains('belt-black')));
+      expect(o.items.where((i) => i.category == Category.perfume), hasLength(1));
+    });
+
+    test('no sunglasses on a mild day or with formal wear; the perfume follows the style', () {
+      final mild = engine.suggest([...base, ...touches], [], req(temp: 20)).first;
+      expect(ids(mild), isNot(contains('shades')));
+      final formal = engine.suggest([...base, ...touches], [], req(style: Style.formal, temp: 30)).first;
+      expect(ids(formal), containsAll(['suit', 'oud']));
+      expect(ids(formal), isNot(contains('shades')));
+      expect(ids(formal), isNot(contains('belt-brown')), reason: 'no belt without trousers');
+    });
+
+    test('a different watch does not make a different outfit', () {
+      final first = engine.suggest([...base, ...touches], [], req()).first;
+      expect(first.signature, isNot(contains('watch')));
+      final next = engine.suggest([...base, ...touches], [], req(exclude: {first.signature}));
+      expect(next.map((o) => o.signature), isNot(contains(first.signature)));
+    });
+
+    test('a locked touch is always worn', () {
+      final o = engine.suggest([...base, ...touches], [], req(temp: 20, lock: 'shades')).first;
+      expect(ids(o), contains('shades'));
+    });
+  });
 }

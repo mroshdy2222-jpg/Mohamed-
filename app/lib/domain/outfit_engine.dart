@@ -16,8 +16,10 @@ class Outfit {
 
   const Outfit(this.items, this.harmony, this.score);
 
-  /// Same pieces in any order give the same signature.
-  String get signature => (items.map((i) => i.id).toList()..sort()).join('+');
+  /// The clothes, in any order. Finishing touches are left out, so the same
+  /// outfit with another watch is still the same outfit.
+  String get signature =>
+      (items.where((i) => !finishingTouches.contains(i.category)).map((i) => i.id).toList()..sort()).join('+');
 }
 
 class OutfitRequest {
@@ -81,7 +83,7 @@ class OutfitEngine {
         for (final b in bottoms) [t, b],
       for (final o in onePieces) [o],
     ];
-    if (locked != null && !_placeable(locked)) return const [];
+    final lockedTouch = locked != null && finishingTouches.contains(locked.category);
 
     final needOuter = req.temperatureC < coldBelowC && outer.isNotEmpty;
     final lockedOuter = locked?.category == Category.outerwear;
@@ -91,9 +93,13 @@ class OutfitEngine {
     final shoeChoices = shoes.isEmpty ? <Item?>[null] : shoes;
 
     final recent = _recentlyWorn(log, req.now);
+    final touchIds = {
+      for (final i in wardrobe)
+        if (finishingTouches.contains(i.category)) i.id,
+    };
     final recentOutfits = log
         .where((e) => req.now.difference(e.date).inDays < 7)
-        .map((e) => (e.itemIds.toList()..sort()).join('+'))
+        .map((e) => (e.itemIds.where((id) => !touchIds.contains(id)).toList()..sort()).join('+'))
         .toSet();
 
     final results = <Outfit>[];
@@ -103,7 +109,7 @@ class OutfitEngine {
           for (final sc in scarfChoices) {
             for (final sh in shemaghChoices) {
               final items = [...base, ?s, ?o, ?sc, ?sh];
-              if (locked != null && !items.any((i) => i.id == locked.id)) continue;
+              if (locked != null && !lockedTouch && !items.any((i) => i.id == locked.id)) continue;
               final outfit = _score(items, recent);
               if (req.exclude.contains(outfit.signature)) continue;
               if (recentOutfits.contains(outfit.signature)) continue;
@@ -115,7 +121,52 @@ class OutfitEngine {
     }
 
     results.sort((a, b) => b.score.compareTo(a.score));
-    return results.take(limit).toList();
+    return [for (final o in results.take(limit)) _finish(o, wardrobe, req, usable, locked)];
+  }
+
+  /// Adds at most one of each finishing touch, only where the style calls for
+  /// it and only if it keeps the colours as good as they were. The belt goes
+  /// with the shoes, the classic rule.
+  Outfit _finish(Outfit outfit, List<Item> wardrobe, OutfitRequest req, bool Function(Item) usable, Item? locked) {
+    final core = outfit.items;
+    final colors = core.map((i) => i.color).toList();
+    final base = outfit.harmony.score;
+    final shoes = core.where((i) => i.category == Category.shoes).firstOrNull;
+    final hasBottom = core.any((i) => i.category == Category.bottom);
+    final style = req.style;
+
+    bool wanted(Category c) => switch (c) {
+      Category.bag => style != Style.lounge && style != Style.sport,
+      Category.belt => hasBottom && const {Style.casual, Style.drip, Style.smartCasual, Style.formal}.contains(style),
+      Category.watch => style != Style.lounge,
+      Category.jewelry => const {Style.smartCasual, Style.formal, Style.dressy, Style.traditional}.contains(style),
+      Category.sunglasses =>
+        req.temperatureC >= 24 && const {Style.sport, Style.casual, Style.drip, Style.smartCasual}.contains(style),
+      Category.perfume => true,
+      _ => false,
+    };
+
+    final added = <Item>[];
+    for (final c in finishingTouches) {
+      if (locked != null && locked.category == c) {
+        added.add(locked);
+        continue;
+      }
+      if (!wanted(c)) continue;
+      final options = wardrobe.where((i) => i.category == c && usable(i)).toList();
+      if (options.isEmpty) continue;
+      double fit(Item i) {
+        if (c == Category.perfume) return base;
+        var v = scoreColors([...colors, ...added.map((a) => a.color), i.color]).score;
+        if (c == Category.belt && shoes != null && i.color == shoes.color) v += 0.2;
+        return v;
+      }
+
+      options.sort((a, b) => fit(b).compareTo(fit(a)));
+      if (fit(options.first) < base - 0.05) continue;
+      added.add(options.first);
+    }
+    return added.isEmpty ? outfit : Outfit([...core, ...added], outfit.harmony, outfit.score);
   }
 
   Outfit _score(List<Item> items, Map<String, int> recent) {
@@ -129,8 +180,6 @@ class OutfitEngine {
     score += _random.nextDouble() * 0.02;
     return Outfit(items, harmony, score);
   }
-
-  static bool _placeable(Item i) => i.category != Category.bag && i.category != Category.accessory;
 
   static Item? _byId(List<Item> items, String id) {
     for (final i in items) {

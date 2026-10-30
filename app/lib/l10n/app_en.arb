@@ -154,5 +154,12 @@
   "tagging": "Talla is reading the piece…",
   "tagged": "Talla filled in the details. Check them before adding.",
   "tagPerson": "Photograph the piece on its own, not being worn.",
-  "tagFailed": "Couldn't read it. Pick the details yourself."
+  "tagFailed": "Couldn't read it. Pick the details yourself.",
+  "catBelt": "Belt",
+  "catWatch": "Watch",
+  "catJewelry": "Jewellery",
+  "catSunglasses": "Sunglasses",
+  "catPerfume": "Perfume",
+  "colGold": "Gold",
+  "colSilver": "Silver"
 }

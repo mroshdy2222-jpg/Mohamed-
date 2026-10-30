@@ -1,7 +1,33 @@
 import 'fashion_color.dart';
 import 'languages.dart';
 
-enum Category { top, bottom, onePiece, outerwear, shoes, bag, headscarf, shemagh, accessory }
+enum Category {
+  top,
+  bottom,
+  onePiece,
+  outerwear,
+  shoes,
+  bag,
+  headscarf,
+  shemagh,
+  belt,
+  watch,
+  jewelry,
+  sunglasses,
+  perfume,
+  accessory,
+}
+
+/// Finishing touches: added after the outfit is chosen, at most one of each.
+const finishingTouches = {
+  Category.bag,
+  Category.belt,
+  Category.watch,
+  Category.jewelry,
+  Category.sunglasses,
+  Category.perfume,
+  Category.accessory,
+};
 
 /// Dress codes, ordered from most relaxed to most formal. Traditional sits
 /// outside the scale: it is its own world (galabeya, thobe, kaftan, abaya).

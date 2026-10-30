@@ -40,9 +40,10 @@ class _AddItemScreenState extends State<AddItemScreen> {
   /// What the auto-tagging said about the last photo, shown under it.
   String? Function(AppLocalizations)? _tagNote;
 
-  /// Headscarves, bags and accessories go with every style unless the user
-  /// says otherwise, so the style question is skipped for them.
-  bool get _styleFree => const {Category.headscarf, Category.bag, Category.accessory}.contains(_category);
+  /// Headscarves, sunglasses and other accessories go with every style, so
+  /// the style question is skipped for them. Bags, belts, watches, jewellery
+  /// and perfume do depend on it: a gym bag is not an evening clutch.
+  bool get _styleFree => const {Category.headscarf, Category.sunglasses, Category.accessory}.contains(_category);
 
   Future<void> _pick(ImageSource source) async {
     final Uint8List? bytes;

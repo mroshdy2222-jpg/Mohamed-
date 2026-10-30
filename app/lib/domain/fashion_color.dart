@@ -34,6 +34,8 @@ class Palette {
   static const brown = FashionColor('brown', 25, 0.4, 0.3, neutral: true);
   static const olive = FashionColor('olive', 70, 0.35, 0.35, neutral: true);
   static const khaki = FashionColor('khaki', 50, 0.3, 0.6, neutral: true);
+  static const gold = FashionColor('gold', 45, 0.6, 0.55, neutral: true);
+  static const silver = FashionColor('silver', 210, 0.08, 0.75, neutral: true);
   static const red = FashionColor('red', 355, 0.75, 0.47);
   static const burgundy = FashionColor('burgundy', 345, 0.6, 0.27);
   static const pink = FashionColor('pink', 340, 0.6, 0.75);
@@ -61,6 +63,8 @@ class Palette {
     brown,
     olive,
     khaki,
+    gold,
+    silver,
     red,
     burgundy,
     pink,

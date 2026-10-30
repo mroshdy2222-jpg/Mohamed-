@@ -2,12 +2,15 @@
 // checked. Only names the app knows survive; anything else becomes null so
 // the user picks it by hand.
 
-export const categories = ['top', 'bottom', 'onePiece', 'outerwear', 'shoes', 'bag', 'headscarf', 'shemagh', 'accessory'] as const;
+export const categories = [
+  'top', 'bottom', 'onePiece', 'outerwear', 'shoes', 'bag', 'headscarf', 'shemagh',
+  'belt', 'watch', 'jewelry', 'sunglasses', 'perfume', 'accessory',
+] as const;
 export const styles = ['lounge', 'sport', 'casual', 'drip', 'smartCasual', 'formal', 'dressy', 'traditional'] as const;
 export const patterns = ['solid', 'striped', 'checked', 'printed'] as const;
 export const seasons = ['summer', 'winter', 'all'] as const;
 export const colors = [
-  'white', 'cream', 'black', 'grey', 'navy', 'denim', 'beige', 'camel', 'brown', 'olive', 'khaki',
+  'white', 'cream', 'black', 'grey', 'navy', 'denim', 'beige', 'camel', 'brown', 'olive', 'khaki', 'gold', 'silver',
   'red', 'burgundy', 'pink', 'blush', 'orange', 'mustard', 'yellow', 'green', 'emerald', 'teal',
   'sky', 'blue', 'lavender', 'purple',
 ] as const;
@@ -34,7 +37,7 @@ Reply with JSON only, no prose, in exactly this shape:
  "pattern": one of ${JSON.stringify(patterns)},
  "season": one of ${JSON.stringify(seasons)},
  "styles": one to three of ${JSON.stringify(styles)}}
-Notes: an abaya, thobe, galabeya, kaftan or dress is "onePiece". A hijab or shayla is "headscarf".
+Notes: an abaya, thobe, galabeya, kaftan or dress is "onePiece". A hijab or shayla is "headscarf". For a perfume bottle, "color" is the colour of the bottle and "styles" is when the scent suits: fresh scents "casual"/"sport", oud and heavy scents "dressy"/"traditional".
 "traditional" is for abayas, thobes, galabeyas, kaftans and shemaghs. "drip" is loud streetwear and statement sneakers.
 If the photo shows a person's face or body rather than a garment on its own, reply {"rejected": "person"} and nothing else.`;
 
