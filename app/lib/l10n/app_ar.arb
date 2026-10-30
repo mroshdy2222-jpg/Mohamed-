@@ -223,5 +223,7 @@
   "catCap": "قبعة",
   "catBeanie": "قبعة صوفية",
   "catTurban": "توربان",
-  "catNeckScarf": "وشاح"
+  "catNeckScarf": "وشاح",
+  "moreTypes": "أنواع أخرى",
+  "moreDetails": "النقشة والموسم (اختياري)"
 }

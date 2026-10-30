@@ -520,4 +520,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get catNeckScarf => 'Scarf';
+
+  @override
+  String get moreTypes => 'More types';
+
+  @override
+  String get moreDetails => 'Pattern and season (optional)';
 }

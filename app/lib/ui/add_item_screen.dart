@@ -37,6 +37,18 @@ class _AddItemScreenState extends State<AddItemScreen> {
   Uint8List? _photo;
   bool _saving = false;
 
+  /// Types most pieces fall into; the rest open behind "more types".
+  static const _commonTypes = [
+    Category.top,
+    Category.bottom,
+    Category.onePiece,
+    Category.outerwear,
+    Category.shoes,
+    Category.bag,
+    Category.headscarf,
+  ];
+  bool _allTypes = false;
+
   /// What the auto-tagging said about the last photo, shown under it.
   String? Function(AppLocalizations)? _tagNote;
 
@@ -193,7 +205,25 @@ class _AddItemScreenState extends State<AddItemScreen> {
           ),
           section(
             t.categoryLabel,
-            chips(Category.values, (v) => v == _category, t.category, (v) => setState(() => _category = v)),
+            Wrap(
+              spacing: Space.s2,
+              runSpacing: Space.s2,
+              children: [
+                for (final v in _allTypes || !_commonTypes.contains(_category) ? Category.values : _commonTypes)
+                  ChoiceChip(
+                    label: Text(t.category(v)),
+                    selected: v == _category,
+                    onSelected: (_) => setState(() => _category = v),
+                  ),
+                if (!_allTypes && _commonTypes.contains(_category))
+                  ActionChip(
+                    key: const Key('moreTypes'),
+                    label: Text(t.moreTypes),
+                    avatar: const Icon(Icons.add_rounded, size: 18),
+                    onPressed: () => setState(() => _allTypes = true),
+                  ),
+              ],
+            ),
           ),
           section(
             t.colorLabel,
@@ -241,13 +271,30 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 (v) => setState(() => _styles.contains(v) && _styles.length > 1 ? _styles.remove(v) : _styles.add(v)),
               ),
             ),
-          section(
-            t.patternLabel,
-            chips(Pattern.values, (v) => v == _pattern, t.pattern, (v) => setState(() => _pattern = v)),
-          ),
-          section(
-            t.seasonLabel,
-            chips(Season.values, (v) => v == _season, t.season, (v) => setState(() => _season = v)),
+          // Most pieces are solid and worn all year; the answer is pre-filled
+          // when the photo is tagged, so the question stays folded away.
+          Padding(
+            padding: const EdgeInsets.only(top: Space.s4),
+            child: Theme(
+              data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+              child: ExpansionTile(
+                key: const Key('moreDetails'),
+                tilePadding: EdgeInsets.zero,
+                childrenPadding: EdgeInsets.zero,
+                expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                title: Text(t.moreDetails, style: text.titleMedium),
+                children: [
+                  section(
+                    t.patternLabel,
+                    chips(Pattern.values, (v) => v == _pattern, t.pattern, (v) => setState(() => _pattern = v)),
+                  ),
+                  section(
+                    t.seasonLabel,
+                    chips(Season.values, (v) => v == _season, t.season, (v) => setState(() => _season = v)),
+                  ),
+                ],
+              ),
+            ),
           ),
           const SizedBox(height: Space.s8),
         ],

@@ -165,5 +165,7 @@
   "catCap": "Cap",
   "catBeanie": "Beanie",
   "catTurban": "Turban",
-  "catNeckScarf": "Scarf"
+  "catNeckScarf": "Scarf",
+  "moreTypes": "More types",
+  "moreDetails": "Pattern and season (optional)"
 }

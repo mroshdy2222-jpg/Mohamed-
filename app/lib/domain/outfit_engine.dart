@@ -9,6 +9,23 @@ const hotFromC = 28;
 /// Below this the engine adds outerwear when the wardrobe has some.
 const coldBelowC = 18;
 
+/// More than this and an outfit reads as a list, not a look.
+const maxTouches = 2;
+
+/// Which finishing touches matter most when only a couple fit.
+const touchPriority = [
+  Category.beanie,
+  Category.neckScarf,
+  Category.cap,
+  Category.sunglasses,
+  Category.belt,
+  Category.bag,
+  Category.jewelry,
+  Category.turban,
+  Category.watch,
+  Category.perfume,
+];
+
 class Outfit {
   final List<Item> items;
   final HarmonyResult harmony;
@@ -125,9 +142,11 @@ class OutfitEngine {
     return [for (final o in results.take(limit)) _finish(o, wardrobe, req, usable, locked)];
   }
 
-  /// Adds at most one of each finishing touch, only where the style calls for
-  /// it and only if it keeps the colours as good as they were. The belt goes
-  /// with the shoes, the classic rule.
+  /// Adds at most [maxTouches] finishing touches, so the outfit stays easy to
+  /// take in: what the weather calls for first, then the belt, bag and the
+  /// rest. Each only where the style calls for it and only if it keeps the
+  /// colours as good as they were. The belt goes with the shoes, the classic
+  /// rule. A locked touch is always worn.
   Outfit _finish(Outfit outfit, List<Item> wardrobe, OutfitRequest req, bool Function(Item) usable, Item? locked) {
     final core = outfit.items;
     final colors = core.map((i) => i.color).toList();
@@ -155,11 +174,10 @@ class OutfitEngine {
 
     final added = <Item>[];
     bool headFree() => ![...core, ...added].any((i) => headwear.contains(i.category));
-    for (final c in finishingTouches) {
-      if (locked != null && locked.category == c) {
-        added.add(locked);
-        continue;
-      }
+    if (locked != null && finishingTouches.contains(locked.category)) added.add(locked);
+    for (final c in touchPriority) {
+      if (added.length >= maxTouches) break;
+      if (locked != null && locked.category == c) continue;
       if (!wanted(c)) continue;
       if (headwear.contains(c) && !headFree()) continue;
       final options = wardrobe.where((i) => i.category == c && usable(i)).toList();

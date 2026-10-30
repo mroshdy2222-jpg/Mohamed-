@@ -1092,6 +1092,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'وشاح'**
   String get catNeckScarf;
+
+  /// No description provided for @moreTypes.
+  ///
+  /// In ar, this message translates to:
+  /// **'أنواع أخرى'**
+  String get moreTypes;
+
+  /// No description provided for @moreDetails.
+  ///
+  /// In ar, this message translates to:
+  /// **'النقشة والموسم (اختياري)'**
+  String get moreDetails;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

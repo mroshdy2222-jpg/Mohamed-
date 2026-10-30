@@ -520,6 +520,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get catNeckScarf => 'وشاح';
+
+  @override
+  String get moreTypes => 'أنواع أخرى';
+
+  @override
+  String get moreDetails => 'النقشة والموسم (اختياري)';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -1037,6 +1043,12 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
 
   @override
   String get catNeckScarf => 'كوفية';
+
+  @override
+  String get moreTypes => 'أنواع تانية';
+
+  @override
+  String get moreDetails => 'النقشة والموسم (اختياري)';
 }
 
 /// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
@@ -1554,4 +1566,10 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
 
   @override
   String get catNeckScarf => 'سكارف';
+
+  @override
+  String get moreTypes => 'أنواع ثانية';
+
+  @override
+  String get moreDetails => 'النقشة والموسم (اختياري)';
 }

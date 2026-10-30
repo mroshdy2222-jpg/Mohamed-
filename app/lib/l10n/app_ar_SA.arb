@@ -165,5 +165,7 @@
   "catCap": "كاب",
   "catBeanie": "طاقية",
   "catTurban": "توربان",
-  "catNeckScarf": "سكارف"
+  "catNeckScarf": "سكارف",
+  "moreTypes": "أنواع ثانية",
+  "moreDetails": "النقشة والموسم (اختياري)"
 }

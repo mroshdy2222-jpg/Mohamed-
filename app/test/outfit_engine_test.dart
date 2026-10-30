@@ -179,18 +179,16 @@ void main() {
     final engine = OutfitEngine();
     List<String> ids(Outfit o) => o.items.map((i) => i.id).toList();
 
-    test('the belt matches the shoes, and one of each touch at most', () {
+    test('two touches at most: what the weather calls for, then the belt that matches the shoes', () {
       final o = engine.suggest([...base, ...touches], [], req(temp: 30)).first;
-      expect(ids(o), containsAll(['belt-brown', 'watch', 'shades', 'fresh']));
-      expect(ids(o), isNot(contains('belt-black')));
-      expect(o.items.where((i) => i.category == Category.perfume), hasLength(1));
+      expect(o.items.where((i) => finishingTouches.contains(i.category)).map((i) => i.id), ['shades', 'belt-brown']);
     });
 
     test('no sunglasses on a mild day or with formal wear; the perfume follows the style', () {
       final mild = engine.suggest([...base, ...touches], [], req(temp: 20)).first;
       expect(ids(mild), isNot(contains('shades')));
       final formal = engine.suggest([...base, ...touches], [], req(style: Style.formal, temp: 30)).first;
-      expect(ids(formal), containsAll(['suit', 'oud']));
+      expect(ids(formal), containsAll(['suit', 'watch', 'oud']));
       expect(ids(formal), isNot(contains('shades')));
       expect(ids(formal), isNot(contains('belt-brown')), reason: 'no belt without trousers');
     });

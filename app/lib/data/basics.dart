@@ -141,4 +141,9 @@ const basics = <Basic>[
   ),
 ];
 
-List<Basic> basicsFor(Gender gender) => basics.where((b) => b.only == null || b.only == gender).toList();
+/// The onboarding grid: clothes, shoes and head coverings only. Accessories
+/// would double its length; people add them later, one at a time.
+List<Basic> basicsFor(Gender gender) => basics
+    .where((b) => b.only == null || b.only == gender)
+    .where((b) => !finishingTouches.contains(b.item.category))
+    .toList();
