@@ -345,7 +345,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get fromGallery => 'من المعرض';
 
   @override
-  String get photoOptional => 'الصورة اختيارية. بدونها تظهر القطعة بشكلها ولونها.';
+  String get photoOptional => 'الصورة اختيارية. صوّر القطعة وحدها على سرير أو علّاقة.';
 
   @override
   String get categoryLabel => 'النوع';
@@ -475,6 +475,18 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get missingNone => 'خزانتك مكتملة في هذا الأسلوب.';
+
+  @override
+  String get tagging => 'تتعرّف طالا على القطعة…';
+
+  @override
+  String get tagged => 'اقترحت طالا التفاصيل، راجعها قبل الإضافة.';
+
+  @override
+  String get tagPerson => 'صوّر القطعة وحدها، دون أن يرتديها أحد.';
+
+  @override
+  String get tagFailed => 'تعذّر التعرّف عليها، اختر التفاصيل بنفسك.';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -817,7 +829,7 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
   String get fromGallery => 'من المعرض';
 
   @override
-  String get photoOptional => 'الصورة اختيارية. من غيرها بيظهر شكل القطعة بلونها.';
+  String get photoOptional => 'الصورة اختيارية. صوّر القطعة لوحدها على سرير أو شماعة.';
 
   @override
   String get categoryLabel => 'النوع';
@@ -947,6 +959,18 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
 
   @override
   String get missingNone => 'دولابك مكتمل في الستايل ده.';
+
+  @override
+  String get tagging => 'طالا بتتعرف على القطعة…';
+
+  @override
+  String get tagged => 'طالا اقترحت التفاصيل، راجعها قبل ما تضيف.';
+
+  @override
+  String get tagPerson => 'صوّر القطعة لوحدها، من غير ما حد يلبسها.';
+
+  @override
+  String get tagFailed => 'مقدرناش نتعرف عليها، اختار التفاصيل بنفسك.';
 }
 
 /// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
@@ -1289,7 +1313,7 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
   String get fromGallery => 'من المعرض';
 
   @override
-  String get photoOptional => 'الصورة اختيارية. بدونها تطلع القطعة بشكلها ولونها.';
+  String get photoOptional => 'الصورة اختيارية. صوّر القطعة بروحها على سرير أو علاقة.';
 
   @override
   String get categoryLabel => 'النوع';
@@ -1419,4 +1443,16 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
 
   @override
   String get missingNone => 'كبتك مكتمل في هالستايل.';
+
+  @override
+  String get tagging => 'طالا تتعرف على القطعة…';
+
+  @override
+  String get tagged => 'طالا اقترحت التفاصيل، راجعها قبل لا تضيف.';
+
+  @override
+  String get tagPerson => 'صوّر القطعة بروحها، بدون ما أحد يلبسها.';
+
+  @override
+  String get tagFailed => 'ما قدرنا نتعرف عليها، اختر التفاصيل بنفسك.';
 }

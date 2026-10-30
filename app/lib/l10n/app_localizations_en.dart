@@ -345,7 +345,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fromGallery => 'From gallery';
 
   @override
-  String get photoOptional => 'The photo is optional. Without it, the piece shows as a coloured outline.';
+  String get photoOptional => 'The photo is optional. Shoot the piece on its own, on a bed or a hanger.';
 
   @override
   String get categoryLabel => 'Type';
@@ -475,4 +475,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get missingNone => 'Your wardrobe is complete for this style.';
+
+  @override
+  String get tagging => 'Talla is reading the piece…';
+
+  @override
+  String get tagged => 'Talla filled in the details. Check them before adding.';
+
+  @override
+  String get tagPerson => 'Photograph the piece on its own, not being worn.';
+
+  @override
+  String get tagFailed => 'Couldn\'t read it. Pick the details yourself.';
 }

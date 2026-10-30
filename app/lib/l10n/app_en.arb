@@ -109,7 +109,7 @@
   "addItem": "Add a piece",
   "takePhoto": "Take photo",
   "fromGallery": "From gallery",
-  "photoOptional": "The photo is optional. Without it, the piece shows as a coloured outline.",
+  "photoOptional": "The photo is optional. Shoot the piece on its own, on a bed or a hanger.",
   "categoryLabel": "Type",
   "colorLabel": "Colour",
   "stylesLabel": "Which styles does it suit?",
@@ -150,5 +150,9 @@
   "missingTitle": "What's missing?",
   "missingGain": "With a {item} you'd have {count} more {style} outfits.",
   "iHaveIt": "I have this",
-  "missingNone": "Your wardrobe is complete for this style."
+  "missingNone": "Your wardrobe is complete for this style.",
+  "tagging": "Talla is reading the piece…",
+  "tagged": "Talla filled in the details. Check them before adding.",
+  "tagPerson": "Photograph the piece on its own, not being worn.",
+  "tagFailed": "Couldn't read it. Pick the details yourself."
 }

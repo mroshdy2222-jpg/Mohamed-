@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../app_state.dart';
 import '../data/photos.dart';
+import '../data/tagging.dart';
 import '../domain/fashion_color.dart';
 import '../domain/models.dart';
 import '../l10n/app_localizations.dart';
@@ -12,13 +13,16 @@ import 'item_swatch.dart';
 import 'labels.dart';
 import 'theme.dart';
 
-/// Adds one piece by hand: an optional photo, then type, colour and styles.
-/// Auto-tagging will pre-fill these choices; the screen stays as the place to
-/// check and correct them.
+/// Adds one piece: an optional photo, then type, colour and styles. When the
+/// build has a server, the photo pre-fills these choices; the screen stays the
+/// place to check and correct them.
 class AddItemScreen extends StatefulWidget {
   final AppState state;
 
-  const AddItemScreen({super.key, required this.state});
+  /// Replaces the camera and gallery in tests.
+  final Future<Uint8List?> Function(ImageSource source)? pickPhoto;
+
+  const AddItemScreen({super.key, required this.state, this.pickPhoto});
 
   @override
   State<AddItemScreen> createState() => _AddItemScreenState();
@@ -33,15 +37,51 @@ class _AddItemScreenState extends State<AddItemScreen> {
   Uint8List? _photo;
   bool _saving = false;
 
+  /// What the auto-tagging said about the last photo, shown under it.
+  String? Function(AppLocalizations)? _tagNote;
+
   /// Headscarves, bags and accessories go with every style unless the user
   /// says otherwise, so the style question is skipped for them.
   bool get _styleFree => const {Category.headscarf, Category.bag, Category.accessory}.contains(_category);
 
   Future<void> _pick(ImageSource source) async {
-    final file = await ImagePicker().pickImage(source: source, maxWidth: 900, imageQuality: 75);
-    if (file == null) return;
-    final bytes = await file.readAsBytes();
-    setState(() => _photo = bytes);
+    final Uint8List? bytes;
+    if (widget.pickPhoto != null) {
+      bytes = await widget.pickPhoto!(source);
+    } else {
+      final file = await ImagePicker().pickImage(source: source, maxWidth: 900, imageQuality: 75);
+      bytes = await file?.readAsBytes();
+    }
+    if (bytes == null || !mounted) return;
+    setState(() {
+      _photo = bytes;
+      _tagNote = null;
+    });
+    final tagger = widget.state.taggingService;
+    if (tagger != null) await _autoTag(tagger, bytes);
+  }
+
+  Future<void> _autoTag(TaggingService tagger, Uint8List bytes) async {
+    setState(() => _tagNote = (t) => t.tagging);
+    try {
+      final tags = await tagger.tag(bytes);
+      if (!mounted) return;
+      setState(() {
+        _category = tags.category ?? _category;
+        _color = tags.color ?? _color;
+        _pattern = tags.pattern ?? _pattern;
+        _season = tags.season ?? _season;
+        if (tags.styles.isNotEmpty) {
+          _styles
+            ..clear()
+            ..addAll(tags.styles);
+        }
+        _tagNote = (t) => t.tagged;
+      });
+    } on TaggingException catch (e) {
+      if (!mounted) return;
+      setState(() => _tagNote = e.reason == TagFailure.personInPhoto ? (t) => t.tagPerson : (t) => t.tagFailed);
+    }
   }
 
   Future<void> _save() async {
@@ -103,7 +143,14 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 child: _photo != null
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(Radii.sm),
-                        child: Image.memory(_photo!, fit: BoxFit.cover),
+                        child: Image.memory(
+                          _photo!,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, _, _) => ItemSwatch(
+                            onPage: true,
+                            item: Item(id: 'preview', category: _category, color: _color),
+                          ),
+                        ),
                       )
                     : ItemSwatch(
                         onPage: true,
@@ -133,6 +180,10 @@ class _AddItemScreenState extends State<AddItemScreen> {
                     ),
                     const SizedBox(height: Space.s2),
                     Text(t.photoOptional, style: text.bodyMedium),
+                    if (_tagNote?.call(t) case final note?) ...[
+                      const SizedBox(height: Space.s1),
+                      Text(note, key: const Key('tagNote'), style: text.bodyLarge),
+                    ],
                   ],
                 ),
               ),

@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'app_state.dart';
 import 'data/store.dart';
+import 'data/tagging.dart';
 import 'data/weather.dart';
 import 'domain/languages.dart';
 import 'l10n/app_localizations.dart';
@@ -11,7 +12,11 @@ import 'ui/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final state = AppState(store: PrefsStore(), weatherService: WeatherService());
+  final state = AppState(
+    store: PrefsStore(),
+    weatherService: WeatherService(),
+    taggingService: TaggingService.fromEnvironment(),
+  );
   // The wardrobe loads from the device before the first frame; the weather
   // arrives a moment later and updates the outfit when it does.
   final restored = state.restore();

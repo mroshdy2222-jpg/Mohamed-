@@ -10,6 +10,7 @@ Talla (طالا) is an AI wardrobe stylist for the Arab market: it suggests a da
 | Path | What |
 | --- | --- |
 | `app/` | The Flutter app (Android, iOS, web) |
+| `server/` | Supabase: database with row-level security, and the photo-tagging function. See `server/README.md` to deploy. |
 
 ## The app today
 
@@ -28,7 +29,9 @@ The first slice of the MVP, running fully offline:
 
 The outfit engine (`app/lib/domain/`) is rule-based: dress code, weather, availability, colour harmony and recent wear. AI will rewrite the reason and re-rank the top few; it is not needed for an outfit to appear.
 
-Not built yet: auto-tagging from the photo and the AI router (they run on the server so no API keys ship in the app), Supabase accounts and sync, the WhatsApp voting link (friends vote on a web page), and affiliate offers.
+Auto-tagging: when the app is built with a Supabase project (`--dart-define`), a new photo pre-fills type, colour, pattern, season and styles through the server's `tag-item` function; without one, adding a piece stays manual.
+
+Not built yet: sign-in and syncing the wardrobe to the server, the WhatsApp voting link (friends vote on a web page), the support-access screens, and affiliate offers.
 
 ## Develop
 
@@ -37,7 +40,7 @@ Requires Flutter 3.47 or later.
 ```sh
 cd app
 flutter pub get
-flutter test                 # engine rules and the onboarding flow
+flutter test                 # engine rules, flows, storage, polls, tagging
 flutter run                  # on a device or emulator
 flutter run -d chrome        # in the browser
 ```

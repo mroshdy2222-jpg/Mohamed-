@@ -754,7 +754,7 @@ abstract class AppLocalizations {
   /// No description provided for @photoOptional.
   ///
   /// In ar, this message translates to:
-  /// **'الصورة اختيارية. بدونها تظهر القطعة بشكلها ولونها.'**
+  /// **'الصورة اختيارية. صوّر القطعة وحدها على سرير أو علّاقة.'**
   String get photoOptional;
 
   /// No description provided for @categoryLabel.
@@ -1002,6 +1002,30 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'خزانتك مكتملة في هذا الأسلوب.'**
   String get missingNone;
+
+  /// No description provided for @tagging.
+  ///
+  /// In ar, this message translates to:
+  /// **'تتعرّف طالا على القطعة…'**
+  String get tagging;
+
+  /// No description provided for @tagged.
+  ///
+  /// In ar, this message translates to:
+  /// **'اقترحت طالا التفاصيل، راجعها قبل الإضافة.'**
+  String get tagged;
+
+  /// No description provided for @tagPerson.
+  ///
+  /// In ar, this message translates to:
+  /// **'صوّر القطعة وحدها، دون أن يرتديها أحد.'**
+  String get tagPerson;
+
+  /// No description provided for @tagFailed.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعذّر التعرّف عليها، اختر التفاصيل بنفسك.'**
+  String get tagFailed;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

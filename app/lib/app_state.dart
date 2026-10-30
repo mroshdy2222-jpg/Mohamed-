@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import 'data/basics.dart';
 import 'data/store.dart';
+import 'data/tagging.dart';
 import 'data/weather.dart';
 import 'domain/color_harmony.dart';
 import 'domain/missing_piece.dart';
@@ -12,15 +13,23 @@ import 'domain/wear_log.dart';
 /// Everything the screens share. Saved to the device after every change; the
 /// Supabase layer will sync the same snapshot.
 class AppState extends ChangeNotifier {
-  AppState({OutfitEngine? engine, DateTime Function()? clock, AppStore? store, this.weatherService})
-    : _engine = engine ?? OutfitEngine(),
-      _clock = clock ?? DateTime.now,
-      _store = store ?? MemoryStore();
+  AppState({
+    OutfitEngine? engine,
+    DateTime Function()? clock,
+    AppStore? store,
+    this.weatherService,
+    this.taggingService,
+  }) : _engine = engine ?? OutfitEngine(),
+       _clock = clock ?? DateTime.now,
+       _store = store ?? MemoryStore();
 
   final OutfitEngine _engine;
   final DateTime Function() _clock;
   final AppStore _store;
   final WeatherService? weatherService;
+
+  /// Null when the build has no server: adding a piece stays manual.
+  final TaggingService? taggingService;
 
   Profile profile = const Profile();
   final List<Item> items = [];
