@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_state.dart';
 import 'data/store.dart';
 import 'data/weather.dart';
+import 'domain/languages.dart';
 import 'l10n/app_localizations.dart';
 import 'ui/home_shell.dart';
 import 'ui/theme.dart';
@@ -18,35 +19,37 @@ Future<void> main() async {
   runApp(TallaApp(state: state));
 }
 
-class TallaApp extends StatefulWidget {
+class TallaApp extends StatelessWidget {
   final AppState state;
-  final Locale initialLocale;
 
-  const TallaApp({super.key, required this.state, this.initialLocale = const Locale('ar')});
+  /// The phone's locale, used until the user picks a language.
+  final Locale? deviceLocale;
 
-  @override
-  State<TallaApp> createState() => _TallaAppState();
-}
-
-class _TallaAppState extends State<TallaApp> {
-  late Locale _locale = widget.initialLocale;
+  const TallaApp({super.key, required this.state, this.deviceLocale});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-      debugShowCheckedModeBanner: false,
-      locale: _locale,
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      theme: buildTheme(Brightness.light),
-      darkTheme: buildTheme(Brightness.dark),
-      home: HomeShell(state: widget.state, locale: _locale, onLocale: (l) => setState(() => _locale = l)),
+    return ListenableBuilder(
+      listenable: state,
+      builder: (context, _) {
+        final device = deviceLocale ?? WidgetsBinding.instance.platformDispatcher.locale;
+        final language = state.profile.language ?? defaultLanguage(device);
+        return MaterialApp(
+          onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
+          debugShowCheckedModeBanner: false,
+          locale: language.locale,
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          theme: buildTheme(Brightness.light),
+          darkTheme: buildTheme(Brightness.dark),
+          home: HomeShell(state: state, language: language),
+        );
+      },
     );
   }
 }

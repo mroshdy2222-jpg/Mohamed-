@@ -9,6 +9,7 @@ import 'package:talla/data/basics.dart';
 import 'package:talla/data/store.dart';
 import 'package:talla/data/weather.dart';
 import 'package:talla/domain/fashion_color.dart';
+import 'package:talla/domain/languages.dart';
 import 'package:talla/domain/models.dart';
 import 'package:talla/main.dart';
 
@@ -30,7 +31,7 @@ void main() {
   test('wardrobe, profile and wear log survive a restart', () async {
     final store = MemoryStore();
     final a = AppState(store: store);
-    a.setProfile(const Profile(gender: Gender.female, wearsHijab: true, city: 'Riyadh'));
+    a.setProfile(const Profile(gender: Gender.female, wearsHijab: true, city: 'Riyadh', language: AppLanguage.gulf));
     const ids = ['b-tee-white', 'b-shirt-sky', 'b-jeans-denim', 'b-sneakers-white', 'b-scarf-beige'];
     a.addItems(basics.where((b) => ids.contains(b.item.id)).map((b) => b.item));
     a.setStatus('b-tee-white', ItemStatus.laundry);
@@ -41,6 +42,7 @@ void main() {
     await b.restore();
     expect(b.profile.city, 'Riyadh');
     expect(b.profile.wearsHijab, isTrue);
+    expect(b.profile.language, AppLanguage.gulf);
     expect(b.items.map((i) => i.id), a.items.map((i) => i.id));
     expect(b.items.first.status, ItemStatus.laundry);
     expect(b.items.first.color, a.items.first.color);

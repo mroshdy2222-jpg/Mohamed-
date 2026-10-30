@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:talla/app_state.dart';
+import 'package:talla/domain/languages.dart';
 import 'package:talla/domain/models.dart';
 import 'package:talla/domain/outfit_engine.dart';
 import 'package:talla/main.dart';
@@ -46,10 +47,30 @@ void main() {
   });
 
   testWidgets('English layout is left to right', (tester) async {
-    final state = AppState();
-    await tester.pumpWidget(TallaApp(state: state, initialLocale: const Locale('en')));
+    final state = AppState()..setProfile(const Profile(language: AppLanguage.english));
+    await tester.pumpWidget(TallaApp(state: state));
     await tester.pumpAndSettle();
     expect(find.text('Do you have these?'), findsOneWidget);
     expect(Directionality.of(tester.element(find.text('Do you have these?'))), TextDirection.ltr);
+  });
+
+  testWidgets('Gulf and Standard Arabic use their own words, and the choice is kept', (tester) async {
+    final state = AppState();
+    await tester.pumpWidget(TallaApp(state: state, deviceLocale: const Locale('ar', 'AE')));
+    await tester.pumpAndSettle();
+    expect(find.text('عندك هالأغراض؟'), findsOneWidget);
+
+    await tester.tap(find.text('فصحى'));
+    await tester.pumpAndSettle();
+    expect(find.text('هل تملك هذه القطع؟'), findsOneWidget);
+    expect(state.profile.language, AppLanguage.standard);
+  });
+
+  test('first launch follows the phone region', () {
+    expect(defaultLanguage(const Locale('en', 'EG')), AppLanguage.egyptian);
+    expect(defaultLanguage(const Locale('ar', 'EG')), AppLanguage.egyptian);
+    expect(defaultLanguage(const Locale('en', 'AE')), AppLanguage.gulf);
+    expect(defaultLanguage(const Locale('ar', 'SA')), AppLanguage.gulf);
+    expect(defaultLanguage(const Locale('ar', 'JO')), AppLanguage.standard);
   });
 }

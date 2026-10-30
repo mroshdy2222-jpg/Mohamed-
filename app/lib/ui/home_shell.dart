@@ -4,7 +4,9 @@ import '../app_state.dart';
 import '../data/weather.dart';
 import '../domain/models.dart';
 import '../l10n/app_localizations.dart';
+import '../domain/languages.dart';
 import 'basics_screen.dart';
+import 'language_picker.dart';
 import 'labels.dart';
 import 'theme.dart';
 import 'today_screen.dart';
@@ -12,10 +14,9 @@ import 'wardrobe_screen.dart';
 
 class HomeShell extends StatefulWidget {
   final AppState state;
-  final Locale locale;
-  final ValueChanged<Locale> onLocale;
+  final AppLanguage language;
 
-  const HomeShell({super.key, required this.state, required this.locale, required this.onLocale});
+  const HomeShell({super.key, required this.state, required this.language});
 
   @override
   State<HomeShell> createState() => _HomeShellState();
@@ -35,6 +36,7 @@ class _HomeShellState extends State<HomeShell> {
       builder: (context, _) {
         if (!state.onboarded || _addingBasics) {
           return BasicsScreen(
+            language: widget.language,
             state: state,
             onDone: () => setState(() {
               _addingBasics = false;
@@ -46,7 +48,7 @@ class _HomeShellState extends State<HomeShell> {
           TodayScreen(state: state, onAskFriends: () => setState(() => _tab = 2)),
           WardrobeScreen(state: state, onAddBasics: () => setState(() => _addingBasics = true)),
           const _VoteScreen(),
-          _AccountScreen(state: state, locale: widget.locale, onLocale: widget.onLocale),
+          _AccountScreen(state: state, language: widget.language),
         ];
         return Scaffold(
           body: SafeArea(child: pages[_tab]),
@@ -102,10 +104,9 @@ class _VoteScreen extends StatelessWidget {
 
 class _AccountScreen extends StatelessWidget {
   final AppState state;
-  final Locale locale;
-  final ValueChanged<Locale> onLocale;
+  final AppLanguage language;
 
-  const _AccountScreen({required this.state, required this.locale, required this.onLocale});
+  const _AccountScreen({required this.state, required this.language});
 
   @override
   Widget build(BuildContext context) {
@@ -119,14 +120,7 @@ class _AccountScreen extends StatelessWidget {
         const SizedBox(height: Space.s6),
         Text(t.languageLabel, style: text.titleMedium),
         const SizedBox(height: Space.s2),
-        SegmentedButton<String>(
-          segments: [
-            ButtonSegment(value: 'ar', label: Text(t.arabic)),
-            ButtonSegment(value: 'en', label: Text(t.english)),
-          ],
-          selected: {locale.languageCode},
-          onSelectionChanged: (s) => onLocale(Locale(s.first)),
-        ),
+        LanguagePicker(state: state, current: language),
         const SizedBox(height: Space.s6),
         Text(t.cityLabel, style: text.titleMedium),
         const SizedBox(height: Space.s2),

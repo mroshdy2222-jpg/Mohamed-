@@ -50,7 +50,6 @@
   "voteTitle": "This or that?",
   "voteSoon": "WhatsApp voting links are coming next. Until then, Talla's reason shows with every outfit.",
   "languageLabel": "Language",
-  "arabic": "Arabic",
   "english": "English",
   "occasionLabel": "Occasion",
   "styleLabel": "Style",
@@ -133,5 +132,8 @@
   "cityDubai": "Dubai",
   "cityAbuDhabi": "Abu Dhabi",
   "cityKuwait": "Kuwait",
-  "cityDoha": "Doha"
+  "cityDoha": "Doha",
+  "arabicEgyptian": "مصري",
+  "arabicGulf": "خليجي",
+  "arabicStandard": "فصحى"
 }

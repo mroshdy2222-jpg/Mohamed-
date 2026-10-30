@@ -90,7 +90,12 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('ar'), Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('ar', 'EG'),
+    Locale('ar', 'SA'),
+    Locale('en'),
+  ];
 
   /// No description provided for @appTitle.
   ///
@@ -101,13 +106,13 @@ abstract class AppLocalizations {
   /// No description provided for @navToday.
   ///
   /// In ar, this message translates to:
-  /// **'النهارده'**
+  /// **'اليوم'**
   String get navToday;
 
   /// No description provided for @navWardrobe.
   ///
   /// In ar, this message translates to:
-  /// **'الدولاب'**
+  /// **'الخزانة'**
   String get navWardrobe;
 
   /// No description provided for @navVote.
@@ -125,7 +130,7 @@ abstract class AppLocalizations {
   /// No description provided for @todayTitle.
   ///
   /// In ar, this message translates to:
-  /// **'طقم النهارده'**
+  /// **'إطلالة اليوم'**
   String get todayTitle;
 
   /// No description provided for @weatherLine.
@@ -137,61 +142,61 @@ abstract class AppLocalizations {
   /// No description provided for @wearIt.
   ///
   /// In ar, this message translates to:
-  /// **'هلبسه'**
+  /// **'سأرتديه'**
   String get wearIt;
 
   /// No description provided for @dressMeAgain.
   ///
   /// In ar, this message translates to:
-  /// **'لبّسني تاني'**
+  /// **'اقترح غيره'**
   String get dressMeAgain;
 
   /// No description provided for @askFriends.
   ///
   /// In ar, this message translates to:
-  /// **'خد رأي صحابك'**
+  /// **'اسأل أصدقاءك'**
   String get askFriends;
 
   /// No description provided for @lockHint.
   ///
   /// In ar, this message translates to:
-  /// **'دوس على قطعة عشان تقفلها'**
+  /// **'اضغط على قطعة لتثبيتها'**
   String get lockHint;
 
   /// No description provided for @lockedLabel.
   ///
   /// In ar, this message translates to:
-  /// **'مقفولة'**
+  /// **'مثبّتة'**
   String get lockedLabel;
 
   /// No description provided for @noOutfit.
   ///
   /// In ar, this message translates to:
-  /// **'مش لاقيين طقم مناسب'**
+  /// **'لم نجد إطلالة مناسبة'**
   String get noOutfit;
 
   /// No description provided for @noOutfitHint.
   ///
   /// In ar, this message translates to:
-  /// **'جرّب ستايل تاني، أو ضيف قطع للدولاب، أو شوف لو حاجة في الغسيل.'**
+  /// **'جرّب أسلوبًا آخر، أو أضف قطعًا إلى الخزانة، أو تحقّق مما في الغسيل.'**
   String get noOutfitHint;
 
   /// No description provided for @withWhomTitle.
   ///
   /// In ar, this message translates to:
-  /// **'كنت مع مين؟'**
+  /// **'مع من كنت؟'**
   String get withWhomTitle;
 
   /// No description provided for @withWhomHint.
   ///
   /// In ar, this message translates to:
-  /// **'اختياري، زي: عيلة ماما'**
+  /// **'اختياري، مثل: عائلة أمي'**
   String get withWhomHint;
 
   /// No description provided for @save.
   ///
   /// In ar, this message translates to:
-  /// **'سجّل'**
+  /// **'حفظ'**
   String get save;
 
   /// No description provided for @cancel.
@@ -203,67 +208,67 @@ abstract class AppLocalizations {
   /// No description provided for @wornSaved.
   ///
   /// In ar, this message translates to:
-  /// **'اتسجل في سجل اللبس'**
+  /// **'سُجّلت في سجل الملابس'**
   String get wornSaved;
 
   /// No description provided for @wornBefore.
   ///
   /// In ar, this message translates to:
-  /// **'لبست قطعة من الطقم ده قدام نفس الناس يوم {date}'**
+  /// **'ارتديت قطعة من هذه الإطلالة أمام الأشخاص أنفسهم يوم {date}'**
   String wornBefore(String date);
 
   /// No description provided for @reasonNeutrals.
   ///
   /// In ar, this message translates to:
-  /// **'ألوان محايدة كلها، اختيار آمن ونضيف.'**
+  /// **'ألوان محايدة بالكامل، اختيار آمن وأنيق.'**
   String get reasonNeutrals;
 
   /// No description provided for @reasonAccent.
   ///
   /// In ar, this message translates to:
-  /// **'لون واحد بارز على ألوان هادية، فالطقم متوازن.'**
+  /// **'لون واحد بارز على ألوان هادئة، فتبدو الإطلالة متوازنة.'**
   String get reasonAccent;
 
   /// No description provided for @reasonMonochrome.
   ///
   /// In ar, this message translates to:
-  /// **'درجات من نفس اللون، شكل متناسق ومرتب.'**
+  /// **'درجات من اللون نفسه، مظهر متناسق ومرتب.'**
   String get reasonMonochrome;
 
   /// No description provided for @reasonAnalogous.
   ///
   /// In ar, this message translates to:
-  /// **'لونين جيران على دايرة الألوان، فبيمشوا مع بعض بهدوء.'**
+  /// **'لونان متجاوران في دائرة الألوان، يتناغمان بهدوء.'**
   String get reasonAnalogous;
 
   /// No description provided for @reasonComplementary.
   ///
   /// In ar, this message translates to:
-  /// **'لونين عكس بعض، فالطقم لافت ومتوازن.'**
+  /// **'لونان متقابلان، فالإطلالة لافتة ومتوازنة.'**
   String get reasonComplementary;
 
   /// No description provided for @reasonClash.
   ///
   /// In ar, this message translates to:
-  /// **'ألوان جريئة مع بعض، لو حابب تلفت النظر.'**
+  /// **'ألوان جريئة معًا، إن أردت لفت الأنظار.'**
   String get reasonClash;
 
   /// No description provided for @noteCold.
   ///
   /// In ar, this message translates to:
-  /// **'ضفنا طبقة عشان الجو برد.'**
+  /// **'أضفنا طبقة لأن الجو بارد.'**
   String get noteCold;
 
   /// No description provided for @noteHot.
   ///
   /// In ar, this message translates to:
-  /// **'قطع خفيفة عشان الجو حر.'**
+  /// **'قطع خفيفة لأن الجو حار.'**
   String get noteHot;
 
   /// No description provided for @wardrobeTitle.
   ///
   /// In ar, this message translates to:
-  /// **'الدولاب'**
+  /// **'الخزانة'**
   String get wardrobeTitle;
 
   /// No description provided for @wardrobeCount.
@@ -287,43 +292,43 @@ abstract class AppLocalizations {
   /// No description provided for @statusLent.
   ///
   /// In ar, this message translates to:
-  /// **'مسلّفة'**
+  /// **'مُعارة'**
   String get statusLent;
 
   /// No description provided for @statusAvailable.
   ///
   /// In ar, this message translates to:
-  /// **'موجودة'**
+  /// **'متاحة'**
   String get statusAvailable;
 
   /// No description provided for @emptyWardrobe.
   ///
   /// In ar, this message translates to:
-  /// **'الدولاب فاضي. ابدأ بالأساسيات.'**
+  /// **'الخزانة فارغة. ابدأ بالأساسيات.'**
   String get emptyWardrobe;
 
   /// No description provided for @addBasics.
   ///
   /// In ar, this message translates to:
-  /// **'ضيف الأساسيات'**
+  /// **'أضف الأساسيات'**
   String get addBasics;
 
   /// No description provided for @basicsTitle.
   ///
   /// In ar, this message translates to:
-  /// **'عندك الحاجات دي؟'**
+  /// **'هل تملك هذه القطع؟'**
   String get basicsTitle;
 
   /// No description provided for @basicsHint.
   ///
   /// In ar, this message translates to:
-  /// **'دوس على اللي عندك، وتقدر تصوّرها بعدين.'**
+  /// **'اضغط على ما تملكه، ويمكنك تصويره لاحقًا.'**
   String get basicsHint;
 
   /// No description provided for @basicsDone.
   ///
   /// In ar, this message translates to:
-  /// **'يلا نشوف طقم النهارده'**
+  /// **'لنرَ إطلالة اليوم'**
   String get basicsDone;
 
   /// No description provided for @basicsSelected.
@@ -335,37 +340,37 @@ abstract class AppLocalizations {
   /// No description provided for @genderQuestion.
   ///
   /// In ar, this message translates to:
-  /// **'التطبيق ليك ولا ليكي؟'**
+  /// **'لمن هذا التطبيق؟'**
   String get genderQuestion;
 
   /// No description provided for @genderFemale.
   ///
   /// In ar, this message translates to:
-  /// **'ستات'**
+  /// **'نساء'**
   String get genderFemale;
 
   /// No description provided for @genderMale.
   ///
   /// In ar, this message translates to:
-  /// **'رجالة'**
+  /// **'رجال'**
   String get genderMale;
 
   /// No description provided for @hijabQuestion.
   ///
   /// In ar, this message translates to:
-  /// **'بتلبسي حجاب؟'**
+  /// **'هل ترتدين الحجاب؟'**
   String get hijabQuestion;
 
   /// No description provided for @yes.
   ///
   /// In ar, this message translates to:
-  /// **'أيوه'**
+  /// **'نعم'**
   String get yes;
 
   /// No description provided for @no.
   ///
   /// In ar, this message translates to:
-  /// **'لأ'**
+  /// **'لا'**
   String get no;
 
   /// No description provided for @cityLabel.
@@ -377,13 +382,13 @@ abstract class AppLocalizations {
   /// No description provided for @voteTitle.
   ///
   /// In ar, this message translates to:
-  /// **'ده ولا ده؟'**
+  /// **'هذا أم ذاك؟'**
   String get voteTitle;
 
   /// No description provided for @voteSoon.
   ///
   /// In ar, this message translates to:
-  /// **'التصويت بلينك واتساب جاي في التحديث الجاي. لحد ما ييجي، رأي طالا بيظهر مع كل طقم.'**
+  /// **'التصويت عبر رابط واتساب قادم في التحديث القادم. حتى ذلك الحين، يظهر رأي طالا مع كل إطلالة.'**
   String get voteSoon;
 
   /// No description provided for @languageLabel.
@@ -391,12 +396,6 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'اللغة'**
   String get languageLabel;
-
-  /// No description provided for @arabic.
-  ///
-  /// In ar, this message translates to:
-  /// **'العربي'**
-  String get arabic;
 
   /// No description provided for @english.
   ///
@@ -413,19 +412,19 @@ abstract class AppLocalizations {
   /// No description provided for @styleLabel.
   ///
   /// In ar, this message translates to:
-  /// **'الستايل'**
+  /// **'الأسلوب'**
   String get styleLabel;
 
   /// No description provided for @catTop.
   ///
   /// In ar, this message translates to:
-  /// **'لبس علوي'**
+  /// **'ملابس علوية'**
   String get catTop;
 
   /// No description provided for @catBottom.
   ///
   /// In ar, this message translates to:
-  /// **'لبس سفلي'**
+  /// **'ملابس سفلية'**
   String get catBottom;
 
   /// No description provided for @catOnePiece.
@@ -437,25 +436,25 @@ abstract class AppLocalizations {
   /// No description provided for @catOuterwear.
   ///
   /// In ar, this message translates to:
-  /// **'جاكت'**
+  /// **'سترات'**
   String get catOuterwear;
 
   /// No description provided for @catShoes.
   ///
   /// In ar, this message translates to:
-  /// **'جزم'**
+  /// **'أحذية'**
   String get catShoes;
 
   /// No description provided for @catBag.
   ///
   /// In ar, this message translates to:
-  /// **'شنط'**
+  /// **'حقائب'**
   String get catBag;
 
   /// No description provided for @catHeadscarf.
   ///
   /// In ar, this message translates to:
-  /// **'طرح'**
+  /// **'أوشحة'**
   String get catHeadscarf;
 
   /// No description provided for @catShemagh.
@@ -527,13 +526,13 @@ abstract class AppLocalizations {
   /// No description provided for @occWork.
   ///
   /// In ar, this message translates to:
-  /// **'شغل'**
+  /// **'عمل'**
   String get occWork;
 
   /// No description provided for @occOuting.
   ///
   /// In ar, this message translates to:
-  /// **'خروجة'**
+  /// **'نزهة'**
   String get occOuting;
 
   /// No description provided for @occDate.
@@ -545,13 +544,13 @@ abstract class AppLocalizations {
   /// No description provided for @occInterview.
   ///
   /// In ar, this message translates to:
-  /// **'مقابلة شغل'**
+  /// **'مقابلة عمل'**
   String get occInterview;
 
   /// No description provided for @occWedding.
   ///
   /// In ar, this message translates to:
-  /// **'فرح'**
+  /// **'حفل زفاف'**
   String get occWedding;
 
   /// No description provided for @occEngagement.
@@ -569,13 +568,13 @@ abstract class AppLocalizations {
   /// No description provided for @occHome.
   ///
   /// In ar, this message translates to:
-  /// **'البيت'**
+  /// **'المنزل'**
   String get occHome;
 
   /// No description provided for @occGym.
   ///
   /// In ar, this message translates to:
-  /// **'جيم'**
+  /// **'نادٍ رياضي'**
   String get occGym;
 
   /// No description provided for @occParty.
@@ -593,7 +592,7 @@ abstract class AppLocalizations {
   /// No description provided for @colCream.
   ///
   /// In ar, this message translates to:
-  /// **'أوف وايت'**
+  /// **'عاجي'**
   String get colCream;
 
   /// No description provided for @colBlack.
@@ -665,25 +664,25 @@ abstract class AppLocalizations {
   /// No description provided for @colPink.
   ///
   /// In ar, this message translates to:
-  /// **'بمبي'**
+  /// **'وردي'**
   String get colPink;
 
   /// No description provided for @colBlush.
   ///
   /// In ar, this message translates to:
-  /// **'روز'**
+  /// **'وردي فاتح'**
   String get colBlush;
 
   /// No description provided for @colOrange.
   ///
   /// In ar, this message translates to:
-  /// **'برتقاني'**
+  /// **'برتقالي'**
   String get colOrange;
 
   /// No description provided for @colMustard.
   ///
   /// In ar, this message translates to:
-  /// **'مستردة'**
+  /// **'خردلي'**
   String get colMustard;
 
   /// No description provided for @colYellow.
@@ -707,13 +706,13 @@ abstract class AppLocalizations {
   /// No description provided for @colTeal.
   ///
   /// In ar, this message translates to:
-  /// **'تيل'**
+  /// **'أزرق مخضر'**
   String get colTeal;
 
   /// No description provided for @colSky.
   ///
   /// In ar, this message translates to:
-  /// **'لبني'**
+  /// **'سماوي'**
   String get colSky;
 
   /// No description provided for @colBlue.
@@ -743,13 +742,13 @@ abstract class AppLocalizations {
   /// No description provided for @addItem.
   ///
   /// In ar, this message translates to:
-  /// **'ضيف قطعة'**
+  /// **'أضف قطعة'**
   String get addItem;
 
   /// No description provided for @takePhoto.
   ///
   /// In ar, this message translates to:
-  /// **'صوّر'**
+  /// **'التقط صورة'**
   String get takePhoto;
 
   /// No description provided for @fromGallery.
@@ -761,7 +760,7 @@ abstract class AppLocalizations {
   /// No description provided for @photoOptional.
   ///
   /// In ar, this message translates to:
-  /// **'الصورة اختيارية. من غيرها بيظهر شكل القطعة بلونها.'**
+  /// **'الصورة اختيارية. بدونها تظهر القطعة بشكلها ولونها.'**
   String get photoOptional;
 
   /// No description provided for @categoryLabel.
@@ -779,7 +778,7 @@ abstract class AppLocalizations {
   /// No description provided for @stylesLabel.
   ///
   /// In ar, this message translates to:
-  /// **'بتنفع في أنهي ستايل؟'**
+  /// **'ما الأساليب التي تناسبها؟'**
   String get stylesLabel;
 
   /// No description provided for @seasonLabel.
@@ -827,7 +826,7 @@ abstract class AppLocalizations {
   /// No description provided for @patternChecked.
   ///
   /// In ar, this message translates to:
-  /// **'كاروه'**
+  /// **'مربعات'**
   String get patternChecked;
 
   /// No description provided for @patternPrinted.
@@ -839,25 +838,25 @@ abstract class AppLocalizations {
   /// No description provided for @saveItem.
   ///
   /// In ar, this message translates to:
-  /// **'ضيفها للدولاب'**
+  /// **'أضفها إلى الخزانة'**
   String get saveItem;
 
   /// No description provided for @itemAdded.
   ///
   /// In ar, this message translates to:
-  /// **'القطعة اتضافت'**
+  /// **'أُضيفت القطعة'**
   String get itemAdded;
 
   /// No description provided for @deleteItem.
   ///
   /// In ar, this message translates to:
-  /// **'امسحها من الدولاب'**
+  /// **'احذفها من الخزانة'**
   String get deleteItem;
 
   /// No description provided for @cityAlexandria.
   ///
   /// In ar, this message translates to:
-  /// **'إسكندرية'**
+  /// **'الإسكندرية'**
   String get cityAlexandria;
 
   /// No description provided for @cityRiyadh.
@@ -895,6 +894,24 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الدوحة'**
   String get cityDoha;
+
+  /// No description provided for @arabicEgyptian.
+  ///
+  /// In ar, this message translates to:
+  /// **'مصري'**
+  String get arabicEgyptian;
+
+  /// No description provided for @arabicGulf.
+  ///
+  /// In ar, this message translates to:
+  /// **'خليجي'**
+  String get arabicGulf;
+
+  /// No description provided for @arabicStandard.
+  ///
+  /// In ar, this message translates to:
+  /// **'فصحى'**
+  String get arabicStandard;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -913,6 +930,20 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+  // Lookup logic when language+country codes are specified.
+  switch (locale.languageCode) {
+    case 'ar':
+      {
+        switch (locale.countryCode) {
+          case 'EG':
+            return AppLocalizationsArEg();
+          case 'SA':
+            return AppLocalizationsArSa();
+        }
+        break;
+      }
+  }
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'ar':

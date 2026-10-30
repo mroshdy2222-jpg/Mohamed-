@@ -13,6 +13,427 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appTitle => 'طالا';
 
   @override
+  String get navToday => 'اليوم';
+
+  @override
+  String get navWardrobe => 'الخزانة';
+
+  @override
+  String get navVote => 'التصويت';
+
+  @override
+  String get navAccount => 'حسابي';
+
+  @override
+  String get todayTitle => 'إطلالة اليوم';
+
+  @override
+  String weatherLine(int temp, String city) {
+    return '$temp° $city';
+  }
+
+  @override
+  String get wearIt => 'سأرتديه';
+
+  @override
+  String get dressMeAgain => 'اقترح غيره';
+
+  @override
+  String get askFriends => 'اسأل أصدقاءك';
+
+  @override
+  String get lockHint => 'اضغط على قطعة لتثبيتها';
+
+  @override
+  String get lockedLabel => 'مثبّتة';
+
+  @override
+  String get noOutfit => 'لم نجد إطلالة مناسبة';
+
+  @override
+  String get noOutfitHint => 'جرّب أسلوبًا آخر، أو أضف قطعًا إلى الخزانة، أو تحقّق مما في الغسيل.';
+
+  @override
+  String get withWhomTitle => 'مع من كنت؟';
+
+  @override
+  String get withWhomHint => 'اختياري، مثل: عائلة أمي';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get wornSaved => 'سُجّلت في سجل الملابس';
+
+  @override
+  String wornBefore(String date) {
+    return 'ارتديت قطعة من هذه الإطلالة أمام الأشخاص أنفسهم يوم $date';
+  }
+
+  @override
+  String get reasonNeutrals => 'ألوان محايدة بالكامل، اختيار آمن وأنيق.';
+
+  @override
+  String get reasonAccent => 'لون واحد بارز على ألوان هادئة، فتبدو الإطلالة متوازنة.';
+
+  @override
+  String get reasonMonochrome => 'درجات من اللون نفسه، مظهر متناسق ومرتب.';
+
+  @override
+  String get reasonAnalogous => 'لونان متجاوران في دائرة الألوان، يتناغمان بهدوء.';
+
+  @override
+  String get reasonComplementary => 'لونان متقابلان، فالإطلالة لافتة ومتوازنة.';
+
+  @override
+  String get reasonClash => 'ألوان جريئة معًا، إن أردت لفت الأنظار.';
+
+  @override
+  String get noteCold => 'أضفنا طبقة لأن الجو بارد.';
+
+  @override
+  String get noteHot => 'قطع خفيفة لأن الجو حار.';
+
+  @override
+  String get wardrobeTitle => 'الخزانة';
+
+  @override
+  String wardrobeCount(int count) {
+    return '$count قطعة';
+  }
+
+  @override
+  String get filterAll => 'الكل';
+
+  @override
+  String get statusLaundry => 'في الغسيل';
+
+  @override
+  String get statusLent => 'مُعارة';
+
+  @override
+  String get statusAvailable => 'متاحة';
+
+  @override
+  String get emptyWardrobe => 'الخزانة فارغة. ابدأ بالأساسيات.';
+
+  @override
+  String get addBasics => 'أضف الأساسيات';
+
+  @override
+  String get basicsTitle => 'هل تملك هذه القطع؟';
+
+  @override
+  String get basicsHint => 'اضغط على ما تملكه، ويمكنك تصويره لاحقًا.';
+
+  @override
+  String get basicsDone => 'لنرَ إطلالة اليوم';
+
+  @override
+  String basicsSelected(int count) {
+    return '$count قطعة';
+  }
+
+  @override
+  String get genderQuestion => 'لمن هذا التطبيق؟';
+
+  @override
+  String get genderFemale => 'نساء';
+
+  @override
+  String get genderMale => 'رجال';
+
+  @override
+  String get hijabQuestion => 'هل ترتدين الحجاب؟';
+
+  @override
+  String get yes => 'نعم';
+
+  @override
+  String get no => 'لا';
+
+  @override
+  String get cityLabel => 'المدينة';
+
+  @override
+  String get voteTitle => 'هذا أم ذاك؟';
+
+  @override
+  String get voteSoon => 'التصويت عبر رابط واتساب قادم في التحديث القادم. حتى ذلك الحين، يظهر رأي طالا مع كل إطلالة.';
+
+  @override
+  String get languageLabel => 'اللغة';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get occasionLabel => 'المناسبة';
+
+  @override
+  String get styleLabel => 'الأسلوب';
+
+  @override
+  String get catTop => 'ملابس علوية';
+
+  @override
+  String get catBottom => 'ملابس سفلية';
+
+  @override
+  String get catOnePiece => 'قطعة واحدة';
+
+  @override
+  String get catOuterwear => 'سترات';
+
+  @override
+  String get catShoes => 'أحذية';
+
+  @override
+  String get catBag => 'حقائب';
+
+  @override
+  String get catHeadscarf => 'أوشحة';
+
+  @override
+  String get catShemagh => 'شماغ';
+
+  @override
+  String get catAccessory => 'إكسسوارات';
+
+  @override
+  String get styleLounge => 'بيتي';
+
+  @override
+  String get styleSport => 'رياضي';
+
+  @override
+  String get styleCasual => 'كاجوال';
+
+  @override
+  String get styleDrip => 'دريب';
+
+  @override
+  String get styleSmartCasual => 'سمارت كاجوال';
+
+  @override
+  String get styleFormal => 'فورمال';
+
+  @override
+  String get styleDressy => 'دريسي';
+
+  @override
+  String get styleTraditional => 'تراثي';
+
+  @override
+  String get occUniversity => 'جامعة';
+
+  @override
+  String get occWork => 'عمل';
+
+  @override
+  String get occOuting => 'نزهة';
+
+  @override
+  String get occDate => 'موعد';
+
+  @override
+  String get occInterview => 'مقابلة عمل';
+
+  @override
+  String get occWedding => 'حفل زفاف';
+
+  @override
+  String get occEngagement => 'خطوبة';
+
+  @override
+  String get occEid => 'عيد';
+
+  @override
+  String get occHome => 'المنزل';
+
+  @override
+  String get occGym => 'نادٍ رياضي';
+
+  @override
+  String get occParty => 'حفلة';
+
+  @override
+  String get colWhite => 'أبيض';
+
+  @override
+  String get colCream => 'عاجي';
+
+  @override
+  String get colBlack => 'أسود';
+
+  @override
+  String get colGrey => 'رمادي';
+
+  @override
+  String get colNavy => 'كحلي';
+
+  @override
+  String get colDenim => 'جينز';
+
+  @override
+  String get colBeige => 'بيج';
+
+  @override
+  String get colCamel => 'كاميل';
+
+  @override
+  String get colBrown => 'بني';
+
+  @override
+  String get colOlive => 'زيتوني';
+
+  @override
+  String get colKhaki => 'كاكي';
+
+  @override
+  String get colRed => 'أحمر';
+
+  @override
+  String get colBurgundy => 'عنابي';
+
+  @override
+  String get colPink => 'وردي';
+
+  @override
+  String get colBlush => 'وردي فاتح';
+
+  @override
+  String get colOrange => 'برتقالي';
+
+  @override
+  String get colMustard => 'خردلي';
+
+  @override
+  String get colYellow => 'أصفر';
+
+  @override
+  String get colGreen => 'أخضر';
+
+  @override
+  String get colEmerald => 'زمردي';
+
+  @override
+  String get colTeal => 'أزرق مخضر';
+
+  @override
+  String get colSky => 'سماوي';
+
+  @override
+  String get colBlue => 'أزرق';
+
+  @override
+  String get colLavender => 'لافندر';
+
+  @override
+  String get colPurple => 'بنفسجي';
+
+  @override
+  String get cityCairo => 'القاهرة';
+
+  @override
+  String get addItem => 'أضف قطعة';
+
+  @override
+  String get takePhoto => 'التقط صورة';
+
+  @override
+  String get fromGallery => 'من المعرض';
+
+  @override
+  String get photoOptional => 'الصورة اختيارية. بدونها تظهر القطعة بشكلها ولونها.';
+
+  @override
+  String get categoryLabel => 'النوع';
+
+  @override
+  String get colorLabel => 'اللون';
+
+  @override
+  String get stylesLabel => 'ما الأساليب التي تناسبها؟';
+
+  @override
+  String get seasonLabel => 'الموسم';
+
+  @override
+  String get seasonSummer => 'صيفي';
+
+  @override
+  String get seasonWinter => 'شتوي';
+
+  @override
+  String get seasonAll => 'كل المواسم';
+
+  @override
+  String get patternLabel => 'النقشة';
+
+  @override
+  String get patternSolid => 'سادة';
+
+  @override
+  String get patternStriped => 'مقلّم';
+
+  @override
+  String get patternChecked => 'مربعات';
+
+  @override
+  String get patternPrinted => 'مطبوع';
+
+  @override
+  String get saveItem => 'أضفها إلى الخزانة';
+
+  @override
+  String get itemAdded => 'أُضيفت القطعة';
+
+  @override
+  String get deleteItem => 'احذفها من الخزانة';
+
+  @override
+  String get cityAlexandria => 'الإسكندرية';
+
+  @override
+  String get cityRiyadh => 'الرياض';
+
+  @override
+  String get cityJeddah => 'جدة';
+
+  @override
+  String get cityDubai => 'دبي';
+
+  @override
+  String get cityAbuDhabi => 'أبوظبي';
+
+  @override
+  String get cityKuwait => 'الكويت';
+
+  @override
+  String get cityDoha => 'الدوحة';
+
+  @override
+  String get arabicEgyptian => 'مصري';
+
+  @override
+  String get arabicGulf => 'خليجي';
+
+  @override
+  String get arabicStandard => 'فصحى';
+}
+
+/// The translations for Arabic, as used in Egypt (`ar_EG`).
+class AppLocalizationsArEg extends AppLocalizationsAr {
+  AppLocalizationsArEg() : super('ar_EG');
+
+  @override
+  String get appTitle => 'طالا';
+
+  @override
   String get navToday => 'النهارده';
 
   @override
@@ -166,9 +587,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get languageLabel => 'اللغة';
-
-  @override
-  String get arabic => 'العربي';
 
   @override
   String get english => 'English';
@@ -418,4 +836,434 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cityDoha => 'الدوحة';
+
+  @override
+  String get arabicEgyptian => 'مصري';
+
+  @override
+  String get arabicGulf => 'خليجي';
+
+  @override
+  String get arabicStandard => 'فصحى';
+}
+
+/// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
+class AppLocalizationsArSa extends AppLocalizationsAr {
+  AppLocalizationsArSa() : super('ar_SA');
+
+  @override
+  String get appTitle => 'طالا';
+
+  @override
+  String get navToday => 'اليوم';
+
+  @override
+  String get navWardrobe => 'الكبت';
+
+  @override
+  String get navVote => 'التصويت';
+
+  @override
+  String get navAccount => 'حسابي';
+
+  @override
+  String get todayTitle => 'لبسة اليوم';
+
+  @override
+  String weatherLine(int temp, String city) {
+    return '$temp° $city';
+  }
+
+  @override
+  String get wearIt => 'بلبسه';
+
+  @override
+  String get dressMeAgain => 'لبّسني غيره';
+
+  @override
+  String get askFriends => 'خذ رأي ربعك';
+
+  @override
+  String get lockHint => 'اضغط على قطعة عشان تثبّتها';
+
+  @override
+  String get lockedLabel => 'مثبّتة';
+
+  @override
+  String get noOutfit => 'ما لقينا لبسة مناسبة';
+
+  @override
+  String get noOutfitHint => 'جرّب ستايل ثاني، أو ضيف قطع للكبت، أو شوف إذا فيه شي بالغسيل.';
+
+  @override
+  String get withWhomTitle => 'كنت مع منو؟';
+
+  @override
+  String get withWhomHint => 'اختياري، مثل: أهل أمي';
+
+  @override
+  String get save => 'سجّل';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get wornSaved => 'انحفظت في سجل اللبس';
+
+  @override
+  String wornBefore(String date) {
+    return 'لبست قطعة من هاللبسة قدام نفس الناس يوم $date';
+  }
+
+  @override
+  String get reasonNeutrals => 'ألوان هادية كلها، اختيار مضمون وأنيق.';
+
+  @override
+  String get reasonAccent => 'لون واحد بارز على ألوان هادية، فاللبسة متوازنة.';
+
+  @override
+  String get reasonMonochrome => 'درجات من نفس اللون، شكل مرتب ومتناسق.';
+
+  @override
+  String get reasonAnalogous => 'لونين قريبين من بعض، يمشون مع بعض بهدوء.';
+
+  @override
+  String get reasonComplementary => 'لونين عكس بعض، فاللبسة ملفتة ومتوازنة.';
+
+  @override
+  String get reasonClash => 'ألوان جريئة مع بعض، إذا تبي تلفت النظر.';
+
+  @override
+  String get noteCold => 'ضفنا طبقة لأن الجو بارد.';
+
+  @override
+  String get noteHot => 'قطع خفيفة لأن الجو حار.';
+
+  @override
+  String get wardrobeTitle => 'الكبت';
+
+  @override
+  String wardrobeCount(int count) {
+    return '$count قطعة';
+  }
+
+  @override
+  String get filterAll => 'الكل';
+
+  @override
+  String get statusLaundry => 'بالغسيل';
+
+  @override
+  String get statusLent => 'سلّفتها';
+
+  @override
+  String get statusAvailable => 'موجودة';
+
+  @override
+  String get emptyWardrobe => 'الكبت فاضي. ابدأ بالأساسيات.';
+
+  @override
+  String get addBasics => 'ضيف الأساسيات';
+
+  @override
+  String get basicsTitle => 'عندك هالأغراض؟';
+
+  @override
+  String get basicsHint => 'اضغط على اللي عندك، وتقدر تصوّرها بعدين.';
+
+  @override
+  String get basicsDone => 'يلا نشوف لبسة اليوم';
+
+  @override
+  String basicsSelected(int count) {
+    return '$count قطعة';
+  }
+
+  @override
+  String get genderQuestion => 'التطبيق لك ولا لج؟';
+
+  @override
+  String get genderFemale => 'حريم';
+
+  @override
+  String get genderMale => 'رجال';
+
+  @override
+  String get hijabQuestion => 'تلبسين شيلة؟';
+
+  @override
+  String get yes => 'إي';
+
+  @override
+  String get no => 'لا';
+
+  @override
+  String get cityLabel => 'المدينة';
+
+  @override
+  String get voteTitle => 'هذا ولا هذا؟';
+
+  @override
+  String get voteSoon => 'التصويت برابط واتساب جاي بالتحديث الجاي. لين ما يجي، رأي طالا يطلع مع كل لبسة.';
+
+  @override
+  String get languageLabel => 'اللغة';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get occasionLabel => 'المناسبة';
+
+  @override
+  String get styleLabel => 'الستايل';
+
+  @override
+  String get catTop => 'لبس فوق';
+
+  @override
+  String get catBottom => 'لبس تحت';
+
+  @override
+  String get catOnePiece => 'قطعة وحدة';
+
+  @override
+  String get catOuterwear => 'جاكيت';
+
+  @override
+  String get catShoes => 'أحذية';
+
+  @override
+  String get catBag => 'شنط';
+
+  @override
+  String get catHeadscarf => 'شيلات';
+
+  @override
+  String get catShemagh => 'شماغ';
+
+  @override
+  String get catAccessory => 'إكسسوارات';
+
+  @override
+  String get styleLounge => 'بيتي';
+
+  @override
+  String get styleSport => 'رياضي';
+
+  @override
+  String get styleCasual => 'كاجوال';
+
+  @override
+  String get styleDrip => 'دريب';
+
+  @override
+  String get styleSmartCasual => 'سمارت كاجوال';
+
+  @override
+  String get styleFormal => 'فورمال';
+
+  @override
+  String get styleDressy => 'دريسي';
+
+  @override
+  String get styleTraditional => 'تراثي';
+
+  @override
+  String get occUniversity => 'جامعة';
+
+  @override
+  String get occWork => 'دوام';
+
+  @override
+  String get occOuting => 'طلعة';
+
+  @override
+  String get occDate => 'موعد';
+
+  @override
+  String get occInterview => 'مقابلة وظيفية';
+
+  @override
+  String get occWedding => 'عرس';
+
+  @override
+  String get occEngagement => 'خطوبة';
+
+  @override
+  String get occEid => 'عيد';
+
+  @override
+  String get occHome => 'البيت';
+
+  @override
+  String get occGym => 'نادي';
+
+  @override
+  String get occParty => 'حفلة';
+
+  @override
+  String get colWhite => 'أبيض';
+
+  @override
+  String get colCream => 'أوف وايت';
+
+  @override
+  String get colBlack => 'أسود';
+
+  @override
+  String get colGrey => 'رمادي';
+
+  @override
+  String get colNavy => 'كحلي';
+
+  @override
+  String get colDenim => 'جينز';
+
+  @override
+  String get colBeige => 'بيج';
+
+  @override
+  String get colCamel => 'كاميل';
+
+  @override
+  String get colBrown => 'بني';
+
+  @override
+  String get colOlive => 'زيتوني';
+
+  @override
+  String get colKhaki => 'كاكي';
+
+  @override
+  String get colRed => 'أحمر';
+
+  @override
+  String get colBurgundy => 'عنابي';
+
+  @override
+  String get colPink => 'وردي';
+
+  @override
+  String get colBlush => 'وردي فاتح';
+
+  @override
+  String get colOrange => 'برتقالي';
+
+  @override
+  String get colMustard => 'خردلي';
+
+  @override
+  String get colYellow => 'أصفر';
+
+  @override
+  String get colGreen => 'أخضر';
+
+  @override
+  String get colEmerald => 'زمردي';
+
+  @override
+  String get colTeal => 'تيل';
+
+  @override
+  String get colSky => 'سماوي';
+
+  @override
+  String get colBlue => 'أزرق';
+
+  @override
+  String get colLavender => 'لافندر';
+
+  @override
+  String get colPurple => 'بنفسجي';
+
+  @override
+  String get cityCairo => 'القاهرة';
+
+  @override
+  String get addItem => 'ضيف قطعة';
+
+  @override
+  String get takePhoto => 'صوّر';
+
+  @override
+  String get fromGallery => 'من المعرض';
+
+  @override
+  String get photoOptional => 'الصورة اختيارية. بدونها تطلع القطعة بشكلها ولونها.';
+
+  @override
+  String get categoryLabel => 'النوع';
+
+  @override
+  String get colorLabel => 'اللون';
+
+  @override
+  String get stylesLabel => 'تمشي مع أي ستايل؟';
+
+  @override
+  String get seasonLabel => 'الموسم';
+
+  @override
+  String get seasonSummer => 'صيفي';
+
+  @override
+  String get seasonWinter => 'شتوي';
+
+  @override
+  String get seasonAll => 'كل المواسم';
+
+  @override
+  String get patternLabel => 'النقشة';
+
+  @override
+  String get patternSolid => 'سادة';
+
+  @override
+  String get patternStriped => 'مقلّم';
+
+  @override
+  String get patternChecked => 'كاروهات';
+
+  @override
+  String get patternPrinted => 'مطبوع';
+
+  @override
+  String get saveItem => 'ضيفها للكبت';
+
+  @override
+  String get itemAdded => 'انضافت القطعة';
+
+  @override
+  String get deleteItem => 'امسحها من الكبت';
+
+  @override
+  String get cityAlexandria => 'الإسكندرية';
+
+  @override
+  String get cityRiyadh => 'الرياض';
+
+  @override
+  String get cityJeddah => 'جدة';
+
+  @override
+  String get cityDubai => 'دبي';
+
+  @override
+  String get cityAbuDhabi => 'أبوظبي';
+
+  @override
+  String get cityKuwait => 'الكويت';
+
+  @override
+  String get cityDoha => 'الدوحة';
+
+  @override
+  String get arabicEgyptian => 'مصري';
+
+  @override
+  String get arabicGulf => 'خليجي';
+
+  @override
+  String get arabicStandard => 'فصحى';
 }

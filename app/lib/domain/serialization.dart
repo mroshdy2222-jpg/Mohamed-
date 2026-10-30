@@ -1,4 +1,5 @@
 import 'fashion_color.dart';
+import 'languages.dart';
 import 'models.dart';
 
 /// JSON for what the app keeps on the device. Enums are stored by name and
@@ -35,12 +36,18 @@ Item itemFromJson(Map<String, Object?> j) => Item(
   photoPath: j['photo'] as String?,
 );
 
-Map<String, Object?> profileToJson(Profile p) => {'gender': p.gender.name, 'hijab': p.wearsHijab, 'city': p.city};
+Map<String, Object?> profileToJson(Profile p) => {
+  'gender': p.gender.name,
+  'hijab': p.wearsHijab,
+  'city': p.city,
+  'language': p.language?.name,
+};
 
 Profile profileFromJson(Map<String, Object?> j) => Profile(
   gender: _enum(Gender.values, j['gender'], Gender.female),
   wearsHijab: j['hijab'] as bool? ?? false,
   city: j['city'] as String? ?? 'Cairo',
+  language: j['language'] == null ? null : _enum(AppLanguage.values, j['language'], AppLanguage.egyptian),
 );
 
 Map<String, Object?> wearToJson(WearEntry e) => {

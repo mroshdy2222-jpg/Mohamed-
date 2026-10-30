@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../app_state.dart';
 import '../data/basics.dart';
+import '../domain/languages.dart';
 import '../domain/models.dart';
 import '../l10n/app_localizations.dart';
 import 'item_swatch.dart';
 import 'labels.dart';
+import 'language_picker.dart';
 import 'theme.dart';
 
 /// Onboarding: three quick questions, then the basics grid. The user sees a
 /// first outfit without photographing anything.
 class BasicsScreen extends StatefulWidget {
   final AppState state;
+  final AppLanguage language;
   final VoidCallback onDone;
 
-  const BasicsScreen({super.key, required this.state, required this.onDone});
+  const BasicsScreen({super.key, required this.state, required this.language, required this.onDone});
 
   @override
   State<BasicsScreen> createState() => _BasicsScreenState();
@@ -35,6 +38,8 @@ class _BasicsScreenState extends State<BasicsScreen> {
         child: ListView(
           padding: const EdgeInsets.all(Space.s4),
           children: [
+            LanguagePicker(state: widget.state, current: widget.language),
+            const SizedBox(height: Space.s6),
             Text(t.genderQuestion, style: text.titleMedium),
             const SizedBox(height: Space.s2),
             SegmentedButton<Gender>(

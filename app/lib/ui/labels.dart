@@ -107,7 +107,7 @@ extension Labels on AppLocalizations {
   };
 
   /// "Burgundy one-piece", in the right word order for the language.
-  String itemName(Item i) => localeName == 'ar'
+  String itemName(Item i) => localeName.startsWith('ar')
       ? '${category(i.category)} ${color(i.color)}'
       : '${color(i.color)} ${category(i.category).toLowerCase()}';
 }

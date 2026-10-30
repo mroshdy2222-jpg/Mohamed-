@@ -168,9 +168,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languageLabel => 'Language';
 
   @override
-  String get arabic => 'Arabic';
-
-  @override
   String get english => 'English';
 
   @override
@@ -418,4 +415,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cityDoha => 'Doha';
+
+  @override
+  String get arabicEgyptian => 'مصري';
+
+  @override
+  String get arabicGulf => 'خليجي';
+
+  @override
+  String get arabicStandard => 'فصحى';
 }

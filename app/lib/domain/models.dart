@@ -1,4 +1,5 @@
 import 'fashion_color.dart';
+import 'languages.dart';
 
 enum Category { top, bottom, onePiece, outerwear, shoes, bag, headscarf, shemagh, accessory }
 
@@ -76,10 +77,17 @@ class Profile {
   final bool wearsHijab;
   final String city;
 
-  const Profile({this.gender = Gender.female, this.wearsHijab = false, this.city = 'Cairo'});
+  /// Null until the user picks one; the app then follows the phone's region.
+  final AppLanguage? language;
 
-  Profile copyWith({Gender? gender, bool? wearsHijab, String? city}) =>
-      Profile(gender: gender ?? this.gender, wearsHijab: wearsHijab ?? this.wearsHijab, city: city ?? this.city);
+  const Profile({this.gender = Gender.female, this.wearsHijab = false, this.city = 'Cairo', this.language});
+
+  Profile copyWith({Gender? gender, bool? wearsHijab, String? city, AppLanguage? language}) => Profile(
+    gender: gender ?? this.gender,
+    wearsHijab: wearsHijab ?? this.wearsHijab,
+    city: city ?? this.city,
+    language: language ?? this.language,
+  );
 }
 
 class WearEntry {

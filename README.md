@@ -22,7 +22,7 @@ The first slice of the MVP, running fully offline:
 - Add a piece by hand: optional photo (camera or gallery), type, colour, styles, pattern, season.
 - Everything is saved on the device and survives closing the app.
 - Today's high temperature for the chosen city (8 cities in Egypt and the Gulf) from Open-Meteo, which is free and needs no key. Offline it keeps the last value.
-- Arabic (right to left) and English, from translation files only.
+- Arabic in three registers (Egyptian, Gulf, Standard) and English, from translation files only. The first launch picks one from the phone's region; the user can switch on the first screen or in Account.
 
 The outfit engine (`app/lib/domain/`) is rule-based: dress code, weather, availability, colour harmony and recent wear. AI will rewrite the reason and re-rank the top few; it is not needed for an outfit to appear.
 
