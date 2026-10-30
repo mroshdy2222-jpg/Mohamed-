@@ -33,10 +33,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get wearIt => 'Wear it';
+  String get wearIt => 'Choose this';
 
   @override
-  String get dressMeAgain => 'Dress me again';
+  String get dressMeAgain => 'Another option';
 
   @override
   String get askFriends => 'Ask friends';

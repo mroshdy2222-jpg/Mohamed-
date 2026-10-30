@@ -95,7 +95,7 @@ class AppState extends ChangeNotifier {
     _refresh(reset: true);
   }
 
-  /// "Dress me again": the next best outfit not shown yet.
+  /// "Another option": the next best outfit not shown yet.
   void dressMeAgain() {
     if (current != null) _shown.add(current!.signature);
     _refresh(persist: false);

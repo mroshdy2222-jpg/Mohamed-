@@ -33,10 +33,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get wearIt => 'سأرتديه';
+  String get wearIt => 'سأختاره';
 
   @override
-  String get dressMeAgain => 'اقترح غيره';
+  String get dressMeAgain => 'اختيار آخر';
 
   @override
   String get askFriends => 'اسأل أصدقاءك';
@@ -454,10 +454,10 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
   }
 
   @override
-  String get wearIt => 'هلبسه';
+  String get wearIt => 'هختاره';
 
   @override
-  String get dressMeAgain => 'لبّسني تاني';
+  String get dressMeAgain => 'اختيار تاني';
 
   @override
   String get askFriends => 'خد رأي صحابك';
@@ -875,10 +875,10 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
   }
 
   @override
-  String get wearIt => 'بلبسه';
+  String get wearIt => 'بختاره';
 
   @override
-  String get dressMeAgain => 'لبّسني غيره';
+  String get dressMeAgain => 'اختيار ثاني';
 
   @override
   String get askFriends => 'خذ رأي ربعك';

@@ -28,7 +28,7 @@ class OutfitRequest {
   /// The piece the user wants to wear no matter what ("I want this jacket").
   final String? lockedItemId;
 
-  /// Signatures already shown this session, so "dress me again" moves on.
+  /// Signatures already shown this session, so "another option" moves on.
   final Set<String> exclude;
   final DateTime now;
 

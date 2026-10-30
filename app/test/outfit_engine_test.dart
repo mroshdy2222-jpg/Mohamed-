@@ -109,7 +109,7 @@ void main() {
       expect(outfits.every((o) => o.items.any((i) => i.id == 'jeans')), isTrue);
     });
 
-    test('"dress me again" skips outfits already shown', () {
+    test('"another option" skips outfits already shown', () {
       final first = engine.suggest(wardrobe, [], req()).first;
       final next = engine.suggest(wardrobe, [], req(exclude: {first.signature}));
       expect(next.map((o) => o.signature), isNot(contains(first.signature)));

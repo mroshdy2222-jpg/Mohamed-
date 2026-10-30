@@ -28,16 +28,16 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('طقم النهارده'), findsOneWidget);
-    expect(find.text('هلبسه'), findsOneWidget);
+    expect(find.text('هختاره'), findsOneWidget);
     expect(state.current, isNotNull);
     expect(state.current!.items.map((i) => i.category), containsAll([Category.top, Category.bottom, Category.shoes]));
 
     final first = state.current!.signature;
-    await tester.tap(find.text('لبّسني تاني'));
+    await tester.tap(find.text('اختيار تاني'));
     await tester.pumpAndSettle();
     expect(state.current!.signature, isNot(first));
 
-    await tester.tap(find.text('هلبسه'));
+    await tester.tap(find.text('هختاره'));
     await tester.pumpAndSettle();
     await tester.enterText(find.byKey(const Key('withWhom')), 'صحاب الجامعة');
     await tester.tap(find.text('سجّل'));

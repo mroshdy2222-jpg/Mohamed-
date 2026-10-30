@@ -16,7 +16,7 @@ Talla (طالا) is an AI wardrobe stylist for the Arab market: it suggests a da
 The first slice of the MVP, running fully offline:
 
 - Onboarding: women or men, hijab or not, then the "do you have these?" basics grid. The first outfit appears without a single photo.
-- Today: occasion, the eight dress codes (lounge, sport, casual, drip, smart casual, formal, dressy, traditional), the outfit, a one-line reason, lock a piece, "dress me again", "wear it".
+- Today: occasion, the eight dress codes (lounge, sport, casual, drip, smart casual, formal, dressy, traditional), the outfit, a one-line reason, lock a piece, "another option", "choose this".
 - Wear log with the "you wore this with the same people" warning.
 - Wardrobe with category filters and in-the-laundry / lent status.
 - Add a piece by hand: optional photo (camera or gallery), type, colour, styles, pattern, season.

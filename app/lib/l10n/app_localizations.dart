@@ -142,13 +142,13 @@ abstract class AppLocalizations {
   /// No description provided for @wearIt.
   ///
   /// In ar, this message translates to:
-  /// **'سأرتديه'**
+  /// **'سأختاره'**
   String get wearIt;
 
   /// No description provided for @dressMeAgain.
   ///
   /// In ar, this message translates to:
-  /// **'اقترح غيره'**
+  /// **'اختيار آخر'**
   String get dressMeAgain;
 
   /// No description provided for @askFriends.
