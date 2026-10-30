@@ -13,18 +13,35 @@ import 'package:talla/domain/languages.dart';
 import 'package:talla/domain/models.dart';
 import 'package:talla/main.dart';
 
-WeatherService fixedWeather(int high, {List<Uri>? calls}) => WeatherService(
+Map<String, dynamic> hour(String time, num temp) => {
+  'time': time,
+  'data': {
+    'instant': {
+      'details': {'air_temperature': temp},
+    },
+  },
+};
+
+/// MET Norway's answer at 09:00 Cairo time: the high is the warmest hour left
+/// today, and tomorrow's hours do not count.
+WeatherService fixedWeather(int high, {List<http.Request>? calls}) => WeatherService(
   MockClient((req) async {
-    calls?.add(req.url);
+    calls?.add(req);
     return http.Response(
       jsonEncode({
-        'daily': {
-          'temperature_2m_max': [high + 0.4],
+        'properties': {
+          'timeseries': [
+            hour('2026-10-30T07:00:00Z', high - 6),
+            hour('2026-10-30T12:00:00Z', high + 0.4),
+            hour('2026-10-30T21:00:00Z', high - 8),
+            hour('2026-10-31T12:00:00Z', high + 5),
+          ],
         },
       }),
       200,
     );
   }),
+  () => DateTime.utc(2026, 10, 30, 7),
 );
 
 void main() {
@@ -70,11 +87,12 @@ void main() {
   });
 
   test('weather sets the temperature for the chosen city, and offline keeps the last value', () async {
-    final calls = <Uri>[];
+    final calls = <http.Request>[];
     final state = AppState(weatherService: fixedWeather(33, calls: calls));
     await state.restore();
     expect(state.temperatureC, 33);
-    expect(calls.single.queryParameters['latitude'], '30.04');
+    expect(calls.single.url.queryParameters['lat'], '30.04');
+    expect(calls.single.headers['User-Agent'], startsWith('Talla/'));
 
     final offline = AppState(weatherService: WeatherService(MockClient((_) async => throw Exception('offline'))));
     await offline.restore();

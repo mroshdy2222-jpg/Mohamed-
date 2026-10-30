@@ -28,7 +28,12 @@ class TodayScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(child: Text(t.todayTitle, style: text.headlineSmall)),
-            Text(t.weatherLine(state.temperatureC, t.city(state.profile.city)), style: text.bodyMedium),
+            // MET Norway's terms ask for credit; a tap on the temperature shows it.
+            Tooltip(
+              message: 'MET Norway',
+              triggerMode: TooltipTriggerMode.tap,
+              child: Text(t.weatherLine(state.temperatureC, t.city(state.profile.city)), style: text.bodyMedium),
+            ),
           ],
         ),
         const SizedBox(height: Space.s4),
