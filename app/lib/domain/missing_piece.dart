@@ -35,7 +35,7 @@ List<MissingPiece> missingPieces({
     return outfits.where((o) {
       final cats = o.items.map((i) => i.category).toSet();
       if (!cats.contains(Category.shoes)) return false;
-      if (profile.wearsHijab && !cats.contains(Category.headscarf)) return false;
+      if (profile.wearsHijab && !cats.contains(Category.headscarf) && !cats.contains(Category.turban)) return false;
       return true;
     }).length;
   }

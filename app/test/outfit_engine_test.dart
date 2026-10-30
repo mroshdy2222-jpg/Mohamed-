@@ -207,4 +207,45 @@ void main() {
       expect(ids(o), contains('shades'));
     });
   });
+
+  group('headwear and neck scarves', () {
+    final base = [
+      item('tee', Category.top, Palette.white, styles: {Style.casual, Style.formal}),
+      item('jeans', Category.bottom, Palette.denim, styles: {Style.casual, Style.formal}),
+      item('sneakers', Category.shoes, Palette.white, styles: {Style.casual, Style.formal}),
+    ];
+    final heads = [
+      item('cap', Category.cap, Palette.black),
+      item('beanie', Category.beanie, Palette.grey, styles: {Style.casual}),
+      item('kufiya', Category.neckScarf, Palette.grey, styles: const {}),
+      item('turban', Category.turban, Palette.black, styles: {Style.casual, Style.formal}),
+    ];
+    final engine = OutfitEngine();
+    Set<String> ids(Outfit o) => o.items.map((i) => i.id).toSet();
+    int headCount(Outfit o) => o.items.where((i) => headwear.contains(i.category)).length;
+
+    test('a cap on a hot casual day, never two things on the head', () {
+      final o = engine.suggest([...base, ...heads], [], req(temp: 30)).first;
+      expect(ids(o), contains('cap'));
+      expect(headCount(o), 1);
+      expect(ids(o), isNot(contains('kufiya')));
+    });
+
+    test('a beanie and a kufiya when it is cold', () {
+      final o = engine.suggest([...base, ...heads], [], req(temp: 12)).first;
+      expect(ids(o), containsAll(['beanie', 'kufiya']));
+      expect(headCount(o), 1);
+    });
+
+    test('no cap with formal wear', () {
+      final o = engine.suggest([...base, ...heads], [], req(style: Style.formal, temp: 30)).first;
+      expect(ids(o), isNot(contains('cap')));
+    });
+
+    test('for a user who wears hijab, a turban covers the head in place of a headscarf', () {
+      final o = engine.suggest([...base, ...heads], [], req(hijab: true, temp: 22)).first;
+      expect(ids(o), contains('turban'));
+      expect(headCount(o), 1);
+    });
+  });
 }

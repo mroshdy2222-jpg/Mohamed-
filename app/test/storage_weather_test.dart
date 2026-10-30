@@ -98,7 +98,7 @@ void main() {
 
     await tester.tap(find.text('قطعة واحدة'));
     await tester.tap(find.byKey(const Key('color-emerald')));
-    await tester.ensureVisible(find.text('دريسي'));
+    await tester.scrollUntilVisible(find.text('دريسي'), 200, scrollable: find.byType(Scrollable).last);
     await tester.pumpAndSettle();
     await tester.tap(find.text('دريسي'));
     await tester.pump();

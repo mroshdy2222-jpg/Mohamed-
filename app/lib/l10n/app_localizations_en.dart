@@ -508,4 +508,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get colSilver => 'Silver';
+
+  @override
+  String get catCap => 'Cap';
+
+  @override
+  String get catBeanie => 'Beanie';
+
+  @override
+  String get catTurban => 'Turban';
+
+  @override
+  String get catNeckScarf => 'Scarf';
 }

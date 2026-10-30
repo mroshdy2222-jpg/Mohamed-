@@ -75,7 +75,8 @@ class OutfitEngine {
     final onePieces = pool(Category.onePiece);
     final shoes = pool(Category.shoes);
     final outer = req.temperatureC >= hotFromC ? <Item>[] : pool(Category.outerwear);
-    final scarves = req.profile.wearsHijab ? pool(Category.headscarf) : <Item>[];
+    // A turban covers the hair too, so it can stand in for the headscarf.
+    final scarves = req.profile.wearsHijab ? [...pool(Category.headscarf), ...pool(Category.turban)] : <Item>[];
     final shemaghs = pool(Category.shemagh);
 
     final bases = <List<Item>>[
@@ -134,6 +135,8 @@ class OutfitEngine {
     final shoes = core.where((i) => i.category == Category.shoes).firstOrNull;
     final hasBottom = core.any((i) => i.category == Category.bottom);
     final style = req.style;
+    final cold = req.temperatureC < coldBelowC;
+    const casualish = {Style.sport, Style.casual, Style.drip};
 
     bool wanted(Category c) => switch (c) {
       Category.bag => style != Style.lounge && style != Style.sport,
@@ -143,16 +146,22 @@ class OutfitEngine {
       Category.sunglasses =>
         req.temperatureC >= 24 && const {Style.sport, Style.casual, Style.drip, Style.smartCasual}.contains(style),
       Category.perfume => true,
+      Category.cap => casualish.contains(style) && (req.temperatureC >= 24 || style == Style.drip),
+      Category.beanie => cold && casualish.contains(style),
+      Category.turban => !req.profile.wearsHijab && !casualish.contains(style),
+      Category.neckScarf => cold && style != Style.sport,
       _ => false,
     };
 
     final added = <Item>[];
+    bool headFree() => ![...core, ...added].any((i) => headwear.contains(i.category));
     for (final c in finishingTouches) {
       if (locked != null && locked.category == c) {
         added.add(locked);
         continue;
       }
       if (!wanted(c)) continue;
+      if (headwear.contains(c) && !headFree()) continue;
       final options = wardrobe.where((i) => i.category == c && usable(i)).toList();
       if (options.isEmpty) continue;
       double fit(Item i) {

@@ -161,5 +161,9 @@
   "catSunglasses": "Sunglasses",
   "catPerfume": "Perfume",
   "colGold": "Gold",
-  "colSilver": "Silver"
+  "colSilver": "Silver",
+  "catCap": "Cap",
+  "catBeanie": "Beanie",
+  "catTurban": "Turban",
+  "catNeckScarf": "Scarf"
 }

@@ -508,6 +508,18 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get colSilver => 'فضي';
+
+  @override
+  String get catCap => 'قبعة';
+
+  @override
+  String get catBeanie => 'قبعة صوفية';
+
+  @override
+  String get catTurban => 'توربان';
+
+  @override
+  String get catNeckScarf => 'وشاح';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -1013,6 +1025,18 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
 
   @override
   String get colSilver => 'فضي';
+
+  @override
+  String get catCap => 'كاب';
+
+  @override
+  String get catBeanie => 'طاقية';
+
+  @override
+  String get catTurban => 'توربان';
+
+  @override
+  String get catNeckScarf => 'كوفية';
 }
 
 /// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
@@ -1518,4 +1542,16 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
 
   @override
   String get colSilver => 'فضي';
+
+  @override
+  String get catCap => 'كاب';
+
+  @override
+  String get catBeanie => 'طاقية';
+
+  @override
+  String get catTurban => 'توربان';
+
+  @override
+  String get catNeckScarf => 'سكارف';
 }

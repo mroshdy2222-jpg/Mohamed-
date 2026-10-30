@@ -207,6 +207,37 @@ class _Silhouette extends CustomPainter {
       case Category.perfume:
         p.addRRect(RRect.fromLTRBR(10, 18, 30, 44, const Radius.circular(4)));
         p.addRect(const Rect.fromLTRB(16, 10, 24, 18));
+      case Category.cap:
+        p.moveTo(6, 30);
+        p.quadraticBezierTo(8, 12, 22, 12);
+        p.quadraticBezierTo(34, 12, 34, 30);
+        p.lineTo(38, 30);
+        p.lineTo(38, 34);
+        p.lineTo(6, 34);
+        p.close();
+      case Category.beanie:
+        p.moveTo(8, 34);
+        p.quadraticBezierTo(8, 12, 20, 12);
+        p.quadraticBezierTo(32, 12, 32, 34);
+        p.close();
+        p.addRRect(RRect.fromLTRBR(6, 32, 34, 40, const Radius.circular(2)));
+        p.addOval(Rect.fromCircle(center: const Offset(20, 9), radius: 4));
+      case Category.turban:
+        p.moveTo(6, 32);
+        p.quadraticBezierTo(4, 10, 20, 8);
+        p.quadraticBezierTo(36, 10, 34, 32);
+        p.quadraticBezierTo(20, 26, 6, 32);
+        p.close();
+      case Category.neckScarf:
+        p.moveTo(8, 10);
+        p.quadraticBezierTo(20, 18, 32, 10);
+        p.lineTo(32, 16);
+        p.quadraticBezierTo(26, 20, 24, 22);
+        p.lineTo(26, 44);
+        p.lineTo(19, 44);
+        p.lineTo(18, 22);
+        p.quadraticBezierTo(12, 18, 8, 16);
+        p.close();
       case Category.accessory:
         p.addOval(Rect.fromCircle(center: const Offset(20, 24), radius: 12));
     }

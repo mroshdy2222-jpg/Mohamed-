@@ -45,6 +45,10 @@ extension Labels on AppLocalizations {
     Category.jewelry => catJewelry,
     Category.sunglasses => catSunglasses,
     Category.perfume => catPerfume,
+    Category.cap => catCap,
+    Category.beanie => catBeanie,
+    Category.turban => catTurban,
+    Category.neckScarf => catNeckScarf,
     Category.accessory => catAccessory,
   };
 

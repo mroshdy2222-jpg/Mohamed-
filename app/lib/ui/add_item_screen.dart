@@ -43,7 +43,8 @@ class _AddItemScreenState extends State<AddItemScreen> {
   /// Headscarves, sunglasses and other accessories go with every style, so
   /// the style question is skipped for them. Bags, belts, watches, jewellery
   /// and perfume do depend on it: a gym bag is not an evening clutch.
-  bool get _styleFree => const {Category.headscarf, Category.sunglasses, Category.accessory}.contains(_category);
+  bool get _styleFree =>
+      const {Category.headscarf, Category.sunglasses, Category.neckScarf, Category.accessory}.contains(_category);
 
   Future<void> _pick(ImageSource source) async {
     final Uint8List? bytes;

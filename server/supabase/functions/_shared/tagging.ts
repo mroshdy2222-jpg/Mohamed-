@@ -4,7 +4,7 @@
 
 export const categories = [
   'top', 'bottom', 'onePiece', 'outerwear', 'shoes', 'bag', 'headscarf', 'shemagh',
-  'belt', 'watch', 'jewelry', 'sunglasses', 'perfume', 'accessory',
+  'belt', 'watch', 'jewelry', 'sunglasses', 'perfume', 'cap', 'beanie', 'turban', 'neckScarf', 'accessory',
 ] as const;
 export const styles = ['lounge', 'sport', 'casual', 'drip', 'smartCasual', 'formal', 'dressy', 'traditional'] as const;
 export const patterns = ['solid', 'striped', 'checked', 'printed'] as const;
@@ -37,7 +37,7 @@ Reply with JSON only, no prose, in exactly this shape:
  "pattern": one of ${JSON.stringify(patterns)},
  "season": one of ${JSON.stringify(seasons)},
  "styles": one to three of ${JSON.stringify(styles)}}
-Notes: an abaya, thobe, galabeya, kaftan or dress is "onePiece". A hijab or shayla is "headscarf". For a perfume bottle, "color" is the colour of the bottle and "styles" is when the scent suits: fresh scents "casual"/"sport", oud and heavy scents "dressy"/"traditional".
+Notes: an abaya, thobe, galabeya, kaftan or dress is "onePiece". A hijab or shayla is "headscarf"; a turban-style head wrap is "turban"; a knitted winter hat is "beanie"; a scarf worn around the neck (kufiya in Egypt) is "neckScarf", while a Gulf shemagh or ghutra is "shemagh". For a perfume bottle, "color" is the colour of the bottle and "styles" is when the scent suits: fresh scents "casual"/"sport", oud and heavy scents "dressy"/"traditional".
 "traditional" is for abayas, thobes, galabeyas, kaftans and shemaghs. "drip" is loud streetwear and statement sneakers.
 If the photo shows a person's face or body rather than a garment on its own, reply {"rejected": "person"} and nothing else.`;
 

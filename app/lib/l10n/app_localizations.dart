@@ -1068,6 +1068,30 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'فضي'**
   String get colSilver;
+
+  /// No description provided for @catCap.
+  ///
+  /// In ar, this message translates to:
+  /// **'قبعة'**
+  String get catCap;
+
+  /// No description provided for @catBeanie.
+  ///
+  /// In ar, this message translates to:
+  /// **'قبعة صوفية'**
+  String get catBeanie;
+
+  /// No description provided for @catTurban.
+  ///
+  /// In ar, this message translates to:
+  /// **'توربان'**
+  String get catTurban;
+
+  /// No description provided for @catNeckScarf.
+  ///
+  /// In ar, this message translates to:
+  /// **'وشاح'**
+  String get catNeckScarf;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

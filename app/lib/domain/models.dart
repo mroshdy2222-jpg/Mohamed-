@@ -15,8 +15,15 @@ enum Category {
   jewelry,
   sunglasses,
   perfume,
+  cap,
+  beanie,
+  turban,
+  neckScarf,
   accessory,
 }
+
+/// Worn on the head; an outfit has at most one.
+const headwear = {Category.headscarf, Category.shemagh, Category.cap, Category.beanie, Category.turban};
 
 /// Finishing touches: added after the outfit is chosen, at most one of each.
 const finishingTouches = {
@@ -26,6 +33,10 @@ const finishingTouches = {
   Category.jewelry,
   Category.sunglasses,
   Category.perfume,
+  Category.cap,
+  Category.beanie,
+  Category.turban,
+  Category.neckScarf,
   Category.accessory,
 };
 
