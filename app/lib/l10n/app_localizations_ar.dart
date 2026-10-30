@@ -10,7 +10,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get appTitle => 'طالا';
+  String get appTitle => 'طلّة';
 
   @override
   String get navToday => 'اليوم';
@@ -477,10 +477,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get missingNone => 'خزانتك مكتملة في هذا الأسلوب.';
 
   @override
-  String get tagging => 'تتعرّف طالا على القطعة…';
+  String get tagging => 'تتعرّف طلّة على القطعة…';
 
   @override
-  String get tagged => 'اقترحت طالا التفاصيل، راجعها قبل الإضافة.';
+  String get tagged => 'اقترحت طلّة التفاصيل، راجعها قبل الإضافة.';
 
   @override
   String get tagPerson => 'صوّر القطعة وحدها، دون أن يرتديها أحد.';
@@ -541,7 +541,7 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
   AppLocalizationsArEg() : super('ar_EG');
 
   @override
-  String get appTitle => 'طالا';
+  String get appTitle => 'طلّة';
 
   @override
   String get navToday => 'النهارده';
@@ -1008,10 +1008,10 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
   String get missingNone => 'دولابك مكتمل في الستايل ده.';
 
   @override
-  String get tagging => 'طالا بتتعرف على القطعة…';
+  String get tagging => 'طلّة بتتعرف على القطعة…';
 
   @override
-  String get tagged => 'طالا اقترحت التفاصيل، راجعها قبل ما تضيف.';
+  String get tagged => 'طلّة اقترحت التفاصيل، راجعها قبل ما تضيف.';
 
   @override
   String get tagPerson => 'صوّر القطعة لوحدها، من غير ما حد يلبسها.';
@@ -1072,7 +1072,7 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
   AppLocalizationsArSa() : super('ar_SA');
 
   @override
-  String get appTitle => 'طالا';
+  String get appTitle => 'طلّة';
 
   @override
   String get navToday => 'اليوم';
@@ -1539,10 +1539,10 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
   String get missingNone => 'كبتك مكتمل في هالستايل.';
 
   @override
-  String get tagging => 'طالا تتعرف على القطعة…';
+  String get tagging => 'طلّة تتعرف على القطعة…';
 
   @override
-  String get tagged => 'طالا اقترحت التفاصيل، راجعها قبل لا تضيف.';
+  String get tagged => 'طلّة اقترحت التفاصيل، راجعها قبل لا تضيف.';
 
   @override
   String get tagPerson => 'صوّر القطعة بروحها، بدون ما أحد يلبسها.';

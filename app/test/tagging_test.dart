@@ -107,7 +107,7 @@ void main() {
     await tester.tap(find.text('صوّر'));
     await tester.pumpAndSettle();
 
-    expect(find.text('طالا اقترحت التفاصيل، راجعها قبل ما تضيف.'), findsOneWidget);
+    expect(find.text('طلّة اقترحت التفاصيل، راجعها قبل ما تضيف.'), findsOneWidget);
     expect(await chipSelected(tester, 'قطعة واحدة'), isTrue);
     expect(await chipSelected(tester, 'دريسي'), isTrue);
     expect(await chipSelected(tester, 'تراثي'), isTrue);

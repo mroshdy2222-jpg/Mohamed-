@@ -1,6 +1,6 @@
 # Talla
 
-Talla (طالا) is an AI wardrobe stylist for the Arab market: it suggests a daily outfit from the clothes you own, coordinates colours, and lets friends vote "this or that?".
+Talla (طلّة) is an AI wardrobe stylist for the Arab market: it suggests a daily outfit from the clothes you own, coordinates colours, and lets friends vote "this or that?".
 
 - Product spec: [Talla – وصف المنتج](https://claude.ai/artifact/7wW8DTn726wvoLHfeHCcXs)
 - Brand and design system: [Talla Brand](https://claude.ai/artifact/JJ83AGQiYCQaPPnqyP5sEy)

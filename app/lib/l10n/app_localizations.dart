@@ -100,7 +100,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In ar, this message translates to:
-  /// **'طالا'**
+  /// **'طلّة'**
   String get appTitle;
 
   /// No description provided for @navToday.
@@ -1006,13 +1006,13 @@ abstract class AppLocalizations {
   /// No description provided for @tagging.
   ///
   /// In ar, this message translates to:
-  /// **'تتعرّف طالا على القطعة…'**
+  /// **'تتعرّف طلّة على القطعة…'**
   String get tagging;
 
   /// No description provided for @tagged.
   ///
   /// In ar, this message translates to:
-  /// **'اقترحت طالا التفاصيل، راجعها قبل الإضافة.'**
+  /// **'اقترحت طلّة التفاصيل، راجعها قبل الإضافة.'**
   String get tagged;
 
   /// No description provided for @tagPerson.
