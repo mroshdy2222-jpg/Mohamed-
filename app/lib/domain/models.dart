@@ -1,0 +1,94 @@
+import 'fashion_color.dart';
+
+enum Category { top, bottom, onePiece, outerwear, shoes, bag, headscarf, shemagh, accessory }
+
+/// Dress codes, ordered from most relaxed to most formal. Traditional sits
+/// outside the scale: it is its own world (galabeya, thobe, kaftan, abaya).
+enum Style { lounge, sport, casual, drip, smartCasual, formal, dressy, traditional }
+
+enum Season { summer, winter, all }
+
+enum Pattern { solid, striped, checked, printed }
+
+enum ItemStatus { available, laundry, lent }
+
+enum Gender { female, male }
+
+enum Occasion { university, work, outing, date, interview, wedding, engagement, eid, home, gym, party }
+
+/// The dress code an occasion suggests. The user can override it with a chip.
+const Map<Occasion, Style> defaultStyleFor = {
+  Occasion.university: Style.casual,
+  Occasion.work: Style.smartCasual,
+  Occasion.outing: Style.casual,
+  Occasion.date: Style.smartCasual,
+  Occasion.interview: Style.formal,
+  Occasion.wedding: Style.dressy,
+  Occasion.engagement: Style.dressy,
+  Occasion.eid: Style.traditional,
+  Occasion.home: Style.lounge,
+  Occasion.gym: Style.sport,
+  Occasion.party: Style.drip,
+};
+
+class Item {
+  final String id;
+  final Category category;
+  final FashionColor color;
+  final Pattern pattern;
+  final Season season;
+
+  /// Dress codes this piece works in. Empty means it goes with any style,
+  /// which is how most accessories and headscarves are tagged.
+  final Set<Style> styles;
+  final ItemStatus status;
+
+  /// A local photo, once the user replaces the placeholder from the basics grid.
+  final String? photoPath;
+
+  const Item({
+    required this.id,
+    required this.category,
+    required this.color,
+    this.pattern = Pattern.solid,
+    this.season = Season.all,
+    this.styles = const {},
+    this.status = ItemStatus.available,
+    this.photoPath,
+  });
+
+  bool fits(Style style) => styles.isEmpty || styles.contains(style);
+
+  Item copyWith({ItemStatus? status, String? photoPath}) => Item(
+    id: id,
+    category: category,
+    color: color,
+    pattern: pattern,
+    season: season,
+    styles: styles,
+    status: status ?? this.status,
+    photoPath: photoPath ?? this.photoPath,
+  );
+}
+
+class Profile {
+  final Gender gender;
+  final bool wearsHijab;
+  final String city;
+
+  const Profile({this.gender = Gender.female, this.wearsHijab = false, this.city = 'Cairo'});
+
+  Profile copyWith({Gender? gender, bool? wearsHijab, String? city}) =>
+      Profile(gender: gender ?? this.gender, wearsHijab: wearsHijab ?? this.wearsHijab, city: city ?? this.city);
+}
+
+class WearEntry {
+  final DateTime date;
+  final List<String> itemIds;
+  final Occasion occasion;
+
+  /// Who the user was with, typed freely ("خطوبة أحمد", "the office").
+  final String? withWhom;
+
+  const WearEntry({required this.date, required this.itemIds, required this.occasion, this.withWhom});
+}

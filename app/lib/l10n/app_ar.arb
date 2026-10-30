@@ -1,0 +1,142 @@
+{
+  "@@locale": "ar",
+  "appTitle": "طالا",
+  "navToday": "النهارده",
+  "navWardrobe": "الدولاب",
+  "navVote": "التصويت",
+  "navAccount": "حسابي",
+  "todayTitle": "طقم النهارده",
+  "weatherLine": "{temp}° {city}",
+  "@weatherLine": {
+    "placeholders": {
+      "temp": {
+        "type": "int"
+      },
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "wearIt": "هلبسه",
+  "dressMeAgain": "لبّسني تاني",
+  "askFriends": "خد رأي صحابك",
+  "lockHint": "دوس على قطعة عشان تقفلها",
+  "lockedLabel": "مقفولة",
+  "noOutfit": "مش لاقيين طقم مناسب",
+  "noOutfitHint": "جرّب ستايل تاني، أو ضيف قطع للدولاب، أو شوف لو حاجة في الغسيل.",
+  "withWhomTitle": "كنت مع مين؟",
+  "withWhomHint": "اختياري، زي: عيلة ماما",
+  "save": "سجّل",
+  "cancel": "إلغاء",
+  "wornSaved": "اتسجل في سجل اللبس",
+  "wornBefore": "لبست قطعة من الطقم ده قدام نفس الناس يوم {date}",
+  "@wornBefore": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonNeutrals": "ألوان محايدة كلها، اختيار آمن ونضيف.",
+  "reasonAccent": "لون واحد بارز على ألوان هادية، فالطقم متوازن.",
+  "reasonMonochrome": "درجات من نفس اللون، شكل متناسق ومرتب.",
+  "reasonAnalogous": "لونين جيران على دايرة الألوان، فبيمشوا مع بعض بهدوء.",
+  "reasonComplementary": "لونين عكس بعض، فالطقم لافت ومتوازن.",
+  "reasonClash": "ألوان جريئة مع بعض، لو حابب تلفت النظر.",
+  "noteCold": "ضفنا طبقة عشان الجو برد.",
+  "noteHot": "قطع خفيفة عشان الجو حر.",
+  "wardrobeTitle": "الدولاب",
+  "wardrobeCount": "{count} قطعة",
+  "@wardrobeCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "filterAll": "الكل",
+  "statusLaundry": "في الغسيل",
+  "statusLent": "مسلّفة",
+  "statusAvailable": "موجودة",
+  "emptyWardrobe": "الدولاب فاضي. ابدأ بالأساسيات.",
+  "addBasics": "ضيف الأساسيات",
+  "basicsTitle": "عندك الحاجات دي؟",
+  "basicsHint": "دوس على اللي عندك، وتقدر تصوّرها بعدين.",
+  "basicsDone": "يلا نشوف طقم النهارده",
+  "basicsSelected": "{count} قطعة",
+  "@basicsSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "genderQuestion": "التطبيق ليك ولا ليكي؟",
+  "genderFemale": "ستات",
+  "genderMale": "رجالة",
+  "hijabQuestion": "بتلبسي حجاب؟",
+  "yes": "أيوه",
+  "no": "لأ",
+  "cityLabel": "المدينة",
+  "voteTitle": "ده ولا ده؟",
+  "voteSoon": "التصويت بلينك واتساب جاي في التحديث الجاي. لحد ما ييجي، رأي طالا بيظهر مع كل طقم.",
+  "languageLabel": "اللغة",
+  "arabic": "العربي",
+  "english": "English",
+  "occasionLabel": "المناسبة",
+  "styleLabel": "الستايل",
+  "catTop": "لبس علوي",
+  "catBottom": "لبس سفلي",
+  "catOnePiece": "قطعة واحدة",
+  "catOuterwear": "جاكت",
+  "catShoes": "جزم",
+  "catBag": "شنط",
+  "catHeadscarf": "طرح",
+  "catShemagh": "شماغ",
+  "catAccessory": "إكسسوارات",
+  "styleLounge": "بيتي",
+  "styleSport": "رياضي",
+  "styleCasual": "كاجوال",
+  "styleDrip": "دريب",
+  "styleSmartCasual": "سمارت كاجوال",
+  "styleFormal": "فورمال",
+  "styleDressy": "دريسي",
+  "styleTraditional": "تراثي",
+  "occUniversity": "جامعة",
+  "occWork": "شغل",
+  "occOuting": "خروجة",
+  "occDate": "موعد",
+  "occInterview": "مقابلة شغل",
+  "occWedding": "فرح",
+  "occEngagement": "خطوبة",
+  "occEid": "عيد",
+  "occHome": "البيت",
+  "occGym": "جيم",
+  "occParty": "حفلة",
+  "colWhite": "أبيض",
+  "colCream": "أوف وايت",
+  "colBlack": "أسود",
+  "colGrey": "رمادي",
+  "colNavy": "كحلي",
+  "colDenim": "جينز",
+  "colBeige": "بيج",
+  "colCamel": "كاميل",
+  "colBrown": "بني",
+  "colOlive": "زيتوني",
+  "colKhaki": "كاكي",
+  "colRed": "أحمر",
+  "colBurgundy": "عنابي",
+  "colPink": "بمبي",
+  "colBlush": "روز",
+  "colOrange": "برتقاني",
+  "colMustard": "مستردة",
+  "colYellow": "أصفر",
+  "colGreen": "أخضر",
+  "colEmerald": "زمردي",
+  "colTeal": "تيل",
+  "colSky": "لبني",
+  "colBlue": "أزرق",
+  "colLavender": "لافندر",
+  "colPurple": "بنفسجي",
+  "cityCairo": "القاهرة"
+}
