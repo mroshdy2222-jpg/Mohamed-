@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../app_state.dart';
+import '../data/weather.dart';
 import '../domain/models.dart';
 import '../l10n/app_localizations.dart';
 import 'basics_screen.dart';
+import 'labels.dart';
 import 'theme.dart';
 import 'today_screen.dart';
 import 'wardrobe_screen.dart';
@@ -124,6 +126,21 @@ class _AccountScreen extends StatelessWidget {
           ],
           selected: {locale.languageCode},
           onSelectionChanged: (s) => onLocale(Locale(s.first)),
+        ),
+        const SizedBox(height: Space.s6),
+        Text(t.cityLabel, style: text.titleMedium),
+        const SizedBox(height: Space.s2),
+        Wrap(
+          spacing: Space.s2,
+          runSpacing: Space.s2,
+          children: [
+            for (final city in cities)
+              ChoiceChip(
+                label: Text(t.city(city.key)),
+                selected: p.city == city.key,
+                onSelected: (_) => state.setProfile(p.copyWith(city: city.key)),
+              ),
+          ],
         ),
         if (p.gender == Gender.female) ...[
           const SizedBox(height: Space.s6),

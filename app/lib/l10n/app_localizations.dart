@@ -62,8 +62,7 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,19 +82,15 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('ar'),
-    Locale('en'),
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('ar'), Locale('en')];
 
   /// No description provided for @appTitle.
   ///
@@ -745,10 +739,165 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'القاهرة'**
   String get cityCairo;
+
+  /// No description provided for @addItem.
+  ///
+  /// In ar, this message translates to:
+  /// **'ضيف قطعة'**
+  String get addItem;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In ar, this message translates to:
+  /// **'صوّر'**
+  String get takePhoto;
+
+  /// No description provided for @fromGallery.
+  ///
+  /// In ar, this message translates to:
+  /// **'من المعرض'**
+  String get fromGallery;
+
+  /// No description provided for @photoOptional.
+  ///
+  /// In ar, this message translates to:
+  /// **'الصورة اختيارية. من غيرها بيظهر شكل القطعة بلونها.'**
+  String get photoOptional;
+
+  /// No description provided for @categoryLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'النوع'**
+  String get categoryLabel;
+
+  /// No description provided for @colorLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللون'**
+  String get colorLabel;
+
+  /// No description provided for @stylesLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'بتنفع في أنهي ستايل؟'**
+  String get stylesLabel;
+
+  /// No description provided for @seasonLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الموسم'**
+  String get seasonLabel;
+
+  /// No description provided for @seasonSummer.
+  ///
+  /// In ar, this message translates to:
+  /// **'صيفي'**
+  String get seasonSummer;
+
+  /// No description provided for @seasonWinter.
+  ///
+  /// In ar, this message translates to:
+  /// **'شتوي'**
+  String get seasonWinter;
+
+  /// No description provided for @seasonAll.
+  ///
+  /// In ar, this message translates to:
+  /// **'كل المواسم'**
+  String get seasonAll;
+
+  /// No description provided for @patternLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'النقشة'**
+  String get patternLabel;
+
+  /// No description provided for @patternSolid.
+  ///
+  /// In ar, this message translates to:
+  /// **'سادة'**
+  String get patternSolid;
+
+  /// No description provided for @patternStriped.
+  ///
+  /// In ar, this message translates to:
+  /// **'مقلّم'**
+  String get patternStriped;
+
+  /// No description provided for @patternChecked.
+  ///
+  /// In ar, this message translates to:
+  /// **'كاروه'**
+  String get patternChecked;
+
+  /// No description provided for @patternPrinted.
+  ///
+  /// In ar, this message translates to:
+  /// **'مطبوع'**
+  String get patternPrinted;
+
+  /// No description provided for @saveItem.
+  ///
+  /// In ar, this message translates to:
+  /// **'ضيفها للدولاب'**
+  String get saveItem;
+
+  /// No description provided for @itemAdded.
+  ///
+  /// In ar, this message translates to:
+  /// **'القطعة اتضافت'**
+  String get itemAdded;
+
+  /// No description provided for @deleteItem.
+  ///
+  /// In ar, this message translates to:
+  /// **'امسحها من الدولاب'**
+  String get deleteItem;
+
+  /// No description provided for @cityAlexandria.
+  ///
+  /// In ar, this message translates to:
+  /// **'إسكندرية'**
+  String get cityAlexandria;
+
+  /// No description provided for @cityRiyadh.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرياض'**
+  String get cityRiyadh;
+
+  /// No description provided for @cityJeddah.
+  ///
+  /// In ar, this message translates to:
+  /// **'جدة'**
+  String get cityJeddah;
+
+  /// No description provided for @cityDubai.
+  ///
+  /// In ar, this message translates to:
+  /// **'دبي'**
+  String get cityDubai;
+
+  /// No description provided for @cityAbuDhabi.
+  ///
+  /// In ar, this message translates to:
+  /// **'أبوظبي'**
+  String get cityAbuDhabi;
+
+  /// No description provided for @cityKuwait.
+  ///
+  /// In ar, this message translates to:
+  /// **'الكويت'**
+  String get cityKuwait;
+
+  /// No description provided for @cityDoha.
+  ///
+  /// In ar, this message translates to:
+  /// **'الدوحة'**
+  String get cityDoha;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -757,8 +906,7 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;

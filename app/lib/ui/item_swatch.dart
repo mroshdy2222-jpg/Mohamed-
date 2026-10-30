@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../data/photos.dart';
 import '../domain/fashion_color.dart';
 import '../domain/models.dart';
 import 'theme.dart';
@@ -31,6 +32,11 @@ class ItemSwatch extends StatelessWidget {
     this.onPage = false,
   });
 
+  Widget _silhouette(TallaColors c) => Padding(
+    padding: const EdgeInsets.all(Space.s2),
+    child: CustomPaint(painter: _Silhouette(item.category, colorOf(item.color), c.line)),
+  );
+
   @override
   Widget build(BuildContext context) {
     final c = TallaColors.of(context);
@@ -56,10 +62,16 @@ class ItemSwatch extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: Padding(
-                    padding: const EdgeInsets.all(Space.s2),
-                    child: CustomPaint(painter: _Silhouette(item.category, colorOf(item.color), c.line)),
-                  ),
+                  child: item.photoPath != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(Radii.sm),
+                          child: Image(
+                            image: photoProvider(item.photoPath!),
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, _, _) => _silhouette(c),
+                          ),
+                        )
+                      : _silhouette(c),
                 ),
                 if (locked)
                   PositionedDirectional(

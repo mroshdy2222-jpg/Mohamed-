@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../app_state.dart';
 import '../domain/models.dart';
 import '../l10n/app_localizations.dart';
+import 'add_item_screen.dart';
 import 'item_swatch.dart';
 import 'labels.dart';
 import 'theme.dart';
@@ -36,6 +37,13 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
             Expanded(child: Text(t.wardrobeTitle, style: text.headlineSmall)),
             Text(t.wardrobeCount(widget.state.items.length), style: text.bodyMedium),
           ],
+        ),
+        const SizedBox(height: Space.s4),
+        FilledButton.icon(
+          key: const Key('addItem'),
+          onPressed: () => _add(context),
+          icon: const Icon(Icons.add_a_photo_outlined),
+          label: Text(t.addItem),
         ),
         const SizedBox(height: Space.s4),
         Wrap(
@@ -103,10 +111,23 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
     );
   }
 
-  /// One tap marks a piece as in the laundry, lent, or back in the wardrobe.
+  Future<void> _add(BuildContext context) async {
+    final t = AppLocalizations.of(context);
+    final added = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(builder: (_) => AddItemScreen(state: widget.state)),
+    );
+    if (added == true && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(t.itemAdded)));
+    }
+  }
+
+  /// One tap marks a piece as in the laundry, lent, back in the wardrobe, or
+  /// removes it. Null means the user closed the sheet.
   Future<void> _status(BuildContext context, Item item) async {
     final t = AppLocalizations.of(context);
-    final picked = await showModalBottomSheet<ItemStatus>(
+    final c = TallaColors.of(context);
+    final picked = await showModalBottomSheet<Object>(
       context: context,
       builder: (_) => SafeArea(
         child: Column(
@@ -123,10 +144,16 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                 trailing: item.status == s ? const Icon(Icons.check_rounded) : null,
                 onTap: () => Navigator.pop(context, s),
               ),
+            ListTile(
+              title: Text(t.deleteItem, style: TextStyle(color: c.rose)),
+              leading: Icon(Icons.delete_outline_rounded, color: c.rose),
+              onTap: () => Navigator.pop(context, 'delete'),
+            ),
           ],
         ),
       ),
     );
-    if (picked != null) widget.state.setStatus(item.id, picked);
+    if (picked is ItemStatus) widget.state.setStatus(item.id, picked);
+    if (picked == 'delete') widget.state.removeItem(item.id);
   }
 }

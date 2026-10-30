@@ -51,8 +51,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noOutfit => 'مش لاقيين طقم مناسب';
 
   @override
-  String get noOutfitHint =>
-      'جرّب ستايل تاني، أو ضيف قطع للدولاب، أو شوف لو حاجة في الغسيل.';
+  String get noOutfitHint => 'جرّب ستايل تاني، أو ضيف قطع للدولاب، أو شوف لو حاجة في الغسيل.';
 
   @override
   String get withWhomTitle => 'كنت مع مين؟';
@@ -84,8 +83,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reasonMonochrome => 'درجات من نفس اللون، شكل متناسق ومرتب.';
 
   @override
-  String get reasonAnalogous =>
-      'لونين جيران على دايرة الألوان، فبيمشوا مع بعض بهدوء.';
+  String get reasonAnalogous => 'لونين جيران على دايرة الألوان، فبيمشوا مع بعض بهدوء.';
 
   @override
   String get reasonComplementary => 'لونين عكس بعض، فالطقم لافت ومتوازن.';
@@ -164,8 +162,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get voteTitle => 'ده ولا ده؟';
 
   @override
-  String get voteSoon =>
-      'التصويت بلينك واتساب جاي في التحديث الجاي. لحد ما ييجي، رأي طالا بيظهر مع كل طقم.';
+  String get voteSoon => 'التصويت بلينك واتساب جاي في التحديث الجاي. لحد ما ييجي، رأي طالا بيظهر مع كل طقم.';
 
   @override
   String get languageLabel => 'اللغة';
@@ -343,4 +340,82 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cityCairo => 'القاهرة';
+
+  @override
+  String get addItem => 'ضيف قطعة';
+
+  @override
+  String get takePhoto => 'صوّر';
+
+  @override
+  String get fromGallery => 'من المعرض';
+
+  @override
+  String get photoOptional => 'الصورة اختيارية. من غيرها بيظهر شكل القطعة بلونها.';
+
+  @override
+  String get categoryLabel => 'النوع';
+
+  @override
+  String get colorLabel => 'اللون';
+
+  @override
+  String get stylesLabel => 'بتنفع في أنهي ستايل؟';
+
+  @override
+  String get seasonLabel => 'الموسم';
+
+  @override
+  String get seasonSummer => 'صيفي';
+
+  @override
+  String get seasonWinter => 'شتوي';
+
+  @override
+  String get seasonAll => 'كل المواسم';
+
+  @override
+  String get patternLabel => 'النقشة';
+
+  @override
+  String get patternSolid => 'سادة';
+
+  @override
+  String get patternStriped => 'مقلّم';
+
+  @override
+  String get patternChecked => 'كاروه';
+
+  @override
+  String get patternPrinted => 'مطبوع';
+
+  @override
+  String get saveItem => 'ضيفها للدولاب';
+
+  @override
+  String get itemAdded => 'القطعة اتضافت';
+
+  @override
+  String get deleteItem => 'امسحها من الدولاب';
+
+  @override
+  String get cityAlexandria => 'إسكندرية';
+
+  @override
+  String get cityRiyadh => 'الرياض';
+
+  @override
+  String get cityJeddah => 'جدة';
+
+  @override
+  String get cityDubai => 'دبي';
+
+  @override
+  String get cityAbuDhabi => 'أبوظبي';
+
+  @override
+  String get cityKuwait => 'الكويت';
+
+  @override
+  String get cityDoha => 'الدوحة';
 }

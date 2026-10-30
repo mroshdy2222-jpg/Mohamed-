@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'app_state.dart';
+import 'data/store.dart';
+import 'data/weather.dart';
 import 'l10n/app_localizations.dart';
 import 'ui/home_shell.dart';
 import 'ui/theme.dart';
 
-void main() {
-  runApp(TallaApp(state: AppState()));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final state = AppState(store: PrefsStore(), weatherService: WeatherService());
+  // The wardrobe loads from the device before the first frame; the weather
+  // arrives a moment later and updates the outfit when it does.
+  final restored = state.restore();
+  await Future.any([restored, Future.delayed(const Duration(milliseconds: 800))]);
+  runApp(TallaApp(state: state));
 }
 
 class TallaApp extends StatefulWidget {

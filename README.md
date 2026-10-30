@@ -19,11 +19,14 @@ The first slice of the MVP, running fully offline:
 - Today: occasion, the eight dress codes (lounge, sport, casual, drip, smart casual, formal, dressy, traditional), the outfit, a one-line reason, lock a piece, "dress me again", "wear it".
 - Wear log with the "you wore this with the same people" warning.
 - Wardrobe with category filters and in-the-laundry / lent status.
+- Add a piece by hand: optional photo (camera or gallery), type, colour, styles, pattern, season.
+- Everything is saved on the device and survives closing the app.
+- Today's high temperature for the chosen city (8 cities in Egypt and the Gulf) from Open-Meteo, which is free and needs no key. Offline it keeps the last value.
 - Arabic (right to left) and English, from translation files only.
 
 The outfit engine (`app/lib/domain/`) is rule-based: dress code, weather, availability, colour harmony and recent wear. AI will rewrite the reason and re-rank the top few; it is not needed for an outfit to appear.
 
-Not built yet: photo capture and auto-tagging, the AI router (it will run on the server so no API keys ship in the app), Supabase sync, the weather API (a fixed 24° Cairo for now), the WhatsApp voting page, and affiliate offers.
+Not built yet: auto-tagging from the photo and the AI router (they run on the server so no API keys ship in the app), Supabase accounts and sync, the WhatsApp voting page, and affiliate offers.
 
 ## Develop
 

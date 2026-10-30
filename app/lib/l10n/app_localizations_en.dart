@@ -51,8 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noOutfit => 'No outfit fits yet';
 
   @override
-  String get noOutfitHint =>
-      'Try another style, add pieces, or check what\'s in the laundry.';
+  String get noOutfitHint => 'Try another style, add pieces, or check what\'s in the laundry.';
 
   @override
   String get withWhomTitle => 'Who were you with?';
@@ -87,8 +86,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reasonAnalogous => 'Two neighbouring colours blend calmly.';
 
   @override
-  String get reasonComplementary =>
-      'Opposite colours make a bold but balanced look.';
+  String get reasonComplementary => 'Opposite colours make a bold but balanced look.';
 
   @override
   String get reasonClash => 'Bold mix, if you want to stand out.';
@@ -164,8 +162,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get voteTitle => 'This or that?';
 
   @override
-  String get voteSoon =>
-      'WhatsApp voting links are coming next. Until then, Talla\'s reason shows with every outfit.';
+  String get voteSoon => 'WhatsApp voting links are coming next. Until then, Talla\'s reason shows with every outfit.';
 
   @override
   String get languageLabel => 'Language';
@@ -343,4 +340,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cityCairo => 'Cairo';
+
+  @override
+  String get addItem => 'Add a piece';
+
+  @override
+  String get takePhoto => 'Take photo';
+
+  @override
+  String get fromGallery => 'From gallery';
+
+  @override
+  String get photoOptional => 'The photo is optional. Without it, the piece shows as a coloured outline.';
+
+  @override
+  String get categoryLabel => 'Type';
+
+  @override
+  String get colorLabel => 'Colour';
+
+  @override
+  String get stylesLabel => 'Which styles does it suit?';
+
+  @override
+  String get seasonLabel => 'Season';
+
+  @override
+  String get seasonSummer => 'Summer';
+
+  @override
+  String get seasonWinter => 'Winter';
+
+  @override
+  String get seasonAll => 'All seasons';
+
+  @override
+  String get patternLabel => 'Pattern';
+
+  @override
+  String get patternSolid => 'Solid';
+
+  @override
+  String get patternStriped => 'Striped';
+
+  @override
+  String get patternChecked => 'Checked';
+
+  @override
+  String get patternPrinted => 'Printed';
+
+  @override
+  String get saveItem => 'Add to wardrobe';
+
+  @override
+  String get itemAdded => 'Piece added';
+
+  @override
+  String get deleteItem => 'Remove from wardrobe';
+
+  @override
+  String get cityAlexandria => 'Alexandria';
+
+  @override
+  String get cityRiyadh => 'Riyadh';
+
+  @override
+  String get cityJeddah => 'Jeddah';
+
+  @override
+  String get cityDubai => 'Dubai';
+
+  @override
+  String get cityAbuDhabi => 'Abu Dhabi';
+
+  @override
+  String get cityKuwait => 'Kuwait';
+
+  @override
+  String get cityDoha => 'Doha';
 }

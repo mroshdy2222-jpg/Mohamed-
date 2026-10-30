@@ -81,7 +81,30 @@ extension Labels on AppLocalizations {
   };
 
   /// Cities are stored by their English key and shown in the user's language.
-  String city(String key) => key == 'Cairo' ? cityCairo : key;
+  String city(String key) => switch (key) {
+    'Cairo' => cityCairo,
+    'Alexandria' => cityAlexandria,
+    'Riyadh' => cityRiyadh,
+    'Jeddah' => cityJeddah,
+    'Dubai' => cityDubai,
+    'AbuDhabi' => cityAbuDhabi,
+    'Kuwait' => cityKuwait,
+    'Doha' => cityDoha,
+    _ => key,
+  };
+
+  String season(Season s) => switch (s) {
+    Season.summer => seasonSummer,
+    Season.winter => seasonWinter,
+    Season.all => seasonAll,
+  };
+
+  String pattern(Pattern p) => switch (p) {
+    Pattern.solid => patternSolid,
+    Pattern.striped => patternStriped,
+    Pattern.checked => patternChecked,
+    Pattern.printed => patternPrinted,
+  };
 
   /// "Burgundy one-piece", in the right word order for the language.
   String itemName(Item i) => localeName == 'ar'
