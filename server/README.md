@@ -5,8 +5,17 @@ Ready to deploy as soon as a Supabase project exists. Nothing here holds a key.
 | Path | What |
 | --- | --- |
 | `supabase/migrations/` | Tables for profiles, wardrobe items, wear log, polls, link votes, support grants and the access log. Row-level security on every table; a private `wardrobe` photo bucket with one folder per user. |
+| `supabase/migrations/…_analytics.sql` | Demand signals (a missing category and colour, sent only by users who opted in, deleted when they opt out), the dashboard views in the `analytics` schema, and `support_open`, the only way support opens a wardrobe. |
 | `supabase/functions/tag-item/` | Tags a clothing photo (type, colour, pattern, season, styles). Tries free providers in order and falls through on errors or rate limits. A photo of a person is refused and goes to no other provider. The photo is not stored. |
 | `supabase/functions/_shared/` | The prompt, the answer checks, the providers (Gemini, OpenRouter) and the fallback router. Plain TypeScript, tested with Node. |
+
+## Dashboard numbers
+
+The views `analytics.missing_pieces`, `analytics.missing_colors`, `analytics.city_demand` and `analytics.weekly` match the dashboard's datasets. Only the service role can read them. A group with fewer than 50 users is left out, so no number points to a person.
+
+## Support access
+
+Support calls `select * from support_open(<grant id>, '<staff name>', '{<item ids>}')` with the service role. It refuses an expired or revoked grant, or items the user did not include, and writes the access log entry the user sees in the app.
 
 Never stored on the server: selfies, face photos, skin-tone photos, the lingerie section.
 

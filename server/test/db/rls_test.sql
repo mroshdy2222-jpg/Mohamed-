@@ -58,6 +58,47 @@ update public.support_grants set revoked_at = now();
 select pg_temp.expect((select revoked_at is not null from public.support_grants), 'A revokes her grant');
 select pg_temp.expect_denied($$insert into public.access_log (user_id, staff, item_ids) values (auth.uid(), 'me', '{a1}')$$, 'writing the access log from the app');
 
+-- Demand signals: only while sharing is on, and gone when it is turned off.
+select pg_temp.expect_denied($$insert into public.demand_signals (user_id, category, color) values (auth.uid(), 'shoes', 'white')$$, 'a signal without sharing on');
+update public.profiles set share_demand = true;
+insert into public.demand_signals (user_id, category, color) values (auth.uid(), 'shoes', 'white');
+select pg_temp.expect_denied($$insert into public.demand_signals (user_id, category, color) values (auth.uid(), 'lingerie', 'black')$$, 'a lingerie signal');
+select pg_temp.expect_denied($$insert into public.demand_signals (user_id, category, color) values ('00000000-0000-0000-0000-00000000000b', 'belt', 'black')$$, 'a signal for someone else');
+update public.profiles set share_demand = false;
+select pg_temp.expect((select count(*) from public.demand_signals) = 0, 'turning sharing off deletes the signals');
+select pg_temp.expect_denied('select * from analytics.missing_pieces', 'users reading the analytics');
+select pg_temp.expect_denied($$select * from public.support_open(1, 'me', '{a1}')$$, 'users calling the support tool');
+
+-- The dashboard: nothing until a group has 50 users.
+reset role;
+insert into auth.users select ('00000000-0000-0000-0001-' || lpad(n::text, 12, '0'))::uuid from generate_series(1, 50) n;
+set role service_role;
+insert into public.profiles (id, share_demand)
+  select ('00000000-0000-0000-0001-' || lpad(n::text, 12, '0'))::uuid, true from generate_series(1, 49) n;
+insert into public.demand_signals (user_id, category, color)
+  select ('00000000-0000-0000-0001-' || lpad(n::text, 12, '0'))::uuid, 'shoes', 'white' from generate_series(1, 20) n;
+insert into public.wear_log (user_id, worn_at, item_ids, occasion)
+  select ('00000000-0000-0000-0001-' || lpad(n::text, 12, '0'))::uuid, now(), '{x}', 'work' from generate_series(1, 49) n;
+select pg_temp.expect((select count(*) from analytics.missing_pieces) = 0, '49 women: no missing pieces shown');
+select pg_temp.expect((select count(*) from analytics.missing_colors) = 0, '49 women: no colours shown');
+select pg_temp.expect((select count(*) from analytics.city_demand) = 0, '49 in Cairo: no city shown');
+select pg_temp.expect((select count(*) from analytics.weekly) = 0, '49 active: no week shown');
+insert into public.profiles (id, share_demand) values ('00000000-0000-0000-0001-000000000050', true);
+insert into public.wear_log (user_id, worn_at, item_ids, occasion) values ('00000000-0000-0000-0001-000000000050', now(), '{x}', 'work');
+select pg_temp.expect((select share_missing from analytics.missing_pieces where segment = 'women' and category = 'shoes') = 0.40, '50 women: 40% miss shoes');
+select pg_temp.expect((select top_missing_color from analytics.city_demand where city = 'Cairo') = 'white', '50 in Cairo: white is the top missing colour');
+select pg_temp.expect((select active_users from analytics.weekly) = 50, '50 active: the week is shown');
+
+-- Support opens a wardrobe only through a live grant, and every opening is logged.
+select pg_temp.expect_denied($$select * from public.support_open((select max(id) from public.support_grants), 'sara', '{a1}')$$, 'opening with a revoked grant');
+set role authenticated;
+insert into public.support_grants (user_id, item_ids) values (auth.uid(), '{a1}');
+set role service_role;
+select pg_temp.expect_denied($$select * from public.support_open((select max(id) from public.support_grants), 'sara', '{a1,a2}')$$, 'opening items outside the grant');
+select pg_temp.expect((select count(*) from public.support_open((select max(id) from public.support_grants), 'sara', '{a1}')) = 1, 'support opens the granted item');
+set role authenticated;
+select pg_temp.expect((select staff from public.access_log) = 'sara', 'A sees who opened it');
+
 -- Signed out: nothing.
 reset role;
 set role anon;
