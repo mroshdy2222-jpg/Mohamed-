@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 
+import 'data/basics.dart';
 import 'data/store.dart';
 import 'data/weather.dart';
 import 'domain/color_harmony.dart';
+import 'domain/missing_piece.dart';
 import 'domain/models.dart';
 import 'domain/outfit_engine.dart';
 import 'domain/wear_log.dart';
@@ -136,6 +138,32 @@ class AppState extends ChangeNotifier {
     );
     _save();
     notifyListeners();
+  }
+
+  String? _missingKey;
+  List<MissingPiece> _missing = const [];
+
+  /// The pieces that would add the most outfits in the current style,
+  /// worked out on the phone. Recomputed only when its inputs change.
+  List<MissingPiece> get missing {
+    final key = [
+      style.name,
+      profile.gender.name,
+      profile.wearsHijab,
+      temperatureC,
+      for (final i in items) '${i.id}:${i.status.name}',
+    ].join('|');
+    if (key != _missingKey) {
+      _missingKey = key;
+      _missing = missingPieces(
+        wardrobe: items,
+        candidates: basicsFor(profile.gender).map((b) => b.item).toList(),
+        style: style,
+        profile: profile,
+        temperatureC: temperatureC,
+      );
+    }
+    return _missing;
   }
 
   /// Starts "this or that?" with today's outfit against the next best one.

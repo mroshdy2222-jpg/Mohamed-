@@ -146,5 +146,9 @@
   "winnerLabel": "الفايز",
   "noPolls": "ما سويت تصويت للحين.",
   "pollNeedsMore": "تحتاج قطع أكثر عشان نسوي لبستين مختلفتين.",
-  "pollsHistory": "تصويتاتك"
+  "pollsHistory": "تصويتاتك",
+  "missingTitle": "وش ناقصك؟",
+  "missingGain": "لو عندك {item} بتسوي {count} لبسة زيادة في ستايل {style}.",
+  "iHaveIt": "عندي هذي",
+  "missingNone": "كبتك مكتمل في هالستايل."
 }

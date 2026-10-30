@@ -978,6 +978,30 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تصويتاتك'**
   String get pollsHistory;
+
+  /// No description provided for @missingTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'ما الذي ينقصك؟'**
+  String get missingTitle;
+
+  /// No description provided for @missingGain.
+  ///
+  /// In ar, this message translates to:
+  /// **'لو كانت لديك {item} لكوّنت {count} إطلالة إضافية بأسلوب {style}.'**
+  String missingGain(String item, int count, String style);
+
+  /// No description provided for @iHaveIt.
+  ///
+  /// In ar, this message translates to:
+  /// **'أملكها'**
+  String get iHaveIt;
+
+  /// No description provided for @missingNone.
+  ///
+  /// In ar, this message translates to:
+  /// **'خزانتك مكتملة في هذا الأسلوب.'**
+  String get missingNone;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -191,5 +191,22 @@
   "winnerLabel": "الفائز",
   "noPolls": "لم تنشئ أي تصويت بعد.",
   "pollNeedsMore": "تحتاج إلى قطع أكثر لتكوين إطلالتين مختلفتين.",
-  "pollsHistory": "تصويتاتك"
+  "pollsHistory": "تصويتاتك",
+  "missingTitle": "ما الذي ينقصك؟",
+  "missingGain": "لو كانت لديك {item} لكوّنت {count} إطلالة إضافية بأسلوب {style}.",
+  "@missingGain": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      },
+      "style": {
+        "type": "String"
+      }
+    }
+  },
+  "iHaveIt": "أملكها",
+  "missingNone": "خزانتك مكتملة في هذا الأسلوب."
 }

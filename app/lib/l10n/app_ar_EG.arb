@@ -146,5 +146,9 @@
   "winnerLabel": "الكسبان",
   "noPolls": "لسه ماعملتش تصويت.",
   "pollNeedsMore": "محتاج قطع أكتر عشان نعمل طقمين مختلفين.",
-  "pollsHistory": "تصويتاتك"
+  "pollsHistory": "تصويتاتك",
+  "missingTitle": "ناقصك إيه؟",
+  "missingGain": "لو عندك {item} هتعمل {count} طقم زيادة في ستايل {style}.",
+  "iHaveIt": "عندي دي",
+  "missingNone": "دولابك مكتمل في الستايل ده."
 }

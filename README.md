@@ -20,6 +20,7 @@ The first slice of the MVP, running fully offline:
 - Wear log with the "you wore this with the same people" warning.
 - "This or that?": today's outfit against another one, shared as one image to WhatsApp (or any app); friends reply 1 or 2, the user records the winner and can choose it. The voting link will build on this once the server exists.
 - Wardrobe with category filters and in-the-laundry / lent status.
+- "What's missing?": the one piece that would add the most complete outfits in the current style, worked out on the phone so the server never sees the wardrobe. Affiliate offers will attach to it.
 - Add a piece by hand: optional photo (camera or gallery), type, colour, styles, pattern, season.
 - Everything is saved on the device and survives closing the app.
 - Today's high temperature for the chosen city (8 cities in Egypt and the Gulf) from Open-Meteo, which is free and needs no key. Offline it keeps the last value.

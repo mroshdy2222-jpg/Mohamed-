@@ -461,6 +461,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pollsHistory => 'تصويتاتك';
+
+  @override
+  String get missingTitle => 'ما الذي ينقصك؟';
+
+  @override
+  String missingGain(String item, int count, String style) {
+    return 'لو كانت لديك $item لكوّنت $count إطلالة إضافية بأسلوب $style.';
+  }
+
+  @override
+  String get iHaveIt => 'أملكها';
+
+  @override
+  String get missingNone => 'خزانتك مكتملة في هذا الأسلوب.';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -919,6 +933,20 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
 
   @override
   String get pollsHistory => 'تصويتاتك';
+
+  @override
+  String get missingTitle => 'ناقصك إيه؟';
+
+  @override
+  String missingGain(String item, int count, String style) {
+    return 'لو عندك $item هتعمل $count طقم زيادة في ستايل $style.';
+  }
+
+  @override
+  String get iHaveIt => 'عندي دي';
+
+  @override
+  String get missingNone => 'دولابك مكتمل في الستايل ده.';
 }
 
 /// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
@@ -1377,4 +1405,18 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
 
   @override
   String get pollsHistory => 'تصويتاتك';
+
+  @override
+  String get missingTitle => 'وش ناقصك؟';
+
+  @override
+  String missingGain(String item, int count, String style) {
+    return 'لو عندك $item بتسوي $count لبسة زيادة في ستايل $style.';
+  }
+
+  @override
+  String get iHaveIt => 'عندي هذي';
+
+  @override
+  String get missingNone => 'كبتك مكتمل في هالستايل.';
 }

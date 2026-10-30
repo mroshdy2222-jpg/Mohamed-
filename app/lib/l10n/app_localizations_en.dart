@@ -461,4 +461,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pollsHistory => 'Your polls';
+
+  @override
+  String get missingTitle => 'What\'s missing?';
+
+  @override
+  String missingGain(String item, int count, String style) {
+    return 'With a $item you\'d have $count more $style outfits.';
+  }
+
+  @override
+  String get iHaveIt => 'I have this';
+
+  @override
+  String get missingNone => 'Your wardrobe is complete for this style.';
 }

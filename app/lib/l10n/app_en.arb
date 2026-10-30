@@ -146,5 +146,9 @@
   "winnerLabel": "Winner",
   "noPolls": "No polls yet.",
   "pollNeedsMore": "Add more pieces to make two different outfits.",
-  "pollsHistory": "Your polls"
+  "pollsHistory": "Your polls",
+  "missingTitle": "What's missing?",
+  "missingGain": "With a {item} you'd have {count} more {style} outfits.",
+  "iHaveIt": "I have this",
+  "missingNone": "Your wardrobe is complete for this style."
 }

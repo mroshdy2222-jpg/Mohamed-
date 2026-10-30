@@ -45,6 +45,7 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
           icon: const Icon(Icons.add_a_photo_outlined),
           label: Text(t.addItem),
         ),
+        if (widget.state.items.isNotEmpty) ...[const SizedBox(height: Space.s4), _MissingCard(state: widget.state)],
         const SizedBox(height: Space.s4),
         Wrap(
           spacing: Space.s2,
@@ -155,5 +156,60 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
     );
     if (picked is ItemStatus) widget.state.setStatus(item.id, picked);
     if (picked == 'delete') widget.state.removeItem(item.id);
+  }
+}
+
+/// The one piece that would add the most outfits. Affiliate offers for it
+/// will sit under the same card once the partner programmes are set up.
+class _MissingCard extends StatelessWidget {
+  final AppState state;
+
+  const _MissingCard({required this.state});
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final c = TallaColors.of(context);
+    final text = Theme.of(context).textTheme;
+    final top = state.missing.isEmpty ? null : state.missing.first;
+
+    return Container(
+      padding: const EdgeInsets.all(Space.s4),
+      decoration: BoxDecoration(color: c.surfaceRaised, borderRadius: BorderRadius.circular(Radii.md)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (top != null) ...[
+            SizedBox(
+              width: 64,
+              height: 84,
+              child: ItemSwatch(item: top.item, semanticLabel: t.itemName(top.item)),
+            ),
+            const SizedBox(width: Space.s4),
+          ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(t.missingTitle, style: text.titleMedium),
+                const SizedBox(height: Space.s1),
+                Text(
+                  top == null ? t.missingNone : t.missingGain(t.itemName(top.item), top.gain, t.style(state.style)),
+                  style: text.bodyLarge,
+                ),
+                if (top != null) ...[
+                  const SizedBox(height: Space.s2),
+                  OutlinedButton(
+                    key: const Key('iHaveIt'),
+                    onPressed: () => state.addItems([top.item]),
+                    child: Text(t.iHaveIt),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
