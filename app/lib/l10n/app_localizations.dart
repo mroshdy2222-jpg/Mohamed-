@@ -1114,7 +1114,7 @@ abstract class AppLocalizations {
   /// No description provided for @changeStyle.
   ///
   /// In ar, this message translates to:
-  /// **'تغيير'**
+  /// **'أخرى'**
   String get changeStyle;
 }
 

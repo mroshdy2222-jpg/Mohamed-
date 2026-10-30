@@ -533,7 +533,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get changeStyle => 'تغيير';
+  String get changeStyle => 'أخرى';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -1064,7 +1064,7 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
   }
 
   @override
-  String get changeStyle => 'غيّر';
+  String get changeStyle => 'أخرى';
 }
 
 /// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
@@ -1595,5 +1595,5 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
   }
 
   @override
-  String get changeStyle => 'غيّر';
+  String get changeStyle => 'ثاني';
 }

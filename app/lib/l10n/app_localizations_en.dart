@@ -533,5 +533,5 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get changeStyle => 'Change';
+  String get changeStyle => 'Other';
 }
