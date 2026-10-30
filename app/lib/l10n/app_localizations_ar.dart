@@ -162,9 +162,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get voteTitle => 'هذا أم ذاك؟';
 
   @override
-  String get voteSoon => 'التصويت عبر رابط واتساب قادم في التحديث القادم. حتى ذلك الحين، يظهر رأي طالا مع كل إطلالة.';
-
-  @override
   String get languageLabel => 'اللغة';
 
   @override
@@ -424,6 +421,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get arabicStandard => 'فصحى';
+
+  @override
+  String get pollIntro => 'أنشئ صورة فيها إطلالتان وأرسلها لأصدقائك على واتساب، ليردّوا بالرقم 1 أو 2.';
+
+  @override
+  String get newPoll => 'تصويت جديد';
+
+  @override
+  String get sendPoll => 'أرسلها لأصدقائك';
+
+  @override
+  String get swapOption => 'غيّر الإطلالة 2';
+
+  @override
+  String get replyWithNumber => 'ردّ بالرقم 1 أو 2';
+
+  @override
+  String shareText(String occasion) {
+    return 'أيهما أفضل؟ المناسبة: $occasion. ردّ بالرقم 1 أو 2.';
+  }
+
+  @override
+  String get whoWon => 'أيهما فاز؟';
+
+  @override
+  String optionLabel(int n) {
+    return 'إطلالة $n';
+  }
+
+  @override
+  String get winnerLabel => 'الفائز';
+
+  @override
+  String get noPolls => 'لم تنشئ أي تصويت بعد.';
+
+  @override
+  String get pollNeedsMore => 'تحتاج إلى قطع أكثر لتكوين إطلالتين مختلفتين.';
+
+  @override
+  String get pollsHistory => 'تصويتاتك';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -581,9 +618,6 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
 
   @override
   String get voteTitle => 'ده ولا ده؟';
-
-  @override
-  String get voteSoon => 'التصويت بلينك واتساب جاي في التحديث الجاي. لحد ما ييجي، رأي طالا بيظهر مع كل طقم.';
 
   @override
   String get languageLabel => 'اللغة';
@@ -845,6 +879,46 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
 
   @override
   String get arabicStandard => 'فصحى';
+
+  @override
+  String get pollIntro => 'اعمل صورة فيها طقمين وابعتها لصحابك على واتساب، وهم يردوا برقم 1 أو 2.';
+
+  @override
+  String get newPoll => 'تصويت جديد';
+
+  @override
+  String get sendPoll => 'ابعتها لصحابك';
+
+  @override
+  String get swapOption => 'غيّر الطقم 2';
+
+  @override
+  String get replyWithNumber => 'رد برقم 1 أو 2';
+
+  @override
+  String shareText(String occasion) {
+    return 'ده ولا ده؟ المناسبة: $occasion. رد برقم 1 أو 2.';
+  }
+
+  @override
+  String get whoWon => 'مين كسب؟';
+
+  @override
+  String optionLabel(int n) {
+    return 'طقم $n';
+  }
+
+  @override
+  String get winnerLabel => 'الكسبان';
+
+  @override
+  String get noPolls => 'لسه ماعملتش تصويت.';
+
+  @override
+  String get pollNeedsMore => 'محتاج قطع أكتر عشان نعمل طقمين مختلفين.';
+
+  @override
+  String get pollsHistory => 'تصويتاتك';
 }
 
 /// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
@@ -1002,9 +1076,6 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
 
   @override
   String get voteTitle => 'هذا ولا هذا؟';
-
-  @override
-  String get voteSoon => 'التصويت برابط واتساب جاي بالتحديث الجاي. لين ما يجي، رأي طالا يطلع مع كل لبسة.';
 
   @override
   String get languageLabel => 'اللغة';
@@ -1266,4 +1337,44 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
 
   @override
   String get arabicStandard => 'فصحى';
+
+  @override
+  String get pollIntro => 'سوّ صورة فيها لبستين وأرسلها لربعك على واتساب، وهم يردون برقم 1 أو 2.';
+
+  @override
+  String get newPoll => 'تصويت جديد';
+
+  @override
+  String get sendPoll => 'أرسلها لربعك';
+
+  @override
+  String get swapOption => 'غيّر اللبسة 2';
+
+  @override
+  String get replyWithNumber => 'رد برقم 1 أو 2';
+
+  @override
+  String shareText(String occasion) {
+    return 'هذا ولا هذا؟ المناسبة: $occasion. رد برقم 1 أو 2.';
+  }
+
+  @override
+  String get whoWon => 'منو فاز؟';
+
+  @override
+  String optionLabel(int n) {
+    return 'لبسة $n';
+  }
+
+  @override
+  String get winnerLabel => 'الفايز';
+
+  @override
+  String get noPolls => 'ما سويت تصويت للحين.';
+
+  @override
+  String get pollNeedsMore => 'تحتاج قطع أكثر عشان نسوي لبستين مختلفتين.';
+
+  @override
+  String get pollsHistory => 'تصويتاتك';
 }

@@ -63,3 +63,23 @@ WearEntry wearFromJson(Map<String, Object?> j) => WearEntry(
   occasion: _enum(Occasion.values, j['occasion'], Occasion.outing),
   withWhom: j['with'] as String?,
 );
+
+Map<String, Object?> pollToJson(Poll p) => {
+  'id': p.id,
+  'created': p.created.toIso8601String(),
+  'occasion': p.occasion.name,
+  'style': p.style.name,
+  'options': p.options,
+  'winner': p.winner,
+};
+
+Poll pollFromJson(Map<String, Object?> j) => Poll(
+  id: j['id'] as String,
+  created: DateTime.parse(j['created'] as String),
+  occasion: _enum(Occasion.values, j['occasion'], Occasion.outing),
+  style: _enum(Style.values, j['style'], Style.casual),
+  options: [
+    for (final o in (j['options'] as List? ?? const [])) [for (final id in o as List) id as String],
+  ],
+  winner: j['winner'] as int?,
+);

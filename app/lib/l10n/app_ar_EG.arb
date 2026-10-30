@@ -48,7 +48,6 @@
   "no": "لأ",
   "cityLabel": "المدينة",
   "voteTitle": "ده ولا ده؟",
-  "voteSoon": "التصويت بلينك واتساب جاي في التحديث الجاي. لحد ما ييجي، رأي طالا بيظهر مع كل طقم.",
   "languageLabel": "اللغة",
   "english": "English",
   "occasionLabel": "المناسبة",
@@ -135,5 +134,17 @@
   "cityDoha": "الدوحة",
   "arabicEgyptian": "مصري",
   "arabicGulf": "خليجي",
-  "arabicStandard": "فصحى"
+  "arabicStandard": "فصحى",
+  "pollIntro": "اعمل صورة فيها طقمين وابعتها لصحابك على واتساب، وهم يردوا برقم 1 أو 2.",
+  "newPoll": "تصويت جديد",
+  "sendPoll": "ابعتها لصحابك",
+  "swapOption": "غيّر الطقم 2",
+  "replyWithNumber": "رد برقم 1 أو 2",
+  "shareText": "ده ولا ده؟ المناسبة: {occasion}. رد برقم 1 أو 2.",
+  "whoWon": "مين كسب؟",
+  "optionLabel": "طقم {n}",
+  "winnerLabel": "الكسبان",
+  "noPolls": "لسه ماعملتش تصويت.",
+  "pollNeedsMore": "محتاج قطع أكتر عشان نعمل طقمين مختلفين.",
+  "pollsHistory": "تصويتاتك"
 }

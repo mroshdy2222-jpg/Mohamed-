@@ -100,3 +100,30 @@ class WearEntry {
 
   const WearEntry({required this.date, required this.itemIds, required this.occasion, this.withWhom});
 }
+
+/// "This or that?": two outfits sent to friends as one image. Friends reply
+/// in the chat with 1 or 2, and the user marks the winner here.
+class Poll {
+  final String id;
+  final DateTime created;
+  final Occasion occasion;
+  final Style style;
+
+  /// Item ids of option 1 and option 2.
+  final List<List<String>> options;
+
+  /// 0 or 1 once the user records the result.
+  final int? winner;
+
+  const Poll({
+    required this.id,
+    required this.created,
+    required this.occasion,
+    required this.style,
+    required this.options,
+    this.winner,
+  });
+
+  Poll withWinner(int index) =>
+      Poll(id: id, created: created, occasion: occasion, style: style, options: options, winner: index);
+}

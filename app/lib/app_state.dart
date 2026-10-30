@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import 'data/store.dart';
 import 'data/weather.dart';
+import 'domain/color_harmony.dart';
 import 'domain/models.dart';
 import 'domain/outfit_engine.dart';
 import 'domain/wear_log.dart';
@@ -22,6 +23,13 @@ class AppState extends ChangeNotifier {
   Profile profile = const Profile();
   final List<Item> items = [];
   final List<WearEntry> wearLog = [];
+
+  /// Newest first.
+  final List<Poll> polls = [];
+
+  /// The two outfits of a poll being prepared, before it is sent.
+  List<Outfit>? pollDraft;
+  final Set<String> _draftShown = {};
 
   Occasion occasion = Occasion.outing;
   Style style = Style.casual;
@@ -46,6 +54,9 @@ class AppState extends ChangeNotifier {
       wearLog
         ..clear()
         ..addAll(saved.wearLog);
+      polls
+        ..clear()
+        ..addAll(saved.polls);
     }
     _refresh(reset: true, persist: false);
     await refreshWeather();
@@ -127,7 +138,103 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _save() => _store.save(Snapshot(profile: profile, items: List.of(items), wearLog: List.of(wearLog)));
+  /// Starts "this or that?" with today's outfit against the next best one.
+  /// False when the wardrobe cannot make two different outfits yet.
+  bool startPollDraft() {
+    _draftShown.clear();
+    if (current == null) {
+      pollDraft = null;
+      notifyListeners();
+      return false;
+    }
+    final other = _alternative(current!);
+    pollDraft = other == null ? null : [current!, other];
+    notifyListeners();
+    return pollDraft != null;
+  }
+
+  void cancelPollDraft() {
+    pollDraft = null;
+    notifyListeners();
+  }
+
+  /// Replaces option 2 with another outfit; option 1 stays.
+  void swapPollOption() {
+    final draft = pollDraft;
+    if (draft == null) return;
+    _draftShown.add(draft[1].signature);
+    var other = _alternative(draft[0]);
+    if (other == null) {
+      _draftShown.clear();
+      other = _alternative(draft[0]);
+    }
+    if (other != null) pollDraft = [draft[0], other];
+    notifyListeners();
+  }
+
+  Outfit? _alternative(Outfit first) {
+    final found = _engine.suggest(
+      items,
+      wearLog,
+      OutfitRequest(
+        style: style,
+        temperatureC: temperatureC,
+        profile: profile,
+        exclude: {first.signature, ..._draftShown},
+        now: _clock(),
+      ),
+      limit: 1,
+    );
+    return found.isEmpty ? null : found.first;
+  }
+
+  /// Saves the draft as a poll once it has been shared.
+  Poll? sendPoll() {
+    final draft = pollDraft;
+    if (draft == null) return null;
+    final poll = Poll(
+      id: 'p-${_clock().microsecondsSinceEpoch}',
+      created: _clock(),
+      occasion: occasion,
+      style: style,
+      options: [for (final o in draft) o.items.map((i) => i.id).toList()],
+    );
+    polls.insert(0, poll);
+    pollDraft = null;
+    _save();
+    notifyListeners();
+    return poll;
+  }
+
+  void setPollWinner(String pollId, int option) {
+    final i = polls.indexWhere((p) => p.id == pollId);
+    if (i < 0) return;
+    polls[i] = polls[i].withWinner(option);
+    _save();
+    notifyListeners();
+  }
+
+  /// The pieces of a poll option that are still in the wardrobe.
+  List<Item> itemsOf(List<String> ids) => [
+    for (final id in ids)
+      for (final i in items)
+        if (i.id == id) i,
+  ];
+
+  /// Makes a poll option today's outfit, so "choose this" logs it.
+  void useOutfit(Poll poll, int option) {
+    final chosen = itemsOf(poll.options[option]);
+    if (chosen.isEmpty) return;
+    occasion = poll.occasion;
+    style = poll.style;
+    lockedItemId = null;
+    final harmony = scoreColors(chosen.map((i) => i.color).toList(), patterns: chosen.map((i) => i.pattern).toList());
+    current = Outfit(chosen, harmony, harmony.score);
+    notifyListeners();
+  }
+
+  void _save() =>
+      _store.save(Snapshot(profile: profile, items: List.of(items), wearLog: List.of(wearLog), polls: List.of(polls)));
 
   void _refresh({bool reset = false, bool persist = true}) {
     if (persist) _save();

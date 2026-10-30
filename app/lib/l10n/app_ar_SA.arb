@@ -48,7 +48,6 @@
   "no": "لا",
   "cityLabel": "المدينة",
   "voteTitle": "هذا ولا هذا؟",
-  "voteSoon": "التصويت برابط واتساب جاي بالتحديث الجاي. لين ما يجي، رأي طالا يطلع مع كل لبسة.",
   "languageLabel": "اللغة",
   "english": "English",
   "occasionLabel": "المناسبة",
@@ -135,5 +134,17 @@
   "cityDoha": "الدوحة",
   "arabicEgyptian": "مصري",
   "arabicGulf": "خليجي",
-  "arabicStandard": "فصحى"
+  "arabicStandard": "فصحى",
+  "pollIntro": "سوّ صورة فيها لبستين وأرسلها لربعك على واتساب، وهم يردون برقم 1 أو 2.",
+  "newPoll": "تصويت جديد",
+  "sendPoll": "أرسلها لربعك",
+  "swapOption": "غيّر اللبسة 2",
+  "replyWithNumber": "رد برقم 1 أو 2",
+  "shareText": "هذا ولا هذا؟ المناسبة: {occasion}. رد برقم 1 أو 2.",
+  "whoWon": "منو فاز؟",
+  "optionLabel": "لبسة {n}",
+  "winnerLabel": "الفايز",
+  "noPolls": "ما سويت تصويت للحين.",
+  "pollNeedsMore": "تحتاج قطع أكثر عشان نسوي لبستين مختلفتين.",
+  "pollsHistory": "تصويتاتك"
 }

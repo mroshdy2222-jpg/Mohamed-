@@ -10,6 +10,7 @@ import 'language_picker.dart';
 import 'labels.dart';
 import 'theme.dart';
 import 'today_screen.dart';
+import 'vote_screen.dart';
 import 'wardrobe_screen.dart';
 
 class HomeShell extends StatefulWidget {
@@ -45,9 +46,15 @@ class _HomeShellState extends State<HomeShell> {
           );
         }
         final pages = [
-          TodayScreen(state: state, onAskFriends: () => setState(() => _tab = 2)),
+          TodayScreen(
+            state: state,
+            onAskFriends: () {
+              state.startPollDraft();
+              setState(() => _tab = 2);
+            },
+          ),
           WardrobeScreen(state: state, onAddBasics: () => setState(() => _addingBasics = true)),
-          const _VoteScreen(),
+          VoteScreen(state: state, onChosen: () => setState(() => _tab = 0)),
           _AccountScreen(state: state, language: widget.language),
         ];
         return Scaffold(
@@ -80,24 +87,6 @@ class _HomeShellState extends State<HomeShell> {
           ),
         );
       },
-    );
-  }
-}
-
-class _VoteScreen extends StatelessWidget {
-  const _VoteScreen();
-
-  @override
-  Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
-    final text = Theme.of(context).textTheme;
-    return ListView(
-      padding: const EdgeInsets.all(Space.s4),
-      children: [
-        Text(t.voteTitle, style: text.headlineSmall),
-        const SizedBox(height: Space.s4),
-        Text(t.voteSoon, style: text.bodyLarge),
-      ],
     );
   }
 }

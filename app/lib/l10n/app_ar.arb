@@ -79,7 +79,6 @@
   "no": "لا",
   "cityLabel": "المدينة",
   "voteTitle": "هذا أم ذاك؟",
-  "voteSoon": "التصويت عبر رابط واتساب قادم في التحديث القادم. حتى ذلك الحين، يظهر رأي طالا مع كل إطلالة.",
   "languageLabel": "اللغة",
   "english": "English",
   "occasionLabel": "المناسبة",
@@ -166,5 +165,31 @@
   "cityDoha": "الدوحة",
   "arabicEgyptian": "مصري",
   "arabicGulf": "خليجي",
-  "arabicStandard": "فصحى"
+  "arabicStandard": "فصحى",
+  "pollIntro": "أنشئ صورة فيها إطلالتان وأرسلها لأصدقائك على واتساب، ليردّوا بالرقم 1 أو 2.",
+  "newPoll": "تصويت جديد",
+  "sendPoll": "أرسلها لأصدقائك",
+  "swapOption": "غيّر الإطلالة 2",
+  "replyWithNumber": "ردّ بالرقم 1 أو 2",
+  "shareText": "أيهما أفضل؟ المناسبة: {occasion}. ردّ بالرقم 1 أو 2.",
+  "@shareText": {
+    "placeholders": {
+      "occasion": {
+        "type": "String"
+      }
+    }
+  },
+  "whoWon": "أيهما فاز؟",
+  "optionLabel": "إطلالة {n}",
+  "@optionLabel": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "winnerLabel": "الفائز",
+  "noPolls": "لم تنشئ أي تصويت بعد.",
+  "pollNeedsMore": "تحتاج إلى قطع أكثر لتكوين إطلالتين مختلفتين.",
+  "pollsHistory": "تصويتاتك"
 }

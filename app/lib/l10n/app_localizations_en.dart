@@ -162,9 +162,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get voteTitle => 'This or that?';
 
   @override
-  String get voteSoon => 'WhatsApp voting links are coming next. Until then, Talla\'s reason shows with every outfit.';
-
-  @override
   String get languageLabel => 'Language';
 
   @override
@@ -424,4 +421,44 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get arabicStandard => 'فصحى';
+
+  @override
+  String get pollIntro => 'Make one image with two outfits and send it to friends on WhatsApp. They reply with 1 or 2.';
+
+  @override
+  String get newPoll => 'New poll';
+
+  @override
+  String get sendPoll => 'Send to friends';
+
+  @override
+  String get swapOption => 'Change outfit 2';
+
+  @override
+  String get replyWithNumber => 'Reply 1 or 2';
+
+  @override
+  String shareText(String occasion) {
+    return 'This or that? Occasion: $occasion. Reply 1 or 2.';
+  }
+
+  @override
+  String get whoWon => 'Which won?';
+
+  @override
+  String optionLabel(int n) {
+    return 'Outfit $n';
+  }
+
+  @override
+  String get winnerLabel => 'Winner';
+
+  @override
+  String get noPolls => 'No polls yet.';
+
+  @override
+  String get pollNeedsMore => 'Add more pieces to make two different outfits.';
+
+  @override
+  String get pollsHistory => 'Your polls';
 }

@@ -11,20 +11,23 @@ class Snapshot {
   final Profile profile;
   final List<Item> items;
   final List<WearEntry> wearLog;
+  final List<Poll> polls;
 
-  const Snapshot({required this.profile, required this.items, required this.wearLog});
+  const Snapshot({required this.profile, required this.items, required this.wearLog, this.polls = const []});
 
   Map<String, Object?> toJson() => {
     'v': 1,
     'profile': profileToJson(profile),
     'items': [for (final i in items) itemToJson(i)],
     'wearLog': [for (final e in wearLog) wearToJson(e)],
+    'polls': [for (final p in polls) pollToJson(p)],
   };
 
   static Snapshot fromJson(Map<String, Object?> j) => Snapshot(
     profile: profileFromJson((j['profile'] as Map).cast<String, Object?>()),
     items: [for (final i in (j['items'] as List? ?? const [])) itemFromJson((i as Map).cast<String, Object?>())],
     wearLog: [for (final e in (j['wearLog'] as List? ?? const [])) wearFromJson((e as Map).cast<String, Object?>())],
+    polls: [for (final p in (j['polls'] as List? ?? const [])) pollFromJson((p as Map).cast<String, Object?>())],
   );
 }
 

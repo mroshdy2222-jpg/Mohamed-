@@ -385,12 +385,6 @@ abstract class AppLocalizations {
   /// **'هذا أم ذاك؟'**
   String get voteTitle;
 
-  /// No description provided for @voteSoon.
-  ///
-  /// In ar, this message translates to:
-  /// **'التصويت عبر رابط واتساب قادم في التحديث القادم. حتى ذلك الحين، يظهر رأي طالا مع كل إطلالة.'**
-  String get voteSoon;
-
   /// No description provided for @languageLabel.
   ///
   /// In ar, this message translates to:
@@ -912,6 +906,78 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'فصحى'**
   String get arabicStandard;
+
+  /// No description provided for @pollIntro.
+  ///
+  /// In ar, this message translates to:
+  /// **'أنشئ صورة فيها إطلالتان وأرسلها لأصدقائك على واتساب، ليردّوا بالرقم 1 أو 2.'**
+  String get pollIntro;
+
+  /// No description provided for @newPoll.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصويت جديد'**
+  String get newPoll;
+
+  /// No description provided for @sendPoll.
+  ///
+  /// In ar, this message translates to:
+  /// **'أرسلها لأصدقائك'**
+  String get sendPoll;
+
+  /// No description provided for @swapOption.
+  ///
+  /// In ar, this message translates to:
+  /// **'غيّر الإطلالة 2'**
+  String get swapOption;
+
+  /// No description provided for @replyWithNumber.
+  ///
+  /// In ar, this message translates to:
+  /// **'ردّ بالرقم 1 أو 2'**
+  String get replyWithNumber;
+
+  /// No description provided for @shareText.
+  ///
+  /// In ar, this message translates to:
+  /// **'أيهما أفضل؟ المناسبة: {occasion}. ردّ بالرقم 1 أو 2.'**
+  String shareText(String occasion);
+
+  /// No description provided for @whoWon.
+  ///
+  /// In ar, this message translates to:
+  /// **'أيهما فاز؟'**
+  String get whoWon;
+
+  /// No description provided for @optionLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'إطلالة {n}'**
+  String optionLabel(int n);
+
+  /// No description provided for @winnerLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الفائز'**
+  String get winnerLabel;
+
+  /// No description provided for @noPolls.
+  ///
+  /// In ar, this message translates to:
+  /// **'لم تنشئ أي تصويت بعد.'**
+  String get noPolls;
+
+  /// No description provided for @pollNeedsMore.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحتاج إلى قطع أكثر لتكوين إطلالتين مختلفتين.'**
+  String get pollNeedsMore;
+
+  /// No description provided for @pollsHistory.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصويتاتك'**
+  String get pollsHistory;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
