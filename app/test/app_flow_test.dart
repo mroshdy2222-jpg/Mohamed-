@@ -32,6 +32,20 @@ void main() {
     expect(state.current, isNotNull);
     expect(state.current!.items.map((i) => i.category), containsAll([Category.top, Category.bottom, Category.shoes]));
 
+    // The style follows the occasion and stays folded until asked for.
+    expect(find.text('ستايل: كاجوال'), findsOneWidget);
+    expect(find.widgetWithText(ChoiceChip, 'فورمال'), findsNothing);
+    await tester.tap(find.byKey(const Key('changeStyle')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(ChoiceChip, 'سمارت كاجوال'));
+    await tester.pumpAndSettle();
+    expect(find.text('ستايل: سمارت كاجوال'), findsOneWidget);
+    expect(find.widgetWithText(ChoiceChip, 'فورمال'), findsNothing);
+    await tester.tap(find.byKey(const Key('changeStyle')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(ChoiceChip, 'كاجوال'));
+    await tester.pumpAndSettle();
+
     final first = state.current!.signature;
     await tester.tap(find.text('اختيار تاني'));
     await tester.pumpAndSettle();

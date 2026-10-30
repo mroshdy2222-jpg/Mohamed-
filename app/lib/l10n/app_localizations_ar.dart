@@ -526,6 +526,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get moreDetails => 'النقشة والموسم (اختياري)';
+
+  @override
+  String styleLine(String style) {
+    return 'الأسلوب: $style';
+  }
+
+  @override
+  String get changeStyle => 'تغيير';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -1049,6 +1057,14 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
 
   @override
   String get moreDetails => 'النقشة والموسم (اختياري)';
+
+  @override
+  String styleLine(String style) {
+    return 'ستايل: $style';
+  }
+
+  @override
+  String get changeStyle => 'غيّر';
 }
 
 /// The translations for Arabic, as used in Saudi Arabia (`ar_SA`).
@@ -1572,4 +1588,12 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
 
   @override
   String get moreDetails => 'النقشة والموسم (اختياري)';
+
+  @override
+  String styleLine(String style) {
+    return 'ستايل: $style';
+  }
+
+  @override
+  String get changeStyle => 'غيّر';
 }

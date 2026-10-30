@@ -1104,6 +1104,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'النقشة والموسم (اختياري)'**
   String get moreDetails;
+
+  /// No description provided for @styleLine.
+  ///
+  /// In ar, this message translates to:
+  /// **'الأسلوب: {style}'**
+  String styleLine(String style);
+
+  /// No description provided for @changeStyle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تغيير'**
+  String get changeStyle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

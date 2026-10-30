@@ -167,5 +167,7 @@
   "catTurban": "توربان",
   "catNeckScarf": "كوفية",
   "moreTypes": "أنواع تانية",
-  "moreDetails": "النقشة والموسم (اختياري)"
+  "moreDetails": "النقشة والموسم (اختياري)",
+  "styleLine": "ستايل: {style}",
+  "changeStyle": "غيّر"
 }

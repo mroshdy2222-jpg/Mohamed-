@@ -526,4 +526,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moreDetails => 'Pattern and season (optional)';
+
+  @override
+  String styleLine(String style) {
+    return 'Style: $style';
+  }
+
+  @override
+  String get changeStyle => 'Change';
 }

@@ -41,15 +41,8 @@ class TodayScreen extends StatelessWidget {
           dropdownMenuEntries: [for (final o in Occasion.values) DropdownMenuEntry(value: o, label: t.occasion(o))],
         ),
         const SizedBox(height: Space.s4),
-        Wrap(
-          spacing: Space.s2,
-          runSpacing: Space.s2,
-          children: [
-            for (final s in Style.values)
-              ChoiceChip(label: Text(t.style(s)), selected: state.style == s, onSelected: (_) => state.setStyle(s)),
-          ],
-        ),
-        const SizedBox(height: Space.s6),
+        _StylePicker(state: state),
+        const SizedBox(height: Space.s4),
         Container(
           padding: const EdgeInsets.all(Space.s4),
           decoration: BoxDecoration(color: c.surfaceRaised, borderRadius: BorderRadius.circular(Radii.md)),
@@ -219,6 +212,60 @@ class _WearSheetState extends State<_WearSheet> {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// The occasion sets the style, so the eight choices stay folded behind one
+/// line until the user wants a different one.
+class _StylePicker extends StatefulWidget {
+  final AppState state;
+
+  const _StylePicker({required this.state});
+
+  @override
+  State<_StylePicker> createState() => _StylePickerState();
+}
+
+class _StylePickerState extends State<_StylePicker> {
+  bool _open = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final state = widget.state;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Text(t.styleLine(t.style(state.style)), style: text.bodyLarge),
+            TextButton(
+              key: const Key('changeStyle'),
+              onPressed: () => setState(() => _open = !_open),
+              child: Text(_open ? t.cancel : t.changeStyle),
+            ),
+          ],
+        ),
+        if (_open)
+          Wrap(
+            spacing: Space.s2,
+            runSpacing: Space.s2,
+            children: [
+              for (final s in Style.values)
+                ChoiceChip(
+                  label: Text(t.style(s)),
+                  selected: state.style == s,
+                  onSelected: (_) {
+                    state.setStyle(s);
+                    setState(() => _open = false);
+                  },
+                ),
+            ],
+          ),
+      ],
     );
   }
 }

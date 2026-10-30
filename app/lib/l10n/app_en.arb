@@ -167,5 +167,7 @@
   "catTurban": "Turban",
   "catNeckScarf": "Scarf",
   "moreTypes": "More types",
-  "moreDetails": "Pattern and season (optional)"
+  "moreDetails": "Pattern and season (optional)",
+  "styleLine": "Style: {style}",
+  "changeStyle": "Change"
 }

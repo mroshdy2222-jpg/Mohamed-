@@ -225,5 +225,14 @@
   "catTurban": "توربان",
   "catNeckScarf": "وشاح",
   "moreTypes": "أنواع أخرى",
-  "moreDetails": "النقشة والموسم (اختياري)"
+  "moreDetails": "النقشة والموسم (اختياري)",
+  "styleLine": "الأسلوب: {style}",
+  "changeStyle": "تغيير",
+  "@styleLine": {
+    "placeholders": {
+      "style": {
+        "type": "String"
+      }
+    }
+  }
 }
