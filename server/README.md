@@ -53,6 +53,7 @@ npm run test:db   # runs the migration on a throwaway local Postgres and checks 
    cd ../app
    flutter run --dart-define=SUPABASE_URL=https://<project-ref>.supabase.co --dart-define=SUPABASE_ANON_KEY=<anon key>
    ```
+   Once the app is on Google Play, add `--dart-define=TALLA_LINK=<store link>` and every shared poll ends with "جرّب طلّة" and the link.
 
 Check each provider's free-tier limits and data terms before launch: they change often, and free tiers may use what they receive to train models. That is why only photos of a garment on its own are sent.
 

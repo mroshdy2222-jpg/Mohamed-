@@ -10,6 +10,11 @@ import 'theme.dart';
 
 /// "This or that?" without a server: the poll is shared as one image and
 /// friends answer in the chat. The WhatsApp voting link will build on this.
+/// The store link added under the poll so friends can get the app. Empty
+/// until the app is on Google Play; set at build time with
+/// --dart-define=TALLA_LINK=<link>.
+String inviteLink = const String.fromEnvironment('TALLA_LINK');
+
 class VoteScreen extends StatefulWidget {
   final AppState state;
 
@@ -31,7 +36,8 @@ class _VoteScreenState extends State<VoteScreen> {
     final t = AppLocalizations.of(context);
     setState(() => _sharing = true);
     try {
-      await shareImage(_card, t.shareText(t.occasion(widget.state.occasion)));
+      final ask = t.shareText(t.occasion(widget.state.occasion));
+      await shareImage(_card, inviteLink.isEmpty ? ask : '$ask\n${t.tryTalla(inviteLink)}');
       widget.state.sendPoll();
     } finally {
       if (mounted) setState(() => _sharing = false);

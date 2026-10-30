@@ -443,6 +443,11 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String tryTalla(String link) {
+    return 'Try Talla: $link';
+  }
+
+  @override
   String get whoWon => 'Which won?';
 
   @override

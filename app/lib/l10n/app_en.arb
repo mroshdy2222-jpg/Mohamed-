@@ -141,6 +141,7 @@
   "swapOption": "Change outfit 2",
   "replyWithNumber": "Reply 1 or 2",
   "shareText": "This or that? Occasion: {occasion}. Reply 1 or 2.",
+  "tryTalla": "Try Talla: {link}",
   "whoWon": "Which won?",
   "optionLabel": "Outfit {n}",
   "winnerLabel": "Winner",

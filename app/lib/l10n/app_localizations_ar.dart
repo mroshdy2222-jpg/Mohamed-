@@ -443,6 +443,11 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String tryTalla(String link) {
+    return 'جرّب طلّة: $link';
+  }
+
+  @override
   String get whoWon => 'أيهما فاز؟';
 
   @override
@@ -974,6 +979,11 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
   }
 
   @override
+  String tryTalla(String link) {
+    return 'جرّب طلّة: $link';
+  }
+
+  @override
   String get whoWon => 'مين كسب؟';
 
   @override
@@ -1502,6 +1512,11 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
   @override
   String shareText(String occasion) {
     return 'هذا ولا هذا؟ المناسبة: $occasion. رد برقم 1 أو 2.';
+  }
+
+  @override
+  String tryTalla(String link) {
+    return 'جرّب طلّة: $link';
   }
 
   @override

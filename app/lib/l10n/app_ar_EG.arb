@@ -141,6 +141,7 @@
   "swapOption": "غيّر الطقم 2",
   "replyWithNumber": "رد برقم 1 أو 2",
   "shareText": "ده ولا ده؟ المناسبة: {occasion}. رد برقم 1 أو 2.",
+  "tryTalla": "جرّب طلّة: {link}",
   "whoWon": "مين كسب؟",
   "optionLabel": "طقم {n}",
   "winnerLabel": "الكسبان",

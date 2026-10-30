@@ -943,6 +943,12 @@ abstract class AppLocalizations {
   /// **'أيهما أفضل؟ المناسبة: {occasion}. ردّ بالرقم 1 أو 2.'**
   String shareText(String occasion);
 
+  /// No description provided for @tryTalla.
+  ///
+  /// In ar, this message translates to:
+  /// **'جرّب طلّة: {link}'**
+  String tryTalla(String link);
+
   /// No description provided for @whoWon.
   ///
   /// In ar, this message translates to:

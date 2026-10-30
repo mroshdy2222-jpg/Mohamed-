@@ -179,6 +179,14 @@
       }
     }
   },
+  "tryTalla": "جرّب طلّة: {link}",
+  "@tryTalla": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
   "whoWon": "أيهما فاز؟",
   "optionLabel": "إطلالة {n}",
   "@optionLabel": {

@@ -5,6 +5,7 @@ import 'package:talla/data/basics.dart';
 import 'package:talla/data/store.dart';
 import 'package:talla/main.dart';
 import 'package:talla/ui/share_image.dart';
+import 'package:talla/ui/vote_screen.dart';
 
 const wardrobe = ['b-tee-white', 'b-tee-black', 'b-shirt-sky', 'b-jeans-denim', 'b-chino-beige', 'b-sneakers-white'];
 
@@ -75,5 +76,23 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('طقم النهارده'), findsOneWidget);
     expect(state.current!.items.map((i) => i.id), state.polls.single.options[1]);
+  });
+
+  testWidgets('once the app has a store link, the poll carries it', (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 2.5;
+    addTearDown(tester.view.reset);
+    final shared = <String>[];
+    shareImage = (key, text) async => shared.add(text);
+    inviteLink = 'https://example.com/talla';
+    addTearDown(() => inviteLink = '');
+
+    await tester.pumpWidget(TallaApp(state: stocked()));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('خد رأي صحابك'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('sendPoll')));
+    await tester.pumpAndSettle();
+    expect(shared.single, 'ده ولا ده؟ المناسبة: خروجة. رد برقم 1 أو 2.\nجرّب طلّة: https://example.com/talla');
   });
 }
