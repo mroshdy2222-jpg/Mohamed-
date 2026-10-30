@@ -227,7 +227,7 @@
   "moreTypes": "أنواع أخرى",
   "moreDetails": "النقشة والموسم (اختياري)",
   "styleLine": "الأسلوب: {style}",
-  "changeStyle": "أخرى",
+  "changeStyle": "آخر",
   "@styleLine": {
     "placeholders": {
       "style": {
