@@ -9,10 +9,6 @@ import 'theme.dart';
 
 Color colorOf(FashionColor c) => HSLColor.fromAHSL(1, c.hue, c.saturation, c.lightness).toColor();
 
-/// Onboarding pieces that have a product photo in assets/photos, named by
-/// their id. The rest are drawn.
-const stockPhotos = {'b-loafers-brown'};
-
 /// The drawing for a piece without a photo. Onboarding pieces say what they
 /// are in their id (b-loafers-brown); the rest get their category's drawing.
 String garmentFor(Item item) {
@@ -99,16 +95,7 @@ class ItemSwatch extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: item.photoPath == null && stockPhotos.contains(item.id)
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(Radii.sm),
-                          child: Image.asset(
-                            'assets/photos/${item.id}.jpg',
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, _, _) => _silhouette(c),
-                          ),
-                        )
-                      : item.photoPath != null
+                  child: item.photoPath != null
                       ? ClipRRect(
                           borderRadius: BorderRadius.circular(Radii.sm),
                           child: Image(
