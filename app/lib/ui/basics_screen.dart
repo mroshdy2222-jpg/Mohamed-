@@ -76,22 +76,42 @@ class _BasicsScreenState extends State<BasicsScreen> {
             const SizedBox(height: Space.s4),
             GridView.count(
               crossAxisCount: 4,
-              mainAxisSpacing: Space.s2,
+              mainAxisSpacing: Space.s4,
               crossAxisSpacing: Space.s2,
-              childAspectRatio: 3 / 4,
+              childAspectRatio: 0.56,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 for (final b in list)
-                  ItemSwatch(
-                    onPage: true,
-                    key: Key(b.item.id),
-                    item: b.item,
-                    selected: _picked.contains(b.item.id),
-                    semanticLabel: t.itemName(b.item),
-                    onTap: () => setState(
-                      () => _picked.contains(b.item.id) ? _picked.remove(b.item.id) : _picked.add(b.item.id),
-                    ),
+                  Column(
+                    children: [
+                      Expanded(
+                        child: ItemSwatch(
+                          onPage: true,
+                          key: Key(b.item.id),
+                          item: b.item,
+                          selected: _picked.contains(b.item.id),
+                          semanticLabel: t.basicName(b),
+                          onTap: () => setState(
+                            () => _picked.contains(b.item.id) ? _picked.remove(b.item.id) : _picked.add(b.item.id),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: Space.s1),
+                      // Two lines' room for every name, so all the tiles stay the same size.
+                      SizedBox(
+                        height: 34,
+                        child: ExcludeSemantics(
+                          child: Text(
+                            t.basicName(b),
+                            style: text.bodySmall,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
               ],
             ),

@@ -448,6 +448,39 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String basicKind(String kind) {
+    String _temp0 = intl.Intl.selectLogic(kind, {
+      'tee': 'تيشيرت',
+      'shirt': 'قميص',
+      'blouse': 'بلوزة',
+      'knit': 'كنزة صوف',
+      'hoodie': 'هودي',
+      'jeans': 'جينز',
+      'chino': 'بنطال قطني',
+      'trousers': 'بنطال',
+      'skirt': 'تنورة',
+      'joggers': 'بنطال رياضي',
+      'sport': 'تيشيرت رياضي',
+      'dress': 'فستان',
+      'abaya': 'عباءة',
+      'thobe': 'ثوب',
+      'galabeya': 'جلابية',
+      'blazer': 'بليزر',
+      'jacket': 'سترة',
+      'sneakers': 'حذاء رياضي',
+      'runners': 'حذاء جري',
+      'loafers': 'حذاء لوفر',
+      'heels': 'حذاء بكعب',
+      'oxfords': 'حذاء رسمي',
+      'sandals': 'صندل',
+      'scarf': 'حجاب',
+      'shemagh': 'شماغ',
+      'other': 'تيشيرت',
+    });
+    return '$_temp0';
+  }
+
+  @override
   String get whoWon => 'أيهما فاز؟';
 
   @override
@@ -984,6 +1017,39 @@ class AppLocalizationsArEg extends AppLocalizationsAr {
   }
 
   @override
+  String basicKind(String kind) {
+    String _temp0 = intl.Intl.selectLogic(kind, {
+      'tee': 'تيشيرت',
+      'shirt': 'قميص',
+      'blouse': 'بلوزة',
+      'knit': 'بلوفر',
+      'hoodie': 'هودي',
+      'jeans': 'جينز',
+      'chino': 'بنطلون شينو',
+      'trousers': 'بنطلون',
+      'skirt': 'جيبة',
+      'joggers': 'بنطلون رياضة',
+      'sport': 'تيشيرت رياضة',
+      'dress': 'فستان',
+      'abaya': 'عباية',
+      'thobe': 'ثوب',
+      'galabeya': 'جلابية',
+      'blazer': 'بليزر',
+      'jacket': 'جاكيت',
+      'sneakers': 'كوتشي',
+      'runners': 'كوتشي جري',
+      'loafers': 'لوفر',
+      'heels': 'كعب عالي',
+      'oxfords': 'جزمة كلاسيك',
+      'sandals': 'صندل',
+      'scarf': 'طرحة',
+      'shemagh': 'شماغ',
+      'other': 'تيشيرت',
+    });
+    return '$_temp0';
+  }
+
+  @override
   String get whoWon => 'مين كسب؟';
 
   @override
@@ -1517,6 +1583,39 @@ class AppLocalizationsArSa extends AppLocalizationsAr {
   @override
   String tryTalla(String link) {
     return 'جرّب طلّة: $link';
+  }
+
+  @override
+  String basicKind(String kind) {
+    String _temp0 = intl.Intl.selectLogic(kind, {
+      'tee': 'تيشيرت',
+      'shirt': 'قميص',
+      'blouse': 'بلوزة',
+      'knit': 'كنزة',
+      'hoodie': 'هودي',
+      'jeans': 'جينز',
+      'chino': 'بنطلون كاجوال',
+      'trousers': 'بنطلون',
+      'skirt': 'تنورة',
+      'joggers': 'بنطلون رياضي',
+      'sport': 'تيشيرت رياضي',
+      'dress': 'فستان',
+      'abaya': 'عباية',
+      'thobe': 'ثوب',
+      'galabeya': 'جلابية',
+      'blazer': 'بليزر',
+      'jacket': 'جاكيت',
+      'sneakers': 'سنيكرز',
+      'runners': 'حذاء ركض',
+      'loafers': 'لوفر',
+      'heels': 'كعب',
+      'oxfords': 'حذاء رسمي',
+      'sandals': 'نعال',
+      'scarf': 'شيلة',
+      'shemagh': 'شماغ',
+      'other': 'تيشيرت',
+    });
+    return '$_temp0';
   }
 
   @override

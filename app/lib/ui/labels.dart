@@ -1,3 +1,4 @@
+import '../data/basics.dart';
 import '../domain/color_harmony.dart';
 import '../domain/fashion_color.dart';
 import '../domain/models.dart';
@@ -118,6 +119,14 @@ extension Labels on AppLocalizations {
   };
 
   /// "Burgundy one-piece", in the right word order for the language.
+  /// "Loafers, brown". The colour is left out when the name already says it
+  /// (jeans are denim).
+  String basicName(Basic b) {
+    final kind = basicKind(b.kind), colour = color(b.item.color);
+    if (kind.toLowerCase().contains(colour.toLowerCase())) return kind;
+    return localeName.startsWith('ar') ? '$kind $colour' : '$colour ${kind.toLowerCase()}';
+  }
+
   String itemName(Item i) => localeName.startsWith('ar')
       ? '${category(i.category)} ${color(i.color)}'
       : '${color(i.color)} ${category(i.category).toLowerCase()}';

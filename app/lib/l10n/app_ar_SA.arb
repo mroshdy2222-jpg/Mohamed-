@@ -142,6 +142,7 @@
   "replyWithNumber": "رد برقم 1 أو 2",
   "shareText": "هذا ولا هذا؟ المناسبة: {occasion}. رد برقم 1 أو 2.",
   "tryTalla": "جرّب طلّة: {link}",
+  "basicKind": "{kind, select, tee{تيشيرت} shirt{قميص} blouse{بلوزة} knit{كنزة} hoodie{هودي} jeans{جينز} chino{بنطلون كاجوال} trousers{بنطلون} skirt{تنورة} joggers{بنطلون رياضي} sport{تيشيرت رياضي} dress{فستان} abaya{عباية} thobe{ثوب} galabeya{جلابية} blazer{بليزر} jacket{جاكيت} sneakers{سنيكرز} runners{حذاء ركض} loafers{لوفر} heels{كعب} oxfords{حذاء رسمي} sandals{نعال} scarf{شيلة} shemagh{شماغ} other{تيشيرت}}",
   "whoWon": "منو فاز؟",
   "optionLabel": "لبسة {n}",
   "winnerLabel": "الفايز",

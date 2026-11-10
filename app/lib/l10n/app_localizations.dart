@@ -949,6 +949,12 @@ abstract class AppLocalizations {
   /// **'جرّب طلّة: {link}'**
   String tryTalla(String link);
 
+  /// No description provided for @basicKind.
+  ///
+  /// In ar, this message translates to:
+  /// **'{kind, select, tee{تيشيرت} shirt{قميص} blouse{بلوزة} knit{كنزة صوف} hoodie{هودي} jeans{جينز} chino{بنطال قطني} trousers{بنطال} skirt{تنورة} joggers{بنطال رياضي} sport{تيشيرت رياضي} dress{فستان} abaya{عباءة} thobe{ثوب} galabeya{جلابية} blazer{بليزر} jacket{سترة} sneakers{حذاء رياضي} runners{حذاء جري} loafers{حذاء لوفر} heels{حذاء بكعب} oxfords{حذاء رسمي} sandals{صندل} scarf{حجاب} shemagh{شماغ} other{تيشيرت}}'**
+  String basicKind(String kind);
+
   /// No description provided for @whoWon.
   ///
   /// In ar, this message translates to:

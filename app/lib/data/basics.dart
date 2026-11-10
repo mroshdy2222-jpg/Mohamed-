@@ -10,6 +10,10 @@ class Basic {
   final Gender? only;
 
   const Basic(this.item, {this.only});
+
+  /// What it is more precisely than its category (loafers, not just shoes),
+  /// taken from the id: `b-<kind>-<colour>`.
+  String get kind => item.id.split('-')[1];
 }
 
 const _casSmart = {Style.casual, Style.smartCasual};

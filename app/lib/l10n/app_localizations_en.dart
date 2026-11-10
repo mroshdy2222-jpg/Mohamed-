@@ -448,6 +448,39 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String basicKind(String kind) {
+    String _temp0 = intl.Intl.selectLogic(kind, {
+      'tee': 'T-shirt',
+      'shirt': 'Shirt',
+      'blouse': 'Blouse',
+      'knit': 'Knit',
+      'hoodie': 'Hoodie',
+      'jeans': 'Jeans',
+      'chino': 'Chinos',
+      'trousers': 'Trousers',
+      'skirt': 'Skirt',
+      'joggers': 'Joggers',
+      'sport': 'Sports tee',
+      'dress': 'Dress',
+      'abaya': 'Abaya',
+      'thobe': 'Thobe',
+      'galabeya': 'Galabeya',
+      'blazer': 'Blazer',
+      'jacket': 'Jacket',
+      'sneakers': 'Sneakers',
+      'runners': 'Running shoes',
+      'loafers': 'Loafers',
+      'heels': 'Heels',
+      'oxfords': 'Oxfords',
+      'sandals': 'Sandals',
+      'scarf': 'Headscarf',
+      'shemagh': 'Shemagh',
+      'other': 'T-shirt',
+    });
+    return '$_temp0';
+  }
+
+  @override
   String get whoWon => 'Which won?';
 
   @override

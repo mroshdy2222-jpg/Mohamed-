@@ -137,20 +137,20 @@ class _Silhouette extends CustomPainter {
         p.lineTo(28, 6);
         p.quadraticBezierTo(20, 11, 12, 6);
       case Category.outerwear:
-        p.moveTo(12, 5);
+        // Two front panels with lapels, open down the middle.
+        p.moveTo(13, 5);
         p.lineTo(3, 14);
-        p.lineTo(6, 40);
-        p.lineTo(12, 40);
-        p.lineTo(12, 44);
-        p.lineTo(19, 44);
-        p.lineTo(19, 10);
-        p.lineTo(21, 10);
-        p.lineTo(21, 44);
-        p.lineTo(28, 44);
-        p.lineTo(28, 40);
-        p.lineTo(34, 40);
+        p.lineTo(6, 42);
+        p.lineTo(19, 42);
+        p.lineTo(19, 24);
+        p.lineTo(14, 8);
+        p.close();
+        p.moveTo(27, 5);
         p.lineTo(37, 14);
-        p.lineTo(28, 5);
+        p.lineTo(34, 42);
+        p.lineTo(21, 42);
+        p.lineTo(21, 24);
+        p.lineTo(26, 8);
         p.close();
       case Category.bottom:
         p.moveTo(10, 4);
@@ -162,28 +162,43 @@ class _Silhouette extends CustomPainter {
         p.lineTo(8, 44);
         p.close();
       case Category.onePiece:
-        p.moveTo(14, 4);
-        p.lineTo(26, 4);
-        p.lineTo(27, 16);
-        p.lineTo(35, 45);
-        p.lineTo(5, 45);
-        p.lineTo(13, 16);
+        // Shoulders and short sleeves, flaring to the hem: a dress or a robe.
+        p.moveTo(15, 4);
+        p.quadraticBezierTo(20, 8, 25, 4);
+        p.lineTo(32, 7);
+        p.lineTo(37, 17);
+        p.lineTo(32, 19);
+        p.lineTo(29, 14);
+        p.lineTo(33, 45);
+        p.lineTo(7, 45);
+        p.lineTo(11, 14);
+        p.lineTo(8, 19);
+        p.lineTo(3, 17);
+        p.lineTo(8, 7);
         p.close();
       case Category.shoes:
-        p.moveTo(4, 30);
-        p.quadraticBezierTo(4, 22, 12, 22);
-        p.lineTo(20, 26);
-        p.quadraticBezierTo(30, 28, 36, 32);
-        p.lineTo(36, 38);
-        p.lineTo(4, 38);
+        // A sneaker from the side: the upper, then the sole below a gap.
+        p.moveTo(5, 34);
+        p.lineTo(5, 25);
+        p.quadraticBezierTo(5, 21, 9, 21);
+        p.lineTo(15, 21);
+        p.lineTo(18, 25);
+        p.quadraticBezierTo(27, 26, 33, 29);
+        p.quadraticBezierTo(36, 30.5, 36, 34);
         p.close();
+        p.addRRect(RRect.fromLTRBR(4, 35.5, 37, 39, const Radius.circular(1.5)));
       case Category.headscarf:
       case Category.shemagh:
-        p.moveTo(8, 10);
-        p.quadraticBezierTo(20, 0, 32, 10);
-        p.lineTo(34, 40);
-        p.quadraticBezierTo(20, 46, 6, 40);
+        // A hood around an open face, falling over the shoulders.
+        p.fillType = PathFillType.evenOdd;
+        p.moveTo(20, 4);
+        p.quadraticBezierTo(34, 4, 34, 20);
+        p.lineTo(37, 44);
+        p.lineTo(3, 44);
+        p.lineTo(6, 20);
+        p.quadraticBezierTo(6, 4, 20, 4);
         p.close();
+        p.addOval(const Rect.fromLTRB(13, 12, 27, 31));
       case Category.bag:
         p.addRRect(RRect.fromLTRBR(6, 16, 34, 42, const Radius.circular(4)));
         p.addRect(const Rect.fromLTRB(14, 8, 26, 11));
