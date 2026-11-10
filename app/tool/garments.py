@@ -221,49 +221,62 @@ G['runners'] = [
 ]
 # Dress shoes share one last: heel counter on the left, toe spring on the right.
 SOLE_DARK = "#2b2420"
-# Dress shoes, side view, toe to the right. They stand on the heel block and
-# the ball of the foot, with the arch lifted between, like a real shoe.
-UPPER_FOOT = "C95.5 90 91 91.5 84 91.5 L60 91.5 C44 90 30 84 8 84"
-SOLE_PATH = "M8 84 C30 84 44 90 60 91.5 L84 91.5 C91 91.5 95.5 90 97.5 87 C98.5 90.8 94.5 95 86 95 L60 95 C46 94.5 34 89 24 88 L8 88 Z"
-HEEL_BLOCK = "M8 88 L26 88 L25 96 L9.5 96 Z"
-def leather_sole():
+# Dress shoes, side view, toe to the right, lit like a product photo: a
+# gradient gives the leather its roundness, the toe and heel catch the light,
+# and the shoe stands on its heel block and the ball of the foot.
+def leather(prefix):
+    return (f'<defs>'
+        f'<linearGradient id="{prefix}v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></linearGradient>'
+        f'<radialGradient id="{prefix}t" cx=".86" cy=".45" r=".22"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>'
+        f'<radialGradient id="{prefix}h" cx=".03" cy=".45" r=".18"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>'
+        f'<radialGradient id="{prefix}g"><stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>'
+        f'</defs>')
+def lit(d, prefix):
+    return [base(d), f'<path d="{d}" fill="url(#{prefix}v)"/>', f'<path d="{d}" fill="url(#{prefix}t)"/>', f'<path d="{d}" fill="url(#{prefix}h)"/>']
+
+SOLE_COLOUR = "#2a211c"
+WELT = "C38 83.5 47 88.2 58 88.6 L86 88.6 C92 88.6 95.5 87 96.8 84"
+def dress_sole(prefix):
     return [
-        base(SOLE_PATH), sh(SOLE_PATH, .55),
-        base(HEEL_BLOCK), sh(HEEL_BLOCK, .62),
-        ln("M9 92 L25.5 92", .35, .8),
-        dash("M10 85.6 C30 85.6 44 91.2 60 92.8 L84 92.8 C90 92.8 94 91.6 96.2 89.3", "#fff", .4),
+        f'<ellipse cx="52" cy="92.6" rx="47" ry="3.2" fill="url(#{prefix}g)"/>',
+        solid("M7.5 83 L25 83 " + WELT + " C98.5 85 98.3 89 95 90.5 C92 92 89 92 86 92 L58 92 C46 91.6 37 86.8 25.5 86.5 L7.5 86.5 Z", SOLE_COLOUR),
+        hln("M8 84.2 L25 84.2 C38 84.7 47 89.4 58 89.8 L86 89.8 C91.5 89.8 95 88.4 96.5 86", .35, .7),
+        solid("M7.5 86.5 L25.5 86.5 L24.8 92 L8.2 92 Z", SOLE_COLOUR),
+        hln("M8 88.3 L25.2 88.3 M8.1 90.1 L25 90.1", .18, .6),
+        solid("M8.2 91 L24.9 91 L24.8 92.2 L8.3 92.2 Z", "#111"),
+        dash("M10 84.9 L25 84.9 C38 85.4 47 90 58 90.4 L86 90.4", "#fff", .3),
     ]
 
-G['loafers'] = [
-  base(f"M9 84 C6 76 7 66 11 58 Q22 62.5 38 63 C52 61 70 66 84 74 C92 78.5 97 82 97.5 87 {UPPER_FOOT} Z"),
-  sh("M11 58 Q22 62.5 38 63 L38.4 65.6 Q22 65 12 60.6 Z", .45),
-  sh("M41 63.2 C43 68 44 73 43.5 78.5 L55.5 77.5 C56 72 54.5 66.5 51.5 61.8 Z", .22),
-  sh("M45 67.6 L52.3 66.6 Q53.2 68.2 52.6 69.8 L45.6 70.8 Q44.7 69.2 45 67.6 Z", .6),
-  ln("M41 63.2 C43 68 44 73 43.5 78.5 M51.5 61.8 C54.5 66.5 56 72 55.5 77.5", .3),
-  ln("M40 64.3 C56 63.5 74 68 90 78.5", .22),
-  dash("M41 66 C57 65.5 73 70 88.5 80", "#000", .38),
-  ln("M12.5 60 C17 68 19.5 76 20.5 84", .2),
-  hl("M72 68.5 C82 71.5 91 76.5 95.5 83 C89 79 81 74.5 72 71 Z", .42),
-  hl("M8.2 68 C7.6 73 8 78 9.4 82 L11.4 82 C10.4 78 10 73 10.4 68 Z", .25),
-] + leather_sole()
+LOAFER = "M7.5 83 C5.5 75 6 66 9.5 59 Q11 57.6 12.5 58 Q24 63 40 63.5 C56 61 75 65 87 72 C94 76.5 98 80 96.8 84 C95.5 87 92 88.6 86 88.6 L58 88.6 C47 88.2 38 83.5 25 83 Z"
+G['loafers'] = [leather('lo')] + dress_sole('lo') + lit(LOAFER, 'lo') + [
+  sh("M12.5 58 Q24 63 40 63.5 L40.5 66 Q24 66 13 60.8 Z", .5),
+  hln("M12.8 58.4 Q24 63.3 40 63.8", .25, .6),
+  sh("M42 63.6 C44 68 45 73 44.5 79 L57 78 C57.5 72.5 56 66.5 52.5 61.6 Z", .16),
+  ln("M42 63.6 C44 68 45 73 44.5 79 M52.5 61.6 C56 66.5 57.5 72.5 57 78", .35, .8),
+  hln("M43.2 64 C45.2 68.4 46.2 73.2 45.8 78.8", .3, .6),
+  sh("M46.4 68.2 L53.6 67.3 Q54.5 68.9 53.9 70.5 L47 71.4 Q46 69.8 46.4 68.2 Z", .65),
+  ln("M41 64.8 C57 64 75 68.5 90.5 78.8", .3, .9),
+  hln("M41 65.6 C57 64.8 75 69.3 90.2 79.5", .25, .6),
+  dash("M42 67 C58 66.5 74 71 88.8 80.6", "#000", .4),
+  ln("M11.5 60 C16 68 18.5 76 19.5 83.4", .22, .8),
+]
 
-G['oxfords'] = [
-  base(f"M9 84 C6 76 7 66 11 58 Q20 60.5 30 58.5 L44 55 C58 58 72 65.5 84 74 C92 78.5 97 82 97.5 87 {UPPER_FOOT} Z"),
-  sh("M11 58 Q20 60.5 30 58.5 L30.4 61 Q20 63 12 60.6 Z", .45),
-  base("M30 58.5 L44 55 L55.5 69.5 L41.5 73.5 Z"), sh("M30 58.5 L44 55 L55.5 69.5 L41.5 73.5 Z", .08),
-  sh("M35 57.2 L44 55 L44.8 56 L35.6 58.4 Z", .5),
-  ln("M30 58.5 L41.5 73.5 L55.5 69.5", .32),
-  dot(32.3, 61.5, .7, .7), dot(34.6, 64.5, .7, .7), dot(36.9, 67.5, .7, .7), dot(39.2, 70.5, .7, .7),
-  ln("M32.3 61.5 L45 58 M34.6 64.5 L47.3 61 M36.9 67.5 L49.6 64 M39.2 70.5 L51.9 67", .45, .9),
-  ln("M30 58.5 C33 66 36 75 37.5 84.8", .28),
-  dash("M28.2 59.6 C31 67 34 75.5 35.3 84.8", "#000", .32),
-  ln("M71 64.8 C75 70.5 77.5 80 77.2 91.4", .3),
-  dash("M69.4 65.8 C73.3 71.4 75.6 80.5 75.3 91.4", "#000", .3),
-  dot(73.6, 68.6, .55, .45), dot(75.4, 72.6, .55, .45), dot(76.6, 76.8, .55, .45), dot(77.3, 81, .55, .45), dot(77.6, 85.2, .55, .45),
-  ln("M12.5 60 C17 68 19.5 76 20.5 84", .2),
-  hl("M80 71.5 C87.5 74.5 93.5 78.5 96 84 C90.5 80 85 76.5 80 74 Z", .45),
-  hl("M8.2 68 C7.6 73 8 78 9.4 82 L11.4 82 C10.4 78 10 73 10.4 68 Z", .25),
-] + leather_sole()
+OXFORD = "M7.5 83 C5.5 75 6 66 9.5 59 Q11 57.6 12.5 58 Q22 61.5 31 59.5 L45 55.5 C60 57 76 64 87 72 C94 76.5 98 80 96.8 84 C95.5 87 92 88.6 86 88.6 L58 88.6 C47 88.2 38 83.5 25 83 Z"
+G['oxfords'] = [leather('ox')] + dress_sole('ox') + lit(OXFORD, 'ox') + [
+  sh("M12.5 58 Q22 61.5 31 59.5 L31.4 62 Q22 64 13 60.8 Z", .5),
+  hln("M12.8 58.4 Q22 61.8 31 59.8", .25, .6),
+  base("M36 57.8 L45 55.5 L46.5 57.4 L37 59.8 Z"), sh("M36 57.8 L45 55.5 L46.5 57.4 L37 59.8 Z", .35),
+  ln("M31 59.5 L42.5 74 L56.5 70", .4, .9),
+  hln("M32.3 59.6 L43.2 73.2", .3, .6),
+  dot(33.2, 62.4, .75, .8), dot(35.5, 65.3, .75, .8), dot(37.8, 68.2, .75, .8), dot(40.1, 71.1, .75, .8),
+  ln("M33.2 62.4 L46 58.6 M35.5 65.3 L48.3 61.6 M37.8 68.2 L50.6 64.6 M40.1 71.1 L52.9 67.6", .5, .8),
+  ln("M31 59.5 C34 67 37 75 38.5 83.8", .3, .8),
+  dash("M29.2 60.5 C32 68 35 76 36.3 83.6", "#000", .35),
+  ln("M72 65 C76 70.6 78.5 79.5 78.2 88.4", .35, .9),
+  hln("M73.2 65.2 C77.2 70.8 79.7 79.6 79.4 88.4", .25, .6),
+  dot(74.5, 68.8, .5, .5), dot(76.2, 72.6, .5, .5), dot(77.3, 76.6, .5, .5), dot(77.8, 80.6, .5, .5), dot(78, 84.6, .5, .5),
+  ln("M11.5 60 C16 68 18.5 76 19.5 83.4", .22, .8),
+]
 
 G['heels'] = [
   base("M17 74 L26.5 79.5 C23.5 88 22.5 98 22.5 108 L18.5 108 C18.5 96 17.5 84 17 74 Z"),
